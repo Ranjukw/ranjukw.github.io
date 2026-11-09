@@ -15,6 +15,7 @@
       --accent: #38bdf8;
       --accent-green: #22c55e;
       --accent-purple: #a855f7;
+      --accent-amber: #f59e0b;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
@@ -288,6 +289,51 @@
       transition: color 0.15s ease;
     }
     .news-link:hover { color: var(--accent); text-decoration: underline; }
+
+    /* Security Precautions Section */
+    .precautions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .precaution-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      transition: border-color 0.2s ease;
+    }
+    .precaution-card:hover { border-color: var(--accent-amber); }
+
+    .precaution-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .precaution-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-amber);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .precaution-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .precaution-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
     /* Skills Grid */
     .skills-grid {
@@ -574,6 +620,64 @@
         <ul id="newsFeed" class="news-list">
           <li class="news-item"><span class="news-num">01</span><span>Fetching latest national feed...</span></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- 5 Basic Precautions Against Hacking -->
+    <section>
+      <h2 class="section-head">Cyber Defense: 5 Basic Anti-Hacking Precautions</h2>
+      <div class="precautions-grid">
+        
+        <div class="precaution-card">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #01</span>
+            <span class="precaution-title">Enforce MFA / 2FA Everywhere</span>
+          </div>
+          <p class="precaution-desc">
+            Never rely on passwords alone. Use authenticator apps (TOTP) or hardware security keys. Even if credentials leak, unauthorized logins are blocked without the secondary physical token.
+          </p>
+        </div>
+
+        <div class="precaution-card">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #02</span>
+            <span class="precaution-title">Inspect Deceptive URLs & Phishing</span>
+          </div>
+          <p class="precaution-desc">
+            Always inspect the domain hierarchy and protocol before clicking links. Attackers use lookalike typos, fake subdomains, and obfuscated redirects to harvest session tokens and sensitive credentials.
+          </p>
+        </div>
+
+        <div class="precaution-card">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #03</span>
+            <span class="precaution-title">Patch & Automate Firmware Updates</span>
+          </div>
+          <p class="precaution-desc">
+            Exploits actively scan for known CVE vulnerabilities. Keep your OS, router firmware, browser, and server packages updated to neutralize automated botnet probes and zero-day exploits.
+          </p>
+        </div>
+
+        <div class="precaution-card">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #04</span>
+            <span class="precaution-title">Avoid Open Public Wi-Fi Without VPN</span>
+          </div>
+          <p class="precaution-desc">
+            Unsecured public hotspots allow rogue threat actors to stage Man-in-the-Middle (MitM) and DNS spoofing attacks. Always tunnel your traffic through an encrypted VPN when away from home.
+          </p>
+        </div>
+
+        <div class="precaution-card">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #05</span>
+            <span class="precaution-title">Follow Principle of Least Privilege</span>
+          </div>
+          <p class="precaution-desc">
+            Never run daily tasks on root or admin accounts. Restrict application permissions, revoke unused API tokens, and maintain encrypted offline backups to prevent ransomware lateral movement.
+          </p>
+        </div>
+
       </div>
     </section>
 
@@ -913,7 +1017,7 @@
 
     function loop() {
       gameLoop = requestAnimationFrame(loop);
-      if (++count < 6) return; // 10 fps game speed
+      if (++count < 6) return;
       count = 0;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -921,7 +1025,6 @@
       snake.x += snake.dx;
       snake.y += snake.dy;
 
-      // Wrap around walls
       if (snake.x < 0) snake.x = canvas.width - grid;
       else if (snake.x >= canvas.width) snake.x = 0;
       if (snake.y < 0) snake.y = canvas.height - grid;
@@ -930,19 +1033,18 @@
       snake.cells.unshift({ x: snake.x, y: snake.y });
       if (snake.cells.length > snake.maxCells) snake.cells.pop();
 
-      // Draw Apple (Data Packet)
+      // Apple
       ctx.fillStyle = '#38bdf8';
       ctx.shadowColor = '#38bdf8';
       ctx.shadowBlur = 8;
       ctx.fillRect(apple.x, apple.y, grid - 1, grid - 1);
 
-      // Draw Snake
+      // Snake
       ctx.shadowBlur = 0;
       snake.cells.forEach((cell, index) => {
         ctx.fillStyle = index === 0 ? '#22c55e' : '#15803d';
         ctx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
 
-        // Snake ate apple
         if (cell.x === apple.x && cell.y === apple.y) {
           snake.maxCells++;
           score += 10;
@@ -955,7 +1057,6 @@
           apple.y = getRandomInt(0, 19) * grid;
         }
 
-        // Body collision check
         for (let i = index + 1; i < snake.cells.length; i++) {
           if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
             resetGame();
@@ -975,7 +1076,7 @@
       if (['ArrowUp', 'KeyW'].includes(e.code) && snake.dy === 0) { e.preventDefault(); snake.dy = -grid; snake.dx = 0; }
       else if (['ArrowDown', 'KeyS'].includes(e.code) && snake.dy === 0) { e.preventDefault(); snake.dy = grid; snake.dx = 0; }
       else if (['ArrowLeft', 'KeyA'].includes(e.code) && snake.dx === 0) { e.preventDefault(); snake.dx = -grid; snake.dy = 0; }
-      else if (['ArrowRight', 'KeyD'].includes(e.code) && snake.dx === 0) { e.preventDefault(); snake.dx = grid; snake.dy = 0; }
+      else if (['ArrowRight', 'KeyD'].includes(e.code) && snake.dx === 0) { e.preventDefault(); snake.dx = grid; snake.dx = 0; }
     });
 
     function startGame() {
@@ -983,7 +1084,7 @@
       resetGame();
       loop();
     }
-    // Initialize canvas idle state
+
     resetGame();
     ctx.fillStyle = '#0a0f18';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
