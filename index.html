@@ -109,6 +109,12 @@
       padding: 0.2rem 0.6rem;
       border-radius: 4px;
       margin-bottom: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .role-badge:hover {
+      background: rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
     }
 
     h1 {
@@ -222,13 +228,20 @@
       font-size: 1.35rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .section-head::before {
       content: "$";
       color: var(--accent-green);
       font-family: var(--font-mono);
+    }
+
+    .section-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      margin-bottom: 1.25rem;
     }
 
     /* Live News Widget */
@@ -255,7 +268,9 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
     }
+    .news-label:hover { text-decoration: underline; }
 
     .news-refresh-note {
       font-size: 0.75rem;
@@ -302,9 +317,13 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem;
-      transition: border-color 0.2s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
-    .precaution-card:hover { border-color: var(--accent-amber); }
+    .precaution-card:hover { 
+      transform: translateY(-2px);
+      border-color: var(--accent-amber); 
+    }
 
     .precaution-header {
       display: flex;
@@ -359,17 +378,34 @@
     .pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
 
     .pill {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-family: var(--font-mono);
-      padding: 0.2rem 0.5rem;
+      padding: 0.25rem 0.6rem;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 5px;
       color: #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .pill:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .pill::after {
+      content: "ℹ";
+      font-size: 0.65rem;
+      opacity: 0.6;
     }
 
     .pill.kali { border-color: rgba(56, 189, 248, 0.4); color: var(--accent); }
@@ -411,7 +447,7 @@
     }
     .t-item li { margin-bottom: 0.35rem; }
 
-    /* Projects Grid */
+    /* Projects & Craft Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -423,6 +459,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.35rem;
+      cursor: pointer;
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
     .card:hover { transform: translateY(-2px); border-color: var(--accent); }
@@ -559,6 +596,105 @@
 
     .footer-links a { color: var(--accent); text-decoration: none; }
     .footer-links a:hover { text-decoration: underline; }
+
+    /* Interactive Explanation Modal / Drawer */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 15, 20, 0.85);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1rem;
+      animation: fadeIn 0.15s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-card {
+      background: #111722;
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+      animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      background: #0d121c;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+    }
+
+    .modal-title {
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 0.25rem;
+    }
+    .modal-close:hover { color: #fff; }
+
+    .modal-body {
+      padding: 1.35rem;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .modal-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .modal-body p {
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-footer {
+      background: #0d121c;
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+    }
   </style>
 </head>
 <body>
@@ -568,9 +704,9 @@
     <div class="top-bar">
       <div class="status-indicator">
         <span class="pulse"></span>
-        <span>Systems Online | Hardened</span>
+        <span onclick="openExplain('status')" style="cursor: pointer;">Systems Online | Hardened ℹ</span>
       </div>
-      <div class="clock-badge">
+      <div class="clock-badge" onclick="openExplain('ist_clock')" style="cursor: pointer;">
         <span id="liveDate">Loading date...</span>
         <span>|</span>
         <span id="liveClock">00:00:00</span>
@@ -581,7 +717,7 @@
     <!-- Hero Section -->
     <header class="hero">
       <div class="hero-text">
-        <div class="role-badge">KALI LINUX & ISO/IEC 27001 AUDITOR</div>
+        <div class="role-badge" onclick="openExplain('role_badge')">KALI LINUX & ISO/IEC 27001 AUDITOR ℹ</div>
         <h1>Ranju K W</h1>
         <p class="tagline">&gt; Cybersecurity Specialist | Cyber Forensics | Penetration Tester</p>
         <p class="bio">
@@ -609,11 +745,12 @@
     <!-- Top 5 Indian News Feed -->
     <section>
       <h2 class="section-head">Live National Radar</h2>
+      <p class="section-hint">&gt; Click title to see how this live radar functions</p>
       <div class="news-box">
         <div class="news-title-row">
-          <div class="news-label">
+          <div class="news-label" onclick="openExplain('news')">
             <span class="pulse"></span>
-            <strong>Top 5 Indian News Headlines</strong>
+            <strong>Top 5 Indian News Headlines ℹ</strong>
           </div>
           <span class="news-refresh-note">Auto-updated via RSS feed</span>
         </div>
@@ -626,55 +763,56 @@
     <!-- 5 Basic Precautions Against Hacking -->
     <section>
       <h2 class="section-head">Cyber Defense: 5 Basic Anti-Hacking Precautions</h2>
+      <p class="section-hint">&gt; Tap any card for an in-depth security implementation tip</p>
       <div class="precautions-grid">
         
-        <div class="precaution-card">
+        <div class="precaution-card" onclick="openExplain('mfa')">
           <div class="precaution-header">
             <span class="precaution-tag">RULE #01</span>
             <span class="precaution-title">Enforce MFA / 2FA Everywhere</span>
           </div>
           <p class="precaution-desc">
-            Never rely on passwords alone. Use authenticator apps (TOTP) or hardware security keys. Even if credentials leak, unauthorized logins are blocked without the secondary physical token.
+            Never rely on passwords alone. Use authenticator apps (TOTP) or hardware keys to block unauthorized logins even if credentials leak.
           </p>
         </div>
 
-        <div class="precaution-card">
+        <div class="precaution-card" onclick="openExplain('phishing')">
           <div class="precaution-header">
             <span class="precaution-tag">RULE #02</span>
             <span class="precaution-title">Inspect Deceptive URLs & Phishing</span>
           </div>
           <p class="precaution-desc">
-            Always inspect the domain hierarchy and protocol before clicking links. Attackers use lookalike typos, fake subdomains, and obfuscated redirects to harvest session tokens and sensitive credentials.
+            Inspect domain syntax, homograph tricks, and redirects before inputting sensitive credentials or clicking email attachments.
           </p>
         </div>
 
-        <div class="precaution-card">
+        <div class="precaution-card" onclick="openExplain('patching')">
           <div class="precaution-header">
             <span class="precaution-tag">RULE #03</span>
             <span class="precaution-title">Patch & Automate Firmware Updates</span>
           </div>
           <p class="precaution-desc">
-            Exploits actively scan for known CVE vulnerabilities. Keep your OS, router firmware, browser, and server packages updated to neutralize automated botnet probes and zero-day exploits.
+            Neutralize automated vulnerability scans by updating OS kernels, browser engines, and network appliances immediately.
           </p>
         </div>
 
-        <div class="precaution-card">
+        <div class="precaution-card" onclick="openExplain('public_wifi')">
           <div class="precaution-header">
             <span class="precaution-tag">RULE #04</span>
             <span class="precaution-title">Avoid Open Public Wi-Fi Without VPN</span>
           </div>
           <p class="precaution-desc">
-            Unsecured public hotspots allow rogue threat actors to stage Man-in-the-Middle (MitM) and DNS spoofing attacks. Always tunnel your traffic through an encrypted VPN when away from home.
+            Public hotspots permit Man-in-the-Middle and DNS spoofing. Always tunnel traffic through an encrypted WireGuard or OpenVPN channel.
           </p>
         </div>
 
-        <div class="precaution-card">
+        <div class="precaution-card" onclick="openExplain('least_privilege')">
           <div class="precaution-header">
             <span class="precaution-tag">RULE #05</span>
             <span class="precaution-title">Follow Principle of Least Privilege</span>
           </div>
           <p class="precaution-desc">
-            Never run daily tasks on root or admin accounts. Restrict application permissions, revoke unused API tokens, and maintain encrypted offline backups to prevent ransomware lateral movement.
+            Avoid running daily tasks as root or local admin. Segment data access and isolate critical backups offline against ransomware.
           </p>
         </div>
 
@@ -684,41 +822,42 @@
     <!-- Core Skills Arsenal -->
     <section>
       <h2 class="section-head">Security Arsenal & Core Skills</h2>
+      <p class="section-hint">&gt; Tap any skill badge below for its technical explanation</p>
       <div class="skills-grid">
         <div class="skill-card">
           <h4>VAPT & AUDITING</h4>
           <div class="pills">
-            <span class="pill kali">Kali Linux Specialist</span>
-            <span class="pill">Metasploit</span>
-            <span class="pill">Nmap</span>
-            <span class="pill">Burp Suite</span>
-            <span class="pill">Wireshark</span>
-            <span class="pill">OWASP ZAP</span>
-            <span class="pill">Packet Inspection</span>
+            <span class="pill kali" onclick="openExplain('kali')">Kali Linux Specialist</span>
+            <span class="pill" onclick="openExplain('metasploit')">Metasploit</span>
+            <span class="pill" onclick="openExplain('nmap')">Nmap</span>
+            <span class="pill" onclick="openExplain('burp')">Burp Suite</span>
+            <span class="pill" onclick="openExplain('wireshark')">Wireshark</span>
+            <span class="pill" onclick="openExplain('zap')">OWASP ZAP</span>
+            <span class="pill" onclick="openExplain('packet_inspection')">Packet Inspection</span>
           </div>
         </div>
 
         <div class="skill-card">
           <h4>COMPLIANCE & DEFENSE</h4>
           <div class="pills">
-            <span class="pill iso">ISO/IEC 27001 Auditor</span>
-            <span class="pill iso">ISMS Audit Controls</span>
-            <span class="pill">Gap Analysis</span>
-            <span class="pill">Server Hardening</span>
-            <span class="pill">Nginx Security</span>
-            <span class="pill">Firewall & VPN</span>
+            <span class="pill iso" onclick="openExplain('iso')">ISO/IEC 27001 Auditor</span>
+            <span class="pill iso" onclick="openExplain('isms')">ISMS Audit Controls</span>
+            <span class="pill" onclick="openExplain('gap_analysis')">Gap Analysis</span>
+            <span class="pill" onclick="openExplain('hardening')">Server Hardening</span>
+            <span class="pill" onclick="openExplain('nginx')">Nginx Security</span>
+            <span class="pill" onclick="openExplain('firewall')">Firewall & VPN</span>
           </div>
         </div>
 
         <div class="skill-card">
           <h4>DEV & AUTOMATION</h4>
           <div class="pills">
-            <span class="pill">Python</span>
-            <span class="pill">Java (OOP, Collections)</span>
-            <span class="pill">Bash Scripting</span>
-            <span class="pill">SQL</span>
-            <span class="pill">Anomaly Detection</span>
-            <span class="pill">Data Analytics</span>
+            <span class="pill" onclick="openExplain('python')">Python</span>
+            <span class="pill" onclick="openExplain('java')">Java (OOP, Collections)</span>
+            <span class="pill" onclick="openExplain('bash')">Bash Scripting</span>
+            <span class="pill" onclick="openExplain('sql')">SQL</span>
+            <span class="pill" onclick="openExplain('anomaly')">Anomaly Detection</span>
+            <span class="pill" onclick="openExplain('analytics')">Data Analytics</span>
           </div>
         </div>
       </div>
@@ -792,9 +931,10 @@
     <!-- Projects -->
     <section>
       <h2 class="section-head">Technical Projects</h2>
+      <p class="section-hint">&gt; Tap any project card for technical architecture details</p>
       <div class="cards-grid">
 
-        <div class="card">
+        <div class="card" onclick="openExplain('proj_phishing')">
           <div class="card-type">SECURITY ANALYTICS / ML</div>
           <h3>Phishing URL Detection Tool</h3>
           <p>
@@ -807,7 +947,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openExplain('proj_replica')">
           <div class="card-type">NETWORK SIMULATION / DEFENSE</div>
           <h3>Replica Model of Network Security Tool</h3>
           <p>
@@ -826,6 +966,7 @@
     <!-- Nature Banner & Unique Crafts -->
     <section>
       <h2 class="section-head">Unique Activities & Passions</h2>
+      <p class="section-hint">&gt; Tap any passion card to explore the technique</p>
 
       <div class="nature-banner">
         <p class="quote-text">"The creation of a thousand forests is in one acorn."</p>
@@ -836,7 +977,7 @@
       </div>
 
       <div class="cards-grid">
-        <div class="card">
+        <div class="card" onclick="openExplain('bonsai')">
           <div class="card-type">BOTANICAL HORTICULTURE</div>
           <h3>Bonsai & Plant Propagation</h3>
           <p>
@@ -849,7 +990,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openExplain('terrarium')">
           <div class="card-type">GLASS MICRO-HABITATS</div>
           <h3>Self-Sustaining Terrariums</h3>
           <p>
@@ -862,7 +1003,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openExplain('badminton')">
           <div class="card-type">COMMUNITY SPORTS</div>
           <h3>Badminton Tournament Organization</h3>
           <p>
@@ -875,7 +1016,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openExplain('esports')">
           <div class="card-type">COMPETITIVE GAMING</div>
           <h3>Esports & Tactical Strategy</h3>
           <p>
@@ -894,7 +1035,7 @@
       <h2 class="section-head">Terminal Arcade: Cyber Snake</h2>
       <div class="game-section">
         <div class="game-header">
-          <span style="color: var(--accent-green);">&gt; ./run_snake.sh</span>
+          <span style="color: var(--accent-green);" onclick="openExplain('snake_game')" style="cursor: pointer;">&gt; ./run_snake.sh ℹ</span>
           <div class="score-board">
             <span>Score: <strong id="score">0</strong></span>
             <span>High: <strong id="highScore">0</strong></span>
@@ -932,9 +1073,248 @@
 
   </div>
 
-  <!-- Scripts: Clock, News, Game -->
+  <!-- Interactive Terminal Inspector Modal -->
+  <div id="explainModal" class="modal-overlay" onclick="closeExplain(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span style="color: var(--accent-green);">&gt;</span>
+          <span id="modalTitle">Terminal Inspector</span>
+        </div>
+        <button class="modal-close" onclick="forceCloseExplain()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <span id="modalTag" class="modal-tag">OVERVIEW</span>
+        <div id="modalText">Select an item to view its breakdown.</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;" onclick="forceCloseExplain()">[ Close ESC ]</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: Clock, News, Game, and Explanations -->
   <script>
-    // 1. Live IST Clock
+    // 1. Knowledge Base for Short Explanations
+    const explanations = {
+      // Security Tools & OS
+      kali: {
+        title: "Kali Linux (Specialist)",
+        tag: "PENETRATION TESTING OS",
+        text: "The industry-standard Debian-derived Linux distribution armed with hundreds of offensive security tools. I use it daily for wireless audits, packet inspection, network discovery, and automated vulnerability exploitation."
+      },
+      metasploit: {
+        title: "Metasploit Framework",
+        tag: "EXPLOITATION ENGINE",
+        text: "A modular penetration testing platform used to probe network defenses, execute verified exploit payloads, validate patch vulnerabilities, and verify real-world attack vectors during red team audits."
+      },
+      nmap: {
+        title: "Nmap (Network Mapper)",
+        tag: "NETWORK RECONNAISSANCE",
+        text: "The gold standard for network discovery and vulnerability auditing. Used to perform stealth SYN scans, detect open TCP/UDP ports, map operating systems, and run NSE scripts against enterprise perimeters."
+      },
+      burp: {
+        title: "Burp Suite",
+        tag: "WEB APP VAPT",
+        text: "An intercepting proxy tool used to intercept, inspect, and modify HTTP/S traffic between browsers and target servers. Ideal for discovering SQL injection, Cross-Site Scripting (XSS), and broken authentication."
+      },
+      wireshark: {
+        title: "Wireshark",
+        tag: "DEEP PACKET INSPECTION",
+        text: "A network protocol analyzer that captures traffic in real time. Used for analyzing raw TCP/IP handshakes, decrypting TLS conversations with session keys, and uncovering rogue network chatter."
+      },
+      zap: {
+        title: "OWASP ZAP",
+        tag: "OPEN SOURCE SCANNER",
+        text: "An automated web application scanner maintained by the OWASP foundation. Excels at crawling APIs, spidering web assets, and uncovering security misconfigurations before deployment."
+      },
+      packet_inspection: {
+        title: "Deep Packet Inspection",
+        tag: "NETWORK TELEMETRY",
+        text: "The practice of examining data payloads beyond packet headers to uncover malware beacons, protocol anomalies, and data exfiltration attempts traversing network segments."
+      },
+
+      // Compliance & Systems
+      iso: {
+        title: "ISO/IEC 27001 Auditor",
+        tag: "GLOBAL SECURITY STANDARD",
+        text: "The international benchmark for Information Security Management Systems (ISMS). Focuses on establishing comprehensive organizational controls, risk assessments, and technical policies to protect digital assets."
+      },
+      isms: {
+        title: "ISMS Audit Controls",
+        tag: "GOVERNANCE & RISK",
+        text: "Annex A controls covering access governance, cryptography, physical security, incident response, and supplier relations to ensure regulatory and technical compliance."
+      },
+      gap_analysis: {
+        title: "Gap Analysis & Risk Treatment",
+        tag: "SECURITY STRATEGY",
+        text: "Systematically comparing current technical postures against ISO/IEC 27001 requirements to pinpoint vulnerabilities, prioritize remediation roadmaps, and document risk appetite."
+      },
+      hardening: {
+        title: "Server Hardening",
+        tag: "DEFENSIVE ENGINEERING",
+        text: "The discipline of minimizing attack surfaces by closing unused ports, disabling default accounts, enforcing strict SSH key policies, and enabling host-based firewalls (UFW/iptables)."
+      },
+      nginx: {
+        title: "Nginx Hardening & Security Headers",
+        tag: "WEB SERVER DEFENSE",
+        text: "Configuring robust Nginx reverse proxies with strict HTTP security headers (HSTS, CSP, X-Frame-Options) to stop clickjacking, MIME sniffing, and downgrade attacks."
+      },
+      firewall: {
+        title: "Firewalls & VPN Gateways",
+        tag: "PERIMETER DEFENSE",
+        text: "Deploying stateful packet inspection firewalls and encrypted tunnels (WireGuard/OpenVPN) to isolate production databases and restrict unauthorized administrative entry."
+      },
+
+      // Development & Skills
+      python: {
+        title: "Python for Security",
+        tag: "SCRIPTING & ML",
+        text: "Writing custom automation scripts, parsing raw log formats, orchestrating security APIs, and training machine learning classification models for threat detection."
+      },
+      java: {
+        title: "Core Java Development",
+        tag: "SOFTWARE ARCHITECTURE",
+        text: "Building robust, thread-safe software systems utilizing Object-Oriented Programming (OOP) paradigms, the Java Collections Framework, and defensive exception handling."
+      },
+      bash: {
+        title: "Bash Shell Scripting",
+        tag: "LINUX AUTOMATION",
+        text: "Automating repetitive terminal workflows, scheduled crontab security health checks, system compliance audits, and reconnaissance chains directly inside Kali Linux."
+      },
+      sql: {
+        title: "SQL & Database Security",
+        tag: "DATA LAYER DEFENSE",
+        text: "Querying relational databases, analyzing access audit logs, and testing database parameters against SQL Injection (SQLi) attack patterns."
+      },
+      anomaly: {
+        title: "Anomaly Detection",
+        tag: "AI / HEURISTICS",
+        text: "Applying statistical models and baseline profiling to detect unusual outbound spikes, unexpected data transfers, and abnormal behavioral indicators."
+      },
+      analytics: {
+        title: "Data Analytics",
+        tag: "SECURITY METRICS",
+        text: "Transforming high-volume logs into actionable charts, MTTR metrics, and vulnerability scorecards to guide executive decisions."
+      },
+
+      // Projects
+      proj_phishing: {
+        title: "Phishing URL Detection Tool",
+        tag: "PROJECT BREAKDOWN",
+        text: "A machine learning pipeline that extracts lexical features (subdomain count, length, hyphens, entropy) from URLs to classify legitimate versus fraudulent domains before execution."
+      },
+      proj_replica: {
+        title: "Replica Model of Network Tool",
+        tag: "PROJECT BREAKDOWN",
+        text: "A virtualized Kali Linux testbed created to simulate network attacks, assess firewall rule efficacy, and measure how security tools handle live packet fragmentation."
+      },
+
+      // Passions
+      terrarium: {
+        title: "Bioactive Glass Terrariums",
+        tag: "LIVING MICRO-SYSTEMS",
+        text: "Custom-built, hermetically sealed miniature glass ecosystems. Features calibrated drainage (false bottoms), activated charcoal filtration, tropical mosses, and isopods for natural waste breakdown. Custom commissions available via Instagram DM!"
+      },
+      bonsai: {
+        title: "Bonsai Propagation & Wiring",
+        tag: "BOTANICAL ART",
+        text: "The living art of shaping indigenous trees (Ficus microcarpa, Banyan, Tamarind) into cascade and informal upright styles through wire training, root pruning, and seasonal leaf reduction."
+      },
+      badminton: {
+        title: "Badminton Tournament Management",
+        tag: "EVENT LOGISTICS",
+        text: "Coordinating regional knockout competitions, match scheduling, bracket integrity, and player communications to foster active sports community engagement."
+      },
+      esports: {
+        title: "Competitive Mobile Esports (Free Fire MAX)",
+        tag: "TACTICAL STRATEGY",
+        text: "High-level mobile gaming demanding fast spatial coordination, dynamic team rotation, macro map control, and split-second tactical communication under pressure."
+      },
+
+      // Precautions & Extras
+      news: {
+        title: "Live National Radar",
+        tag: "WIDGET TELEMETRY",
+        text: "An automated real-time bridge that queries verified Indian national RSS news feeds, parsing and displaying the top 5 trending headlines dynamically without any third-party ads."
+      },
+      status: {
+        title: "System Status: Online & Hardened",
+        tag: "INFRASTRUCTURE",
+        text: "Indicates that all personal web services, GitHub Pages SSL certificates, and client-side scripts are operating securely within standard parameters."
+      },
+      ist_clock: {
+        title: "IST Clock Telemetry",
+        tag: "TIME SYNCHRONIZATION",
+        text: "A real-time digital clock synchronized to Indian Standard Time (UTC+05:30), reflecting active working hours in Chikkamagaluru, Karnataka."
+      },
+      role_badge: {
+        title: "Dual Focus: Auditor & Offensive Specialist",
+        tag: "PROFESSIONAL PROFILE",
+        text: "Combines offensive penetration testing capabilities (finding system vulnerabilities) with defensive governance auditing (enforcing ISO/IEC 27001 organizational standards)."
+      },
+      mfa: {
+        title: "Rule #01: Multi-Factor Authentication",
+        tag: "SECURITY PRECAUTION",
+        text: "Never rely on single passwords. Using Time-based One-Time Passwords (TOTP via Google Authenticator or hardware YubiKeys) stops over 99% of automated credential stuffing attacks."
+      },
+      phishing: {
+        title: "Rule #02: Phishing & URL Verification",
+        tag: "SECURITY PRECAUTION",
+        text: "Always verify the Top-Level Domain (TLD) and host domain. Watch for character replacement (e.g., Cyrillic homoglyphs) and deceptive redirect parameters in suspicious emails or SMS."
+      },
+      patching: {
+        title: "Rule #03: Rapid Vulnerability Patching",
+        tag: "SECURITY PRECAUTION",
+        text: "Attackers weaponize publicly disclosed CVEs within hours. Enabling unattended security upgrades and keeping software dependencies updated reduces zero-day exposure significantly."
+      },
+      public_wifi: {
+        title: "Rule #04: Untrusted Network Hardening",
+        tag: "SECURITY PRECAUTION",
+        text: "Open Wi-Fi networks allow attacker devices to broadcast spoofed ARP/DNS replies. An encrypted VPN tunnel guarantees end-to-end cryptographic confidentiality."
+      },
+      least_privilege: {
+        title: "Rule #05: Principle of Least Privilege (PoLP)",
+        tag: "SECURITY PRECAUTION",
+        text: "Users and services should only hold permissions strictly necessary for their core task. If a process running with restricted privileges is compromised, lateral movement across the network is blocked."
+      },
+      snake_game: {
+        title: "Retro Cyber Snake Engine",
+        tag: "ARCADE ENGINE",
+        text: "A zero-dependency HTML5 canvas game engineered with pure JavaScript, featuring mobile touch navigation, collision physics, and real-time score tracking."
+      }
+    };
+
+    function openExplain(key) {
+      const info = explanations[key] || {
+        title: "Topic Overview",
+        tag: "INFO",
+        text: "Detailed technical documentation available upon request."
+      };
+
+      document.getElementById('modalTitle').textContent = info.title;
+      document.getElementById('modalTag').textContent = info.tag;
+      document.getElementById('modalText').textContent = info.text;
+
+      const modal = document.getElementById('explainModal');
+      modal.style.display = 'flex';
+    }
+
+    function closeExplain(event) {
+      if (event.target.id === 'explainModal') {
+        forceCloseExplain();
+      }
+    }
+
+    function forceCloseExplain() {
+      document.getElementById('explainModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') forceCloseExplain();
+    });
+
+    // 2. Live IST Clock
     function updateLiveClock() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -945,7 +1325,7 @@
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
-    // 2. Live Top 5 Indian News Feed (RSS Bridge)
+    // 3. Live Top 5 Indian News Feed (RSS Bridge)
     async function loadIndianNews() {
       const feedContainer = document.getElementById('newsFeed');
       const rssUrl = encodeURIComponent('https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en');
@@ -978,7 +1358,7 @@
     }
     window.addEventListener('DOMContentLoaded', loadIndianNews);
 
-    // 3. Cyber Snake Game Engine
+    // 4. Cyber Snake Game Engine
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     const grid = 15;
