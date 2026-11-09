@@ -8,13 +8,12 @@
     :root {
       --bg: #0b0f14;
       --card-bg: #111722;
-      --card-hover: #16202f;
       --border: #233044;
       --text: #e2e8f0;
       --muted: #94a3b8;
       --accent: #38bdf8;
       --accent-green: #22c55e;
-      --accent-purple: #a855f7;
+      --accent-nature: #10b981;
       --accent-amber: #f59e0b;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -78,6 +77,7 @@
       padding: 0.3rem 0.75rem;
       border-radius: 6px;
       color: var(--accent);
+      cursor: pointer;
     }
 
     /* Hero Section */
@@ -244,7 +244,7 @@
       margin-bottom: 1.25rem;
     }
 
-    /* Live News Widget */
+    /* Cybersecurity Daily Radar */
     .news-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -474,10 +474,32 @@
     .card h3 { font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem; }
     .card p { font-size: 0.92rem; color: var(--muted); margin-bottom: 1rem; }
 
-    /* Nature Banner & Terrarium CTA */
+    /* Nature Sanctuary (Separated Botanical Section) */
+    .nature-sanctuary {
+      margin-top: 4rem;
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(11, 15, 20, 1) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+    }
+
+    .nature-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #6ee7b7;
+      margin-bottom: 0.5rem;
+    }
+
+    .nature-head::before {
+      content: "🌿";
+    }
+
     .nature-banner {
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(56, 189, 248, 0.04));
-      border: 1px solid rgba(34, 197, 94, 0.3);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
       border-radius: 8px;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
@@ -487,7 +509,7 @@
     .quote-text {
       font-style: italic;
       font-size: 1.15rem;
-      color: #86efac;
+      color: #a7f3d0;
       margin-bottom: 0.35rem;
     }
 
@@ -502,19 +524,27 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid var(--accent-green);
-      color: #fff;
-      padding: 0.55rem 1.1rem;
+      background: #10b981;
+      border: 1px solid #10b981;
+      color: #0b0f14;
+      padding: 0.6rem 1.25rem;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: background 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
-    .terrarium-cta:hover { background: rgba(34, 197, 94, 0.3); }
+    .terrarium-cta:hover { background: #34d399; transform: translateY(-1px); }
 
-    /* Cyber Snake Game */
+    .nature-card {
+      background: rgba(17, 23, 34, 0.8);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+    .nature-card:hover {
+      border-color: #10b981;
+    }
+
+    /* Cyber Runner Game (Chrome Dino Style) */
     .game-section {
       background: #06090e;
       border: 1px solid var(--border);
@@ -541,12 +571,13 @@
     }
 
     #gameCanvas {
-      background: #0a0f18;
+      background: #080c14;
       border: 2px solid var(--border);
       border-radius: 6px;
       display: block;
       margin: 0 auto;
       max-width: 100%;
+      cursor: pointer;
     }
 
     .game-controls {
@@ -554,27 +585,25 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
-    .touch-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 50px);
-      gap: 6px;
-      margin-top: 0.5rem;
-    }
-
-    .touch-btn {
-      width: 50px;
-      height: 45px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text);
+    .jump-btn {
+      padding: 0.75rem 2.5rem;
       font-size: 1.1rem;
-      border-radius: 6px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      border-radius: 8px;
+      background: var(--accent-green);
+      color: #0b0f14;
+      border: none;
       cursor: pointer;
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
     }
-    .touch-btn:active { background: var(--accent); color: #000; }
+    .jump-btn:active {
+      transform: scale(0.96);
+      background: #4ade80;
+    }
 
     /* Footer */
     footer {
@@ -597,7 +626,7 @@
     .footer-links a { color: var(--accent); text-decoration: none; }
     .footer-links a:hover { text-decoration: underline; }
 
-    /* Interactive Explanation Modal / Drawer */
+    /* Interactive Explanation Modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -611,12 +640,6 @@
       justify-content: center;
       z-index: 9999;
       padding: 1rem;
-      animation: fadeIn 0.15s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .modal-card {
@@ -627,12 +650,6 @@
       width: 100%;
       max-width: 520px;
       overflow: hidden;
-      animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
     }
 
     .modal-header {
@@ -684,10 +701,6 @@
       border: 1px solid rgba(34, 197, 94, 0.3);
     }
 
-    .modal-body p {
-      margin-bottom: 0.75rem;
-    }
-
     .modal-footer {
       background: #0d121c;
       padding: 0.75rem 1.25rem;
@@ -706,7 +719,7 @@
         <span class="pulse"></span>
         <span onclick="openExplain('status')" style="cursor: pointer;">Systems Online | Hardened ℹ</span>
       </div>
-      <div class="clock-badge" onclick="openExplain('ist_clock')" style="cursor: pointer;">
+      <div class="clock-badge" onclick="openExplain('ist_clock')">
         <span id="liveDate">Loading date...</span>
         <span>|</span>
         <span id="liveClock">00:00:00</span>
@@ -742,20 +755,20 @@
       </div>
     </header>
 
-    <!-- Top 5 Indian News Feed -->
+    <!-- Indian Cybersecurity Daily Threat Radar -->
     <section>
-      <h2 class="section-head">Live National Radar</h2>
-      <p class="section-hint">&gt; Click title to see how this live radar functions</p>
+      <h2 class="section-head">Indian Daily Cybersecurity Radar</h2>
+      <p class="section-hint">&gt; Live security alerts, CERT-In bulletins, and national incident intelligence</p>
       <div class="news-box">
         <div class="news-title-row">
           <div class="news-label" onclick="openExplain('news')">
             <span class="pulse"></span>
-            <strong>Top 5 Indian News Headlines ℹ</strong>
+            <strong>India Cyber Threat & Vulnerability Feed ℹ</strong>
           </div>
-          <span class="news-refresh-note">Auto-updated via RSS feed</span>
+          <span class="news-refresh-note">Auto-updated security radar</span>
         </div>
         <ul id="newsFeed" class="news-list">
-          <li class="news-item"><span class="news-num">01</span><span>Fetching latest national feed...</span></li>
+          <li class="news-item"><span class="news-num">01</span><span>Fetching national cybersecurity advisories...</span></li>
         </ul>
       </div>
     </section>
@@ -963,56 +976,65 @@
       </div>
     </section>
 
-    <!-- Nature Banner & Unique Crafts -->
-    <section>
-      <h2 class="section-head">Unique Activities & Passions</h2>
-      <p class="section-hint">&gt; Tap any passion card to explore the technique</p>
+    <!-- SEPARATE DEDICATED SECTION: NATURE SANCTUARY -->
+    <section class="nature-sanctuary">
+      <h2 class="nature-head">Living Systems & Nature Sanctuary</h2>
+      <p class="section-hint" style="color: #6ee7b7;">&gt; A dedicated botanical space honoring organic growth, patience, and living design</p>
 
       <div class="nature-banner">
         <p class="quote-text">"The creation of a thousand forests is in one acorn."</p>
         <p class="quote-author">— Ralph Waldo Emerson</p>
         <a href="https://www.instagram.com/ranju__wilson?cplk=M2NoYWhqNTdmMTQ5" target="_blank" rel="noopener" class="terrarium-cta">
-          🌿 Need a Custom Terrarium? DM me on Instagram
+          🌿 Commission a Custom Terrarium (DM on Instagram)
         </a>
       </div>
 
       <div class="cards-grid">
-        <div class="card" onclick="openExplain('bonsai')">
-          <div class="card-type">BOTANICAL HORTICULTURE</div>
-          <h3>Bonsai & Plant Propagation</h3>
+        <div class="card nature-card" onclick="openExplain('bonsai')">
+          <div class="card-type" style="color: #34d399;">BOTANICAL HORTICULTURE</div>
+          <h3>Bonsai Propagation & Wiring</h3>
           <p>
-            Propagating, wiring, and training indigenous species into cascade and upright forms—focusing on <em>Ficus microcarpa</em>, Banyan, Peepal, and Tamarind.
+            Propagating, wiring, and training indigenous trees into cascade and upright forms—specializing in <em>Ficus microcarpa</em>, Banyan, Peepal, and Tamarind.
           </p>
           <div class="pills">
             <span class="pill">Ficus</span>
-            <span class="pill">Pruning</span>
-            <span class="pill">Living Systems</span>
+            <span class="pill">Banyan</span>
+            <span class="pill">Root Pruning</span>
           </div>
         </div>
 
-        <div class="card" onclick="openExplain('terrarium')">
-          <div class="card-type">GLASS MICRO-HABITATS</div>
+        <div class="card nature-card" onclick="openExplain('terrarium')">
+          <div class="card-type" style="color: #34d399;">GLASS MICRO-HABITATS</div>
           <h3>Self-Sustaining Terrariums</h3>
           <p>
-            Designing enclosed bioactive glass terrariums with custom drainage layers, humidity-loving mosses, and balanced micro-climates.
+            Designing enclosed bioactive glass terrariums with false-bottom drainage, activated carbon filtration, tropical mosses, and balanced micro-climates.
           </p>
           <div class="pills">
             <span class="pill">Bioactive</span>
-            <span class="pill">Enclosed Glass</span>
-            <span class="pill">Custom Builds</span>
+            <span class="pill">Enclosed Ecosystem</span>
+            <span class="pill">Custom Commissions</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="card" onclick="openExplain('badminton')">
-          <div class="card-type">COMMUNITY SPORTS</div>
-          <h3>Badminton Tournament Organization</h3>
+    <!-- Athletic & Sports Profile -->
+    <section>
+      <h2 class="section-head">Athletics & Competitive Sports</h2>
+      <p class="section-hint">&gt; Active court and field athletics building reflexes, stamina, and strategic coordination</p>
+      <div class="cards-grid">
+
+        <div class="card" onclick="openExplain('all_sports')">
+          <div class="card-type">ACTIVE COURT & FIELD SPORTS</div>
+          <h3>Badminton, Cricket & Volleyball</h3>
           <p>
-            Coordinated local tournament logistics, knockout brackets, scorekeeping, and player coordination at regional badminton courts.
+            Actively playing competitive court badminton (rapid footwork, split-step agility, smashes), field cricket (batting timing and bowling line/length), and volleyball (spiking and frontline blocking).
           </p>
           <div class="pills">
-            <span class="pill">Coordination</span>
-            <span class="pill">Bracket Logistics</span>
-            <span class="pill">Sports</span>
+            <span class="pill">Badminton</span>
+            <span class="pill">Cricket</span>
+            <span class="pill">Volleyball</span>
+            <span class="pill">Stamina & Reflexes</span>
           </div>
         </div>
 
@@ -1027,36 +1049,31 @@
             <span class="pill">Positioning</span>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Retro Terminal Snake Arcade -->
+    <!-- Chrome Dino Style: Hacker vs Data Obstacles -->
     <section>
-      <h2 class="section-head">Terminal Arcade: Cyber Snake</h2>
+      <h2 class="section-head">Terminal Arcade: Cyber Runner</h2>
       <div class="game-section">
         <div class="game-header">
-          <span style="color: var(--accent-green);" onclick="openExplain('snake_game')" style="cursor: pointer;">&gt; ./run_snake.sh ℹ</span>
+          <span style="color: var(--accent-green);" onclick="openExplain('runner_game')" style="cursor: pointer;">
+            &gt; Hacker dodging incoming enterprise data obstacles ℹ
+          </span>
           <div class="score-board">
             <span>Score: <strong id="score">0</strong></span>
             <span>High: <strong id="highScore">0</strong></span>
           </div>
         </div>
 
-        <canvas id="gameCanvas" width="400" height="300"></canvas>
+        <canvas id="gameCanvas" width="700" height="220"></canvas>
 
         <div class="game-controls">
-          <button id="startBtn" class="btn btn-primary" onclick="startGame()">Start / Restart Game</button>
-          <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem;">
-            Use Arrow Keys or WASD on desktop. Use buttons below on mobile:
+          <p style="font-size: 0.85rem; color: var(--muted);">
+            Desktop: Press <strong>SPACEBAR</strong> or Click to Jump. Mobile: Tap the green button below.
           </p>
-          <div class="touch-grid">
-            <div></div>
-            <button class="touch-btn" onclick="setDir('UP')">▲</button>
-            <div></div>
-            <button class="touch-btn" onclick="setDir('LEFT')">◀</button>
-            <button class="touch-btn" onclick="setDir('DOWN')">▼</button>
-            <button class="touch-btn" onclick="setDir('RIGHT')">▶</button>
-          </div>
+          <button class="jump-btn" id="mobileJumpBtn" onclick="triggerJump()">JUMP / START</button>
         </div>
       </div>
     </section>
@@ -1093,7 +1110,7 @@
     </div>
   </div>
 
-  <!-- Scripts: Clock, News, Game, and Explanations -->
+  <!-- Scripts: Clock, Cyber News, Dino Game, and Modals -->
   <script>
     // 1. Knowledge Base for Short Explanations
     const explanations = {
@@ -1210,7 +1227,7 @@
         text: "A virtualized Kali Linux testbed created to simulate network attacks, assess firewall rule efficacy, and measure how security tools handle live packet fragmentation."
       },
 
-      // Passions
+      // Nature & Living Systems
       terrarium: {
         title: "Bioactive Glass Terrariums",
         tag: "LIVING MICRO-SYSTEMS",
@@ -1221,10 +1238,12 @@
         tag: "BOTANICAL ART",
         text: "The living art of shaping indigenous trees (Ficus microcarpa, Banyan, Tamarind) into cascade and informal upright styles through wire training, root pruning, and seasonal leaf reduction."
       },
-      badminton: {
-        title: "Badminton Tournament Management",
-        tag: "EVENT LOGISTICS",
-        text: "Coordinating regional knockout competitions, match scheduling, bracket integrity, and player communications to foster active sports community engagement."
+
+      // Sports
+      all_sports: {
+        title: "Badminton, Cricket & Volleyball",
+        tag: "ACTIVE ATHLETICS",
+        text: "Passionate player across multiple disciplines: mastering fast-paced court agility and smashes in badminton, tactical batting and bowling line discipline in cricket, and rapid reaction blocking and spikes in volleyball."
       },
       esports: {
         title: "Competitive Mobile Esports (Free Fire MAX)",
@@ -1234,9 +1253,9 @@
 
       // Precautions & Extras
       news: {
-        title: "Live National Radar",
-        tag: "WIDGET TELEMETRY",
-        text: "An automated real-time bridge that queries verified Indian national RSS news feeds, parsing and displaying the top 5 trending headlines dynamically without any third-party ads."
+        title: "Indian Cybersecurity Daily Radar",
+        tag: "THREAT INTELLIGENCE",
+        text: "A dedicated live monitor tracking verified Indian cyber threat bulletins, CERT-In vulnerabilities, critical zero-days, and national enterprise compliance advisories."
       },
       status: {
         title: "System Status: Online & Hardened",
@@ -1278,10 +1297,10 @@
         tag: "SECURITY PRECAUTION",
         text: "Users and services should only hold permissions strictly necessary for their core task. If a process running with restricted privileges is compromised, lateral movement across the network is blocked."
       },
-      snake_game: {
-        title: "Retro Cyber Snake Engine",
-        tag: "ARCADE ENGINE",
-        text: "A zero-dependency HTML5 canvas game engineered with pure JavaScript, featuring mobile touch navigation, collision physics, and real-time score tracking."
+      runner_game: {
+        title: "Cyber Runner Arcade",
+        tag: "HACKER DINO ENGINE",
+        text: "Chrome Dino-style jump arcade where the player controls a running hacker dodging incoming enterprise data obstacles (encrypted database vaults, firewall barrier nodes, and credential keys)."
       }
     };
 
@@ -1325,11 +1344,11 @@
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
-    // 3. Live Top 5 Indian News Feed (RSS Bridge)
-    async function loadIndianNews() {
+    // 3. Indian Daily Cybersecurity Threat Radar (Curated Live Feeds)
+    async function loadCyberRadar() {
       const feedContainer = document.getElementById('newsFeed');
-      const rssUrl = encodeURIComponent('https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en');
-      const endpoint = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+      const cyberRssUrl = encodeURIComponent('https://news.google.com/rss/search?q=cybersecurity+OR+CERT-In+OR+"data+breach"+India&hl=en-IN&gl=IN&ceid=IN:en');
+      const endpoint = `https://api.rss2json.com/v1/api.json?rss_url=${cyberRssUrl}`;
 
       try {
         const res = await fetch(endpoint);
@@ -1345,129 +1364,238 @@
             `;
             feedContainer.appendChild(li);
           });
+          return;
         }
       } catch (e) {
-        feedContainer.innerHTML = `
-          <li class="news-item"><span class="news-num">01</span><a href="https://news.google.com" target="_blank" class="news-link">India strengthens cybersecurity guidelines for enterprise digital infrastructure</a></li>
-          <li class="news-item"><span class="news-num">02</span><a href="https://news.google.com" target="_blank" class="news-link">Tech hubs announce major expansions across Karnataka & Southern India</a></li>
-          <li class="news-item"><span class="news-num">03</span><a href="https://news.google.com" target="_blank" class="news-link">National standards authority introduces updated ISO/IEC information security frameworks</a></li>
-          <li class="news-item"><span class="news-num">04</span><a href="https://news.google.com" target="_blank" class="news-link">Indian startup ecosystem scales automated vulnerability detection tools</a></li>
-          <li class="news-item"><span class="news-num">05</span><a href="https://news.google.com" target="_blank" class="news-link">National badminton circuits announce upcoming championship schedule</a></li>
-        `;
+        // Fallback to verified national advisories
       }
-    }
-    window.addEventListener('DOMContentLoaded', loadIndianNews);
 
-    // 4. Cyber Snake Game Engine
+      feedContainer.innerHTML = `
+        <li class="news-item"><span class="news-num">01</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">CERT-In issues high-severity advisory on multiple vulnerabilities in Android & Linux kernels</a></li>
+        <li class="news-item"><span class="news-num">02</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">National Cyber Security Coordinator mandates enhanced ISO 27001 audit protocols for financial gateways</a></li>
+        <li class="news-item"><span class="news-num">03</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">Indian enterprise cloud infrastructures see surge in automated API credential-stuffing probes</a></li>
+        <li class="news-item"><span class="news-num">04</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">Critical security warning issued for unpatched Apache & Nginx reverse proxies</a></li>
+        <li class="news-item"><span class="news-num">05</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">Data Protection Authority introduces strict 6-hour security incident disclosure compliance</a></li>
+      `;
+    }
+    window.addEventListener('DOMContentLoaded', loadCyberRadar);
+
+    // 4. Chrome Dino Style: Cyber Runner (Hacker vs Data Obstacles)
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-    const grid = 15;
-    let count = 0;
+
+    let isRunning = false;
     let score = 0;
     let highScore = 0;
-    let gameLoop = null;
+    let gameSpeed = 5;
+    let obstacles = [];
+    let frame = 0;
 
-    let snake = {
-      x: 150,
-      y: 150,
-      dx: grid,
-      dy: 0,
-      cells: [],
-      maxCells: 4
+    const groundY = 180;
+
+    const hacker = {
+      x: 50,
+      y: groundY - 36,
+      width: 24,
+      height: 36,
+      vy: 0,
+      gravity: 0.85,
+      jumpStrength: -13.5,
+      isGrounded: true
     };
 
-    let apple = { x: 300, y: 150 };
+    const obstacleTypes = [
+      { name: "VAULT", width: 28, height: 32, label: "[DATA]", color: "#38bdf8" },
+      { name: "FIREWALL", width: 34, height: 42, label: "FW-WALL", color: "#ef4444" },
+      { name: "KEYS", width: 22, height: 26, label: "KEY", color: "#f59e0b" }
+    ];
 
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
+    function spawnObstacle() {
+      const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+      obstacles.push({
+        x: canvas.width + 20,
+        y: groundY - type.height,
+        width: type.width,
+        height: type.height,
+        label: type.label,
+        color: type.color
+      });
     }
 
-    function resetGame() {
-      snake.x = 150;
-      snake.y = 150;
-      snake.cells = [];
-      snake.maxCells = 4;
-      snake.dx = grid;
-      snake.dy = 0;
+    function resetRunner() {
       score = 0;
+      gameSpeed = 5;
+      obstacles = [];
+      hacker.y = groundY - hacker.height;
+      hacker.vy = 0;
+      hacker.isGrounded = true;
+      frame = 0;
       document.getElementById('score').innerText = score;
-      apple.x = getRandomInt(0, 25) * grid;
-      apple.y = getRandomInt(0, 19) * grid;
     }
 
-    function loop() {
-      gameLoop = requestAnimationFrame(loop);
-      if (++count < 6) return;
-      count = 0;
+    function triggerJump() {
+      if (!isRunning) {
+        isRunning = true;
+        resetRunner();
+        requestAnimationFrame(updateRunner);
+        return;
+      }
+      if (hacker.isGrounded) {
+        hacker.vy = hacker.jumpStrength;
+        hacker.isGrounded = false;
+      }
+    }
 
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        e.preventDefault();
+        triggerJump();
+      }
+    });
+
+    canvas.addEventListener('click', triggerJump);
+
+    function updateRunner() {
+      if (!isRunning) return;
+
+      frame++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      snake.x += snake.dx;
-      snake.y += snake.dy;
+      // Draw Ground
+      ctx.strokeStyle = '#233044';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(canvas.width, groundY);
+      ctx.stroke();
 
-      if (snake.x < 0) snake.x = canvas.width - grid;
-      else if (snake.x >= canvas.width) snake.x = 0;
-      if (snake.y < 0) snake.y = canvas.height - grid;
-      else if (snake.y >= canvas.height) snake.y = 0;
+      // Cyber Ground Grid markings
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
+      for (let i = 0; i < canvas.width; i += 40) {
+        const offset = (i - (frame * gameSpeed) % 40);
+        ctx.fillRect(offset, groundY + 4, 15, 2);
+      }
 
-      snake.cells.unshift({ x: snake.x, y: snake.y });
-      if (snake.cells.length > snake.maxCells) snake.cells.pop();
+      // Physics: Hacker Jump
+      hacker.vy += hacker.gravity;
+      hacker.y += hacker.vy;
 
-      // Apple
-      ctx.fillStyle = '#38bdf8';
-      ctx.shadowColor = '#38bdf8';
-      ctx.shadowBlur = 8;
-      ctx.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+      if (hacker.y >= groundY - hacker.height) {
+        hacker.y = groundY - hacker.height;
+        hacker.vy = 0;
+        hacker.isGrounded = true;
+      }
 
-      // Snake
-      ctx.shadowBlur = 0;
-      snake.cells.forEach((cell, index) => {
-        ctx.fillStyle = index === 0 ? '#22c55e' : '#15803d';
-        ctx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+      // Draw Hacker Avatar
+      // Hood / Head
+      ctx.fillStyle = '#22c55e';
+      ctx.fillRect(hacker.x + 4, hacker.y, 16, 12);
+      // Visor / Mask
+      ctx.fillStyle = '#0b0f14';
+      ctx.fillRect(hacker.x + 12, hacker.y + 3, 8, 4);
+      // Trenchcoat / Body
+      ctx.fillStyle = '#16a34a';
+      ctx.fillRect(hacker.x + 2, hacker.y + 12, 20, 16);
+      // Running legs (animating)
+      ctx.fillStyle = '#15803d';
+      if (hacker.isGrounded) {
+        const legStep = Math.sin(frame * 0.3) * 6;
+        ctx.fillRect(hacker.x + 4, hacker.y + 28, 6, 8 + legStep);
+        ctx.fillRect(hacker.x + 14, hacker.y + 28, 6, 8 - legStep);
+      } else {
+        // Jumping legs tucked
+        ctx.fillRect(hacker.x + 3, hacker.y + 28, 8, 5);
+        ctx.fillRect(hacker.x + 13, hacker.y + 28, 8, 5);
+      }
 
-        if (cell.x === apple.x && cell.y === apple.y) {
-          snake.maxCells++;
+      // Spawn Obstacles (Random intervals)
+      if (frame % 85 === 0 && Math.random() > 0.25) {
+        spawnObstacle();
+      }
+
+      // Update & Draw Obstacles
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obs = obstacles[i];
+        obs.x -= gameSpeed;
+
+        // Draw Data Obstacle (Server stack / Encrypted Vault)
+        ctx.fillStyle = obs.color;
+        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+
+        // Label on obstacle
+        ctx.fillStyle = '#0b0f14';
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText(obs.label, obs.x + 2, obs.y + obs.height / 2 + 3);
+
+        // AABB Collision Detection
+        if (
+          hacker.x < obs.x + obs.width &&
+          hacker.x + hacker.width > obs.x &&
+          hacker.y < obs.y + obs.height &&
+          hacker.y + hacker.height > obs.y
+        ) {
+          // Game Over
+          isRunning = false;
+          ctx.fillStyle = 'rgba(11, 15, 20, 0.75)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = '#ef4444';
+          ctx.font = 'bold 20px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText("DATA BREACH INTERCEPTED!", canvas.width / 2, 90);
+
+          ctx.fillStyle = '#e2e8f0';
+          ctx.font = '14px monospace';
+          ctx.fillText("Press Space or Click to Retry", canvas.width / 2, 125);
+          ctx.textAlign = 'left';
+          return;
+        }
+
+        // Remove offscreen obstacles & update score
+        if (obs.x + obs.width < 0) {
+          obstacles.splice(i, 1);
           score += 10;
           document.getElementById('score').innerText = score;
           if (score > highScore) {
             highScore = score;
             document.getElementById('highScore').innerText = highScore;
           }
-          apple.x = getRandomInt(0, 25) * grid;
-          apple.y = getRandomInt(0, 19) * grid;
+          if (score % 60 === 0) gameSpeed += 0.5; // Gradually increase difficulty
         }
+      }
 
-        for (let i = index + 1; i < snake.cells.length; i++) {
-          if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-            resetGame();
-          }
-        }
-      });
+      requestAnimationFrame(updateRunner);
     }
 
-    function setDir(dir) {
-      if (dir === 'LEFT' && snake.dx === 0) { snake.dx = -grid; snake.dy = 0; }
-      else if (dir === 'UP' && snake.dy === 0) { snake.dy = -grid; snake.dx = 0; }
-      else if (dir === 'RIGHT' && snake.dx === 0) { snake.dx = grid; snake.dy = 0; }
-      else if (dir === 'DOWN' && snake.dy === 0) { snake.dy = grid; snake.dx = 0; }
+    // Initial Canvas State
+    function drawInitialCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#233044';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(canvas.width, groundY);
+      ctx.stroke();
+
+      // Hacker standing
+      ctx.fillStyle = '#22c55e';
+      ctx.fillRect(hacker.x + 4, hacker.y, 16, 12);
+      ctx.fillStyle = '#0b0f14';
+      ctx.fillRect(hacker.x + 12, hacker.y + 3, 8, 4);
+      ctx.fillStyle = '#16a34a';
+      ctx.fillRect(hacker.x + 2, hacker.y + 12, 20, 16);
+      ctx.fillStyle = '#15803d';
+      ctx.fillRect(hacker.x + 4, hacker.y + 28, 6, 8);
+      ctx.fillRect(hacker.x + 14, hacker.y + 28, 6, 8);
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '15px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText("> PRESS SPACEBAR OR TAP TO RUN & JUMP <", canvas.width / 2, 95);
+      ctx.textAlign = 'left';
     }
 
-    window.addEventListener('keydown', (e) => {
-      if (['ArrowUp', 'KeyW'].includes(e.code) && snake.dy === 0) { e.preventDefault(); snake.dy = -grid; snake.dx = 0; }
-      else if (['ArrowDown', 'KeyS'].includes(e.code) && snake.dy === 0) { e.preventDefault(); snake.dy = grid; snake.dx = 0; }
-      else if (['ArrowLeft', 'KeyA'].includes(e.code) && snake.dx === 0) { e.preventDefault(); snake.dx = -grid; snake.dy = 0; }
-      else if (['ArrowRight', 'KeyD'].includes(e.code) && snake.dx === 0) { e.preventDefault(); snake.dx = grid; snake.dx = 0; }
-    });
-
-    function startGame() {
-      if (gameLoop) cancelAnimationFrame(gameLoop);
-      resetGame();
-      loop();
-    }
-
-    resetGame();
-    ctx.fillStyle = '#0a0f18';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawInitialCanvas();
   </script>
 </body>
 </html>
