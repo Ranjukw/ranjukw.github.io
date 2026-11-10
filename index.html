@@ -10,13 +10,19 @@
       --bg-alt: #f8fafc;
       --card-bg: #ffffff;
       --border: #e2e8f0;
-      --border-focus: #0284c7;
+      --border-blue: #bae6fd;
+      --border-green: #bbf7d0;
       --text: #0f172a;
       --text-muted: #475569;
-      --accent-blue: #0284c7;
-      --accent-green: #059669;
-      --accent-amber: #d97706;
-      --accent-red: #dc2626;
+      --cyber-blue: #0284c7;
+      --cyber-blue-hover: #0369a1;
+      --cyber-blue-soft: #f0f9ff;
+      --nature-green: #059669;
+      --nature-green-hover: #047857;
+      --nature-green-soft: #ecfdf5;
+      --nature-dark: #065f46;
+      --alert-amber: #d97706;
+      --alert-red: #dc2626;
       --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     }
@@ -61,16 +67,16 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      color: var(--accent-green);
+      color: var(--cyber-blue);
       font-weight: 600;
     }
 
     .pulse {
       width: 8px;
       height: 8px;
-      background: var(--accent-green);
+      background: var(--nature-green);
       border-radius: 50%;
-      box-shadow: 0 0 6px var(--accent-green);
+      box-shadow: 0 0 6px var(--nature-green);
       animation: pulseAnim 2s infinite;
     }
 
@@ -80,11 +86,11 @@
     }
 
     .clock-badge {
-      background: #f1f5f9;
-      border: 1px solid var(--border);
+      background: var(--cyber-blue-soft);
+      border: 1px solid var(--border-blue);
       padding: 0.25rem 0.65rem;
       border-radius: 6px;
-      color: var(--accent-blue);
+      color: var(--cyber-blue);
       font-family: var(--font-mono);
       font-size: 0.8rem;
       font-weight: 600;
@@ -102,10 +108,16 @@
       transition: all 0.2s;
     }
     .audio-btn:hover { color: var(--text); border-color: #cbd5e1; }
-    .audio-btn.active {
-      background: #ecfdf5;
-      border-color: var(--accent-green);
-      color: var(--accent-green);
+    .audio-btn.active-nature {
+      background: var(--nature-green-soft);
+      border-color: var(--nature-green);
+      color: var(--nature-green);
+      font-weight: 600;
+    }
+    .audio-btn.active-cyber {
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
       font-weight: 600;
     }
 
@@ -132,9 +144,9 @@
       display: inline-block;
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--accent-blue);
-      background: #e0f2fe;
-      border: 1px solid #bae6fd;
+      color: var(--cyber-blue);
+      background: var(--cyber-blue-soft);
+      border: 1px solid var(--border-blue);
       padding: 0.25rem 0.65rem;
       border-radius: 6px;
       margin-bottom: 0.85rem;
@@ -150,7 +162,7 @@
     }
 
     .tagline {
-      color: var(--accent-blue);
+      color: var(--cyber-blue);
       font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 1rem;
@@ -185,27 +197,18 @@
       border: 1px solid transparent;
     }
 
-    .btn-resume {
-      background: var(--accent-green);
-      color: #ffffff;
-    }
-    .btn-resume:hover { background: #047857; }
+    .btn-resume { background: var(--nature-green); color: #ffffff; }
+    .btn-resume:hover { background: var(--nature-green-hover); }
 
-    .btn-primary {
-      background: var(--accent-blue);
-      color: #ffffff;
-    }
-    .btn-primary:hover { background: #0369a1; }
+    .btn-primary { background: var(--cyber-blue); color: #ffffff; }
+    .btn-primary:hover { background: var(--cyber-blue-hover); }
 
     .btn-outline {
       background: #ffffff;
       color: var(--text);
       border-color: var(--border);
     }
-    .btn-outline:hover {
-      background: #f8fafc;
-      border-color: #cbd5e1;
-    }
+    .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
 
     .btn-insta {
       background: #faf5ff;
@@ -228,7 +231,7 @@
       gap: 0.45rem;
       transition: all 0.2s;
     }
-    .copy-pill:hover { border-color: var(--accent-blue); color: var(--text); }
+    .copy-pill:hover { border-color: var(--cyber-blue); color: var(--text); }
 
     .profile-photo {
       width: 175px;
@@ -236,7 +239,7 @@
       border-radius: 50%;
       object-fit: cover;
       object-position: top center;
-      border: 3px solid var(--accent-blue);
+      border: 3px solid var(--cyber-blue);
       box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15);
     }
 
@@ -250,8 +253,8 @@
       justify-content: center;
       font-size: 2.2rem;
       font-weight: 700;
-      color: var(--accent-blue);
-      border: 3px solid var(--accent-blue);
+      color: var(--cyber-blue);
+      border: 3px solid var(--cyber-blue);
     }
 
     /* Section Headings */
@@ -266,6 +269,8 @@
       align-items: center;
       gap: 0.5rem;
     }
+    .section-head.tech { color: var(--cyber-blue); }
+    .section-head.nature { color: var(--nature-dark); }
 
     .section-hint {
       font-size: 0.88rem;
@@ -273,15 +278,7 @@
       margin-bottom: 1.25rem;
     }
 
-    /* Common Card Styling */
-    .card-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.35rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
+    /* Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -299,14 +296,14 @@
     }
     .card:hover {
       transform: translateY(-2px);
-      border-color: var(--accent-blue);
+      border-color: var(--cyber-blue);
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
     }
 
     .card-type {
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--accent-green);
+      color: var(--nature-green);
       margin-bottom: 0.3rem;
     }
 
@@ -330,7 +327,7 @@
     .skill-card h4 {
       font-size: 0.88rem;
       font-weight: 700;
-      color: var(--accent-blue);
+      color: var(--cyber-blue);
       margin-bottom: 0.75rem;
       letter-spacing: 0.03em;
     }
@@ -354,9 +351,14 @@
       font-weight: 500;
     }
     .pill:hover {
-      background: #e0f2fe;
-      border-color: var(--accent-blue);
-      color: var(--accent-blue);
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
+    }
+    .pill.pill-green:hover {
+      background: var(--nature-green-soft);
+      border-color: var(--nature-green);
+      color: var(--nature-green);
     }
 
     /* Timeline */
@@ -383,7 +385,7 @@
     }
 
     .t-role { font-weight: 700; color: var(--text); font-size: 1.05rem; }
-    .t-org { color: var(--accent-blue); font-weight: 600; }
+    .t-org { color: var(--cyber-blue); font-weight: 600; }
     .t-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
 
     .t-item ul {
@@ -419,7 +421,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--accent-red);
+      color: var(--alert-red);
       font-weight: 700;
     }
 
@@ -438,7 +440,7 @@
 
     .news-num {
       font-family: var(--font-mono);
-      color: var(--accent-green);
+      color: var(--nature-green);
       font-weight: 700;
       min-width: 24px;
     }
@@ -448,7 +450,7 @@
       text-decoration: none;
       transition: color 0.15s;
     }
-    .news-link:hover { color: var(--accent-blue); text-decoration: underline; }
+    .news-link:hover { color: var(--cyber-blue); text-decoration: underline; }
 
     /* Precautions Grid */
     .precautions-grid {
@@ -468,7 +470,7 @@
     }
     .precaution-card:hover {
       transform: translateY(-2px);
-      border-color: var(--accent-amber);
+      border-color: var(--alert-amber);
       box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
     }
 
@@ -540,20 +542,17 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .quiz-opt-btn:hover {
-      background: #f8fafc;
-      border-color: var(--accent-blue);
-    }
+    .quiz-opt-btn:hover { background: #f8fafc; border-color: var(--cyber-blue); }
     .quiz-opt-btn.correct {
-      background: #ecfdf5;
-      border-color: var(--accent-green);
-      color: var(--accent-green);
+      background: var(--nature-green-soft);
+      border-color: var(--nature-green);
+      color: var(--nature-green);
       font-weight: 700;
     }
     .quiz-opt-btn.wrong {
       background: #fef2f2;
-      border-color: var(--accent-red);
-      color: var(--accent-red);
+      border-color: var(--alert-red);
+      color: var(--alert-red);
     }
 
     .quiz-feedback {
@@ -565,7 +564,7 @@
     /* NATURE SANCTUARY SECTION */
     .sanctuary-box {
       background: #f0fdf4;
-      border: 1px solid #bbf7d0;
+      border: 1px solid var(--border-green);
       border-radius: 14px;
       padding: 2.25rem 1.5rem;
     }
@@ -583,7 +582,7 @@
     .pure-nature-quote {
       font-size: 1.12rem;
       font-weight: 700;
-      color: #065f46;
+      color: var(--nature-dark);
       margin-bottom: 0.5rem;
       line-height: 1.55;
     }
@@ -616,83 +615,135 @@
     .module-quote {
       font-size: 0.92rem;
       font-style: italic;
-      color: #047857;
-      border-left: 3px solid var(--accent-green);
+      color: var(--nature-green-hover);
+      border-left: 3px solid var(--nature-green);
       padding-left: 0.65rem;
       margin-bottom: 1rem;
       line-height: 1.45;
     }
 
-    /* Terrarium Canvas Frame */
-    .terrarium-canvas-wrap {
+    /* REALISTIC PHOTO & OPTICAL INSPECTOR VIEWER */
+    .photo-viewport-wrap {
       position: relative;
       width: 100%;
       height: 380px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 0.85rem;
+      border: 1px solid var(--border);
+      background: #000;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
     }
 
-    #terrariumCanvas {
+    .jar-photo {
       width: 100%;
       height: 100%;
+      object-fit: cover;
       display: block;
+      transition: filter 0.5s ease;
+    }
+
+    .jar-photo.night-mode {
+      filter: brightness(0.65) saturate(1.2) hue-rotate(190deg);
+    }
+
+    /* Interactive Inspect Pins */
+    .inspect-pin {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.92);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
       cursor: pointer;
-    }
-
-    .t-controls {
       display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      transform: translate(-50%, -50%);
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+    .inspect-pin:hover {
+      transform: translate(-50%, -50%) scale(1.35);
+      background: var(--cyber-blue);
     }
 
-    .t-row {
+    .pin-pulse {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      animation: pinWave 2s infinite ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes pinWave {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* Terrarium Water-Cycle Simulator Controls */
+    .cycle-slider-wrap {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      margin-top: 0.85rem;
+    }
+
+    .cycle-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.85rem;
-      color: var(--text-muted);
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
     }
-    .t-row strong { color: var(--text); }
 
-    .t-btns {
+    .cycle-telemetry {
       display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-top: 0.4rem;
     }
 
-    /* Bonsai Visual Transformer Frame */
-    .bonsai-split-view {
+    /* Bonsai Photographic Progression Viewer */
+    .bonsai-photo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
       margin-bottom: 1rem;
     }
 
-    .bonsai-canvas-wrap {
+    .bonsai-frame {
       background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.5rem;
       text-align: center;
+      overflow: hidden;
     }
 
-    .bonsai-canvas-wrap canvas {
+    .bonsai-specimen-img {
       width: 100%;
-      height: 180px;
+      height: 165px;
+      object-fit: cover;
+      border-radius: 6px;
       display: block;
+      transition: opacity 0.3s ease;
     }
 
     .bonsai-species-title {
       font-size: 0.82rem;
       font-weight: 700;
-      color: #065f46;
-      margin-top: 0.35rem;
+      color: var(--nature-dark);
+      margin-top: 0.4rem;
     }
 
     .bonsai-desc-box {
@@ -728,7 +779,7 @@
       display: flex;
       gap: 1.25rem;
       font-size: 0.95rem;
-      color: var(--accent-blue);
+      color: var(--cyber-blue);
       font-family: var(--font-mono);
       font-weight: 700;
     }
@@ -749,52 +800,13 @@
       font-size: 1rem;
       font-weight: 700;
       border-radius: 8px;
-      background: var(--accent-green);
+      background: var(--nature-green);
       color: #ffffff;
       border: none;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .jump-btn:hover { background: #047857; }
-
-    /* Visitor Security Pass Generator */
-    .pass-box {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
-    }
-
-    .pass-form {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-    }
-
-    .pass-input {
-      flex: 1;
-      min-width: 220px;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.65rem 0.85rem;
-      color: var(--text);
-      font-size: 0.9rem;
-      outline: none;
-    }
-    .pass-input:focus { border-color: var(--accent-blue); }
-
-    .badge-card {
-      background: #ffffff;
-      border: 2px solid var(--accent-blue);
-      border-radius: 10px;
-      padding: 1.35rem;
-      max-width: 440px;
-      margin: 0 auto;
-      display: none;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.1);
-    }
+    .jump-btn:hover { background: var(--nature-green-hover); }
 
     /* Contact Form */
     .contact-box {
@@ -822,7 +834,7 @@
     .form-group label {
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--accent-blue);
+      color: var(--cyber-blue);
     }
 
     .form-input, .form-textarea {
@@ -835,7 +847,7 @@
       font-family: var(--font-main);
       outline: none;
     }
-    .form-input:focus, .form-textarea:focus { border-color: var(--accent-blue); }
+    .form-input:focus, .form-textarea:focus { border-color: var(--cyber-blue); }
     .form-textarea { min-height: 100px; resize: vertical; }
 
     /* Footer */
@@ -855,7 +867,7 @@
       margin-bottom: 0.8rem;
     }
 
-    .footer-links a { color: var(--accent-blue); text-decoration: none; font-weight: 600; }
+    .footer-links a { color: var(--cyber-blue); text-decoration: none; font-weight: 600; }
     .footer-links a:hover { text-decoration: underline; }
 
     /* Modal */
@@ -892,7 +904,7 @@
 
     .modal-title {
       font-size: 1rem;
-      color: var(--accent-blue);
+      color: var(--cyber-blue);
       font-weight: 700;
     }
 
@@ -919,8 +931,8 @@
       padding: 0.15rem 0.5rem;
       border-radius: 4px;
       margin-bottom: 0.75rem;
-      background: #ecfdf5;
-      color: var(--accent-green);
+      background: var(--nature-green-soft);
+      color: var(--nature-green);
       border: 1px solid #a7f3d0;
     }
   </style>
@@ -959,7 +971,7 @@
           <a href="resume.pdf" download class="btn btn-resume">📄 Download Resume (PDF)</a>
           <button class="copy-pill" onclick="copyEmail(this)">
             <span>✉ kwranju@gmail.com</span>
-            <strong style="color: var(--accent-green);" id="copyText">[Copy]</strong>
+            <strong style="color: var(--nature-green);" id="copyText">[Copy]</strong>
           </button>
           <a href="https://linkedin.com/in/ranju-kw" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
           <a href="https://www.instagram.com/ranju__wilson?cplk=M2NoYWhqNTdmMTQ5" target="_blank" rel="noopener" class="btn btn-insta">Instagram (@ranju__wilson)</a>
@@ -979,7 +991,7 @@
 
     <!-- 2. Security Arsenal & Core Skills -->
     <section>
-      <h2 class="section-head">Security Arsenal & Core Skills</h2>
+      <h2 class="section-head tech">Security Arsenal & Core Skills</h2>
       <p class="section-hint">Tap any badge to view technical competency details</p>
       <div class="skills-grid">
         <div class="skill-card">
@@ -1020,7 +1032,7 @@
 
     <!-- 3. Career Updates & Experience Timeline -->
     <section>
-      <h2 class="section-head">Career Updates & Experience</h2>
+      <h2 class="section-head tech">Career Updates & Experience</h2>
       <div class="timeline">
         <div class="t-item">
           <div class="t-header">
@@ -1083,7 +1095,7 @@
 
     <!-- 4. Technical Projects -->
     <section>
-      <h2 class="section-head">Technical Projects</h2>
+      <h2 class="section-head tech">Technical Projects</h2>
       <div class="cards-grid">
         <div class="card" onclick="openExplain('proj_phishing')">
           <div class="card-type">SECURITY ANALYTICS / ML</div>
@@ -1115,12 +1127,12 @@
 
     <!-- 5. Indian Daily Cybersecurity Radar -->
     <section>
-      <h2 class="section-head">Indian Daily Cybersecurity Radar</h2>
+      <h2 class="section-head tech">Indian Daily Cybersecurity Radar</h2>
       <p class="section-hint">Live incident feeds, CERT-In vulnerability bulletins, and active monitoring</p>
       <div class="radar-box">
         <div class="threat-ticker">
           <div class="ticker-left">
-            <span class="pulse" style="background: var(--accent-red); box-shadow: 0 0 6px var(--accent-red);"></span>
+            <span class="pulse" style="background: var(--alert-red); box-shadow: 0 0 6px var(--alert-red);"></span>
             <span>NATIONAL THREAT STATUS: ELEVATED / ACTIVE SURVEILLANCE</span>
           </div>
           <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 600;">SOC Advisory Feed</span>
@@ -1133,7 +1145,7 @@
 
     <!-- 6. Cyber Defense: 5 Basic Anti-Hacking Precautions -->
     <section>
-      <h2 class="section-head">Cyber Defense: 5 Basic Anti-Hacking Precautions</h2>
+      <h2 class="section-head tech">Cyber Defense: 5 Basic Anti-Hacking Precautions</h2>
       <p class="section-hint">Tap any card for detailed security implementation guidelines</p>
       <div class="precautions-grid">
         <div class="precaution-card" onclick="openExplain('mfa')">
@@ -1190,12 +1202,12 @@
 
     <!-- 7. Security Diagnostic: Spot the Vulnerability -->
     <section>
-      <h2 class="section-head">Security Diagnostic: Spot the Vulnerability</h2>
+      <h2 class="section-head tech">Security Diagnostic: Spot the Vulnerability</h2>
       <p class="section-hint">Test your code auditing reflexes against real-world misconfigurations</p>
       <div class="quiz-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <strong id="quizQuestionNum" style="color: var(--accent-blue); font-size: 0.9rem;">SCENARIO 1 OF 3</strong>
-          <span id="quizScore" style="color: var(--accent-green); font-size: 0.85rem; font-weight: 700;">Score: 0/3</span>
+          <strong id="quizQuestionNum" style="color: var(--cyber-blue); font-size: 0.9rem;">SCENARIO 1 OF 3</strong>
+          <span id="quizScore" style="color: var(--nature-green); font-size: 0.85rem; font-weight: 700;">Score: 0/3</span>
         </div>
         <div class="quiz-scenario" id="quizScenarioCode"></div>
         <div class="quiz-options" id="quizOptions"></div>
@@ -1205,8 +1217,8 @@
 
     <!-- 8. LIVING SYSTEMS & NATURE SANCTUARY -->
     <section class="sanctuary-box">
-      <h2 class="section-head" style="color: #065f46;">Living Systems & Nature Sanctuary</h2>
-      <p class="section-hint" style="color: #047857;">An organic exploration honoring biological balance, living earth, and botanical craftsmanship</p>
+      <h2 class="section-head nature">Living Systems & Nature Sanctuary</h2>
+      <p class="section-hint" style="color: var(--nature-dark);">An organic exploration honoring biological balance, living earth, and botanical craftsmanship</p>
 
       <!-- Pure Nature Motivational Banner -->
       <div class="motivation-banner">
@@ -1220,58 +1232,125 @@
       </div>
 
       <div class="dual-nature-grid">
-        <!-- Interactive Terrarium Replica -->
+        <!-- Natural Bioactive Terrarium Optical Viewer & Water Cycle Slide -->
         <div class="feature-card">
-          <h3 style="font-size: 1.15rem; color: #065f46; margin-bottom: 0.35rem;">Bioactive Living Terrarium Replica</h3>
+          <h3 style="font-size: 1.15rem; color: var(--nature-dark); margin-bottom: 0.35rem;">Bioactive Terrarium Optical Explorer</h3>
           <p class="module-quote">"Under a dome of glass, an entire world quietly breathes—proving that when harmony is preserved, life creates its own balance."</p>
           
-          <div class="terrarium-canvas-wrap">
-            <canvas id="terrariumCanvas" width="400" height="380"></canvas>
+          <div class="photo-viewport-wrap" id="terrariumViewport">
+            <!-- Authentic Macro Botanical Photograph -->
+            <img 
+              src="https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=900&q=80" 
+              alt="Bioactive Enclosed Glass Terrarium" 
+              class="jar-photo" 
+              id="jarPhotoImg"
+            />
+
+            <!-- Interactive Pin 1: Cushion Moss & Micro Foliage -->
+            <div class="inspect-pin" style="top: 32%; left: 45%;" onclick="openExplain('t_ficus')">
+              1<div class="pin-pulse"></div>
+            </div>
+
+            <!-- Interactive Pin 2: Hardscape Rock & Micro Crevice -->
+            <div class="inspect-pin" style="top: 48%; left: 35%;" onclick="openExplain('t_rock')">
+              2<div class="pin-pulse"></div>
+            </div>
+
+            <!-- Interactive Pin 3: Springtail Clean-Up Crew -->
+            <div class="inspect-pin" style="top: 58%; left: 62%;" onclick="openExplain('t_springtails')">
+              3<div class="pin-pulse"></div>
+            </div>
+
+            <!-- Interactive Pin 4: ABG Substrate & Root Pockets -->
+            <div class="inspect-pin" style="top: 68%; left: 48%;" onclick="openExplain('t_substrate')">
+              4<div class="pin-pulse"></div>
+            </div>
+
+            <!-- Interactive Pin 5: Activated Carbon Layer -->
+            <div class="inspect-pin" style="top: 79%; left: 52%;" onclick="openExplain('t_charcoal')">
+              5<div class="pin-pulse"></div>
+            </div>
+
+            <!-- Interactive Pin 6: Leca Drainage False Bottom -->
+            <div class="inspect-pin" style="top: 89%; left: 42%;" onclick="openExplain('t_drainage')">
+              6<div class="pin-pulse"></div>
+            </div>
           </div>
 
-          <div class="t-controls">
-            <div class="t-row">
-              <span>Moisture Level:</span>
-              <strong id="moistureStatus">65% (Optimal Balance)</strong>
+          <!-- Terrarium Water-Cycle Simulator (Slide Loop) -->
+          <div class="cycle-slider-wrap">
+            <div class="cycle-header">
+              <span style="color: var(--nature-dark);">☀️ Day Transpiration</span>
+              <span id="cycleLabel" style="font-weight: 700; color: var(--cyber-blue);">Day Cycle (Vapor Rising)</span>
+              <span style="color: var(--cyber-blue);">🌙 Night Rain</span>
             </div>
-            <div class="t-btns">
-              <button class="btn btn-outline" style="font-size: 0.8rem;" onclick="waterTerrarium(15)">💧 Mist / Water (+15%)</button>
-              <button class="btn btn-outline" style="font-size: 0.8rem;" onclick="waterTerrarium(-15)">💨 Vent Lid (-15%)</button>
-              <button class="btn btn-outline" style="font-size: 0.8rem;" onclick="tapGlass()">👋 Tap Glass</button>
+            <input 
+              type="range" 
+              id="cycleSlider" 
+              min="0" 
+              max="100" 
+              value="20" 
+              style="width: 100%; accent-color: var(--nature-green);"
+              oninput="updateWaterCycle(this.value)"
+            />
+            <div class="cycle-telemetry">
+              <span>Dew Point: <strong id="dewPoint">21.4°C</strong></span>
+              <span>Humidity: <strong id="humidityVal">78%</strong></span>
+              <span>Loop: <strong id="loopStatus" style="color: var(--nature-green);">Transpiring</strong></span>
             </div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">
-              Click any layer on the glass to inspect its biological function: <em>Cushion Moss, Hardscape Rock, ABG Substrate, Charcoal, Leca Drainage, or Active Springtails</em>.
-            </div>
+          </div>
+
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.65rem; line-height: 1.5;">
+            Slide the cycle control above to watch the closed ecosystem transition between daylight solar transpiration and night-time glass precipitation. Tap numbered pins [1–6] for detailed biological breakdowns.
           </div>
         </div>
 
-        <!-- Bonsai Dual-Species Visual Transformer -->
+        <!-- Bonsai Photographic Progression Viewer -->
         <div class="feature-card">
-          <h3 style="font-size: 1.15rem; color: #065f46; margin-bottom: 0.35rem;">Dual-Species Bonsai Transformer</h3>
+          <h3 style="font-size: 1.15rem; color: var(--nature-dark); margin-bottom: 0.35rem;">Dual-Species Bonsai Progression</h3>
           <p class="module-quote">"A bonsai does not conquer time; it yields to it. Through every wired branch and guided root, patience shapes what force could never master."</p>
 
-          <div class="bonsai-split-view">
-            <div class="bonsai-canvas-wrap">
-              <canvas id="canvasFicus" width="200" height="180"></canvas>
+          <div class="bonsai-photo-grid">
+            <div class="bonsai-frame">
+              <img 
+                id="imgFicus" 
+                src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=500&q=80" 
+                alt="Ficus microcarpa Bonsai" 
+                class="bonsai-specimen-img"
+              />
               <div class="bonsai-species-title">Ficus microcarpa</div>
             </div>
-            <div class="bonsai-canvas-wrap">
-              <canvas id="canvasBanyan" width="200" height="180"></canvas>
+            <div class="bonsai-frame">
+              <img 
+                id="imgBanyan" 
+                src="https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=500&q=80" 
+                alt="Sacred Banyan Bonsai" 
+                class="bonsai-specimen-img"
+              />
               <div class="bonsai-species-title">Sacred Banyan</div>
             </div>
           </div>
 
           <div class="bonsai-desc-box" id="bonsaiDescText">
-            <strong>Month 0 (Raw Sapling):</strong> Taproots intact in rough training soil. Tall, leggy apical stems awaiting structural reduction.
+            <strong>Stage 1 (0 – 3 Months):</strong> Wild saplings harvested with feeder roots intact. Potted in coarse inorganic aggregate without canopy pruning to establish strong vascular circulation.
           </div>
 
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">0 Mo</span>
-            <input type="range" id="bonsaiSlider" min="0" max="24" value="0" step="1" style="flex: 1;" oninput="onBonsaiSlider(this.value)" />
+            <input 
+              type="range" 
+              id="bonsaiSlider" 
+              min="0" 
+              max="24" 
+              value="0" 
+              step="1" 
+              style="flex: 1; accent-color: var(--nature-green);" 
+              oninput="onBonsaiSlider(this.value)" 
+            />
             <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">2 Years</span>
           </div>
-          <div style="text-align: center; margin-top: 0.35rem; font-size: 0.85rem; font-weight: 700; color: #065f46;" id="bonsaiMonthLabel">
-            Stage: 0 Months (Wild Sapling Collection)
+          <div style="text-align: center; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--nature-dark);" id="bonsaiMonthLabel">
+            Timeline: 0 Months (Wild Sapling Collection)
           </div>
         </div>
       </div>
@@ -1279,10 +1358,10 @@
 
     <!-- 9. Terminal Arcade: Cyber Runner -->
     <section>
-      <h2 class="section-head">Terminal Arcade: Cyber Runner</h2>
+      <h2 class="section-head tech">Terminal Arcade: Cyber Runner</h2>
       <div class="game-section">
         <div class="game-header">
-          <span style="color: var(--accent-green); font-weight: 600;">Hacker evading incoming enterprise data blocks</span>
+          <span style="color: var(--nature-green); font-weight: 600;">Hacker evading incoming enterprise data blocks</span>
           <div class="score-board">
             <span>Score: <strong id="score">0</strong></span>
             <span>High: <strong id="highScore">0</strong></span>
@@ -1302,7 +1381,7 @@
 
     <!-- 10. Athletic Profile -->
     <section>
-      <h2 class="section-head">Athletics & Competitive Gaming</h2>
+      <h2 class="section-head nature">Athletics & Competitive Gaming</h2>
       <p class="section-hint">Court stamina, reflex agility, and tactical team communication</p>
       <div class="cards-grid">
         <div class="card" onclick="openExplain('all_sports')">
@@ -1312,9 +1391,9 @@
             Competitive badminton (split-step agility, deceptive net drop shots, baseline smashes), field cricket (batting timing and seam bowling), and volleyball spikes.
           </p>
           <div class="pills">
-            <span class="pill">Badminton</span>
-            <span class="pill">Cricket</span>
-            <span class="pill">Volleyball</span>
+            <span class="pill pill-green">Badminton</span>
+            <span class="pill pill-green">Cricket</span>
+            <span class="pill pill-green">Volleyball</span>
           </div>
         </div>
 
@@ -1325,42 +1404,16 @@
             Competitive mobile gaming (Free Fire MAX), focusing on rapid spatial decision-making, clutch team callouts, and strategic perimeter rotations.
           </p>
           <div class="pills">
-            <span class="pill">Mobile Esports</span>
-            <span class="pill">Perimeter Rotation</span>
+            <span class="pill pill-green">Mobile Esports</span>
+            <span class="pill pill-green">Perimeter Rotation</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 11. Visitor Security Pass Clearance Generator -->
-    <section>
-      <h2 class="section-head">Visitor Security Pass Clearance</h2>
-      <p class="section-hint">Generate an authorized cryptographic session badge with an audit signature</p>
-      <div class="pass-box">
-        <div class="pass-form">
-          <input type="text" id="visitorName" class="pass-input" placeholder="Enter your full name (e.g. Alex Morgan)" />
-          <input type="text" id="visitorOrg" class="pass-input" placeholder="Organization / Company (e.g. Cyber Corp)" />
-          <button class="btn btn-primary" onclick="generatePass()">Generate Clearance Pass</button>
-        </div>
-
-        <div class="badge-card" id="badgeResult">
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.75rem;">
-            <strong style="color: var(--accent-blue); font-size: 0.85rem;">AUTHORIZED VISITOR ACCESS</strong>
-            <span style="color: var(--accent-green); font-size: 0.8rem; font-weight: 700;">● VERIFIED</span>
-          </div>
-          <div style="font-size: 1.15rem; font-weight: 700; color: var(--text);" id="passName">Alex Morgan</div>
-          <div style="font-size: 0.85rem; color: var(--accent-blue); font-weight: 600; margin-bottom: 0.75rem;" id="passOrg">Cyber Corp</div>
-          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">
-            Audit Hash: <span id="passHash" style="color: var(--text);"></span><br/>
-            Issued: <span id="passTime"></span> | Clearance: Level-2 Observer
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12. Direct Secure Transmission Contact Form -->
+    <!-- 11. Direct Secure Transmission Contact Form -->
     <section id="contact">
-      <h2 class="section-head">Secure Transmission & Direct Contact</h2>
+      <h2 class="section-head tech">Secure Transmission & Direct Contact</h2>
       <p class="section-hint">Send an encrypted inquiry directly to Ranju K W</p>
       <div class="contact-box">
         <form action="https://formspree.io/f/kwranju@gmail.com" method="POST" class="contact-grid">
@@ -1416,10 +1469,10 @@
       navigator.clipboard.writeText("kwranju@gmail.com").then(() => {
         const textSpan = document.getElementById('copyText');
         textSpan.textContent = "[Copied!]";
-        textSpan.style.color = "#0284c7";
+        textSpan.style.color = "var(--cyber-blue)";
         setTimeout(() => {
           textSpan.textContent = "[Copy]";
-          textSpan.style.color = "var(--accent-green)";
+          textSpan.style.color = "var(--nature-green)";
         }, 2000);
       });
     }
@@ -1451,7 +1504,9 @@
         try { cyberOsc.stop(); } catch(e){}
         cyberOsc = null;
       }
-      document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.audio-btn').forEach(b => {
+        b.classList.remove('active-nature', 'active-cyber');
+      });
     }
 
     function setAtmosphere(mode) {
@@ -1459,7 +1514,7 @@
       stopAllAudio();
 
       if (mode === 'rain') {
-        document.getElementById('btnAudioRain').classList.add('active');
+        document.getElementById('btnAudioRain').classList.add('active-nature');
         const bufferSize = audioCtx.sampleRate * 2;
         const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
         const data = buffer.getChannelData(0);
@@ -1476,7 +1531,7 @@
         rainNode.connect(audioCtx.destination);
         rainNode.start();
       } else if (mode === 'cyber') {
-        document.getElementById('btnAudioCyber').classList.add('active');
+        document.getElementById('btnAudioCyber').classList.add('active-cyber');
         cyberOsc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         cyberOsc.type = 'sawtooth';
@@ -1485,8 +1540,6 @@
         cyberOsc.connect(gain);
         gain.connect(audioCtx.destination);
         cyberOsc.start();
-      } else {
-        document.getElementById('btnAudioMute').classList.add('active');
       }
     }
 
@@ -1577,11 +1630,11 @@
         btn.classList.add('correct');
         quizScore++;
         document.getElementById('quizScore').textContent = `Score: ${quizScore}/${quizData.length}`;
-        feedback.style.color = "var(--accent-green)";
+        feedback.style.color = "var(--nature-green)";
         feedback.textContent = explain;
       } else {
         btn.classList.add('wrong');
-        feedback.style.color = "var(--accent-red)";
+        feedback.style.color = "var(--alert-red)";
         feedback.textContent = "Incorrect vulnerability. Review header flags and parameters.";
       }
 
@@ -1592,380 +1645,88 @@
     }
     renderQuiz();
 
-    // --- 6. REALISTIC BIOACTIVE TERRARIUM (Canvas Graphic & Springtails) ---
-    const tCanvas = document.getElementById('terrariumCanvas');
-    const tCtx = tCanvas.getContext('2d');
-    let tMoisture = 65;
+    // --- 6. TERRARIUM WATER-CYCLE SLIDE SIMULATOR ---
+    function updateWaterCycle(val) {
+      const v = parseInt(val);
+      const img = document.getElementById('jarPhotoImg');
+      const label = document.getElementById('cycleLabel');
+      const dew = document.getElementById('dewPoint');
+      const hum = document.getElementById('humidityVal');
+      const loop = document.getElementById('loopStatus');
 
-    // Springtails (Collembola) Living Agents
-    const springtails = [];
-    for (let i = 0; i < 9; i++) {
-      springtails.push({
-        x: 140 + Math.random() * 120,
-        y: 220 + Math.random() * 50,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: 2.5 + Math.random() * 1.5,
-        hopCooldown: Math.random() * 100
-      });
-    }
-
-    function waterTerrarium(amt) {
-      tMoisture = Math.max(15, Math.min(100, tMoisture + amt));
-      const status = document.getElementById('moistureStatus');
-      if (tMoisture > 75) status.textContent = `${tMoisture}% (Excess Humidity - Vent Lid)`;
-      else if (tMoisture < 40) status.textContent = `${tMoisture}% (Dry - Mist Required)`;
-      else status.textContent = `${tMoisture}% (Optimal Balance)`;
-    }
-
-    function tapGlass() {
-      // Scare springtails into hopping
-      springtails.forEach(s => {
-        s.vx = (Math.random() - 0.5) * 4;
-        s.vy = -Math.random() * 3;
-      });
-    }
-
-    function drawTerrarium() {
-      tCtx.clearRect(0, 0, tCanvas.width, tCanvas.height);
-      const w = tCanvas.width;
-      const h = tCanvas.height;
-
-      // 1. Draw Apothecary Jar Glass Body
-      tCtx.save();
-      tCtx.beginPath();
-      tCtx.moveTo(110, 45); // Neck
-      tCtx.lineTo(290, 45);
-      tCtx.bezierCurveTo(340, 60, 350, 120, 350, 240);
-      tCtx.bezierCurveTo(350, 350, 320, 360, 200, 360); // Bottom
-      tCtx.bezierCurveTo(80, 360, 50, 350, 50, 240);
-      tCtx.bezierCurveTo(50, 120, 60, 60, 110, 45);
-      tCtx.closePath();
-
-      // Clip inside of jar
-      tCtx.save();
-      tCtx.clip();
-
-      // Background inside jar (soft warm air)
-      tCtx.fillStyle = '#f1f5f9';
-      tCtx.fillRect(0, 0, w, h);
-
-      // --- Bio Layers Stratigraphy ---
-      // 4. Leca Drainage Layer (Bottom 310 to 360)
-      tCtx.fillStyle = '#78350f';
-      tCtx.fillRect(50, 310, 300, 50);
-      // Textured clay pebbles
-      for (let px = 60; px < 340; px += 18) {
-        for (let py = 315; py < 355; py += 14) {
-          tCtx.beginPath();
-          tCtx.arc(px + (py % 6), py, 7, 0, Math.PI * 2);
-          tCtx.fillStyle = (px + py) % 3 === 0 ? '#92400e' : '#b45309';
-          tCtx.fill();
-        }
-      }
-
-      // Water table in drainage if moisture is high
-      if (tMoisture > 70) {
-        tCtx.fillStyle = 'rgba(56, 189, 248, 0.35)';
-        tCtx.fillRect(50, 335, 300, 25);
-      }
-
-      // Mesh barrier line
-      tCtx.strokeStyle = '#334155';
-      tCtx.lineWidth = 2;
-      tCtx.beginPath();
-      tCtx.moveTo(50, 308);
-      tCtx.lineTo(350, 308);
-      tCtx.stroke();
-
-      // 3. Activated Charcoal Layer (295 to 308)
-      tCtx.fillStyle = '#1e293b';
-      tCtx.fillRect(50, 295, 300, 13);
-      for (let cx = 55; cx < 345; cx += 12) {
-        tCtx.fillStyle = '#0f172a';
-        tCtx.fillRect(cx + (cx % 4), 297, 6, 8);
-      }
-
-      // 2. ABG Substrate Layer (240 to 295)
-      tCtx.fillStyle = '#3f2e1e';
-      tCtx.beginPath();
-      tCtx.moveTo(50, 295);
-      tCtx.lineTo(50, 250);
-      tCtx.bezierCurveTo(120, 240, 220, 260, 350, 245);
-      tCtx.lineTo(350, 295);
-      tCtx.closePath();
-      tCtx.fill();
-
-      // Substrate bark flecks
-      tCtx.fillStyle = '#5c442d';
-      for (let sx = 65; sx < 335; sx += 22) {
-        tCtx.fillRect(sx, 265 + (sx % 15), 10, 4);
-      }
-
-      // 1. Hardscape Rock (Mini Dragon Stone / Slate)
-      tCtx.save();
-      tCtx.fillStyle = '#64748b';
-      tCtx.beginPath();
-      tCtx.moveTo(150, 255);
-      tCtx.lineTo(175, 205);
-      tCtx.lineTo(215, 215);
-      tCtx.lineTo(235, 260);
-      tCtx.closePath();
-      tCtx.fill();
-      // Rock texture crevices
-      tCtx.strokeStyle = '#475569';
-      tCtx.lineWidth = 1.5;
-      tCtx.beginPath();
-      tCtx.moveTo(175, 205);
-      tCtx.lineTo(190, 245);
-      tCtx.lineTo(215, 215);
-      tCtx.stroke();
-      tCtx.restore();
-
-      // Cushion Moss Mounds on substrate
-      tCtx.fillStyle = tMoisture < 35 ? '#857a44' : '#15803d';
-      // Left mound
-      tCtx.beginPath();
-      tCtx.arc(105, 248, 28, Math.PI, 0);
-      tCtx.fill();
-      // Right mound
-      tCtx.beginPath();
-      tCtx.arc(270, 248, 35, Math.PI, 0);
-      tCtx.fill();
-
-      // Living Ficus microcarpa Plant Stem & Foliage
-      tCtx.strokeStyle = '#573a21';
-      tCtx.lineWidth = 5;
-      tCtx.beginPath();
-      tCtx.moveTo(135, 250);
-      tCtx.quadraticCurveTo(130, 190, 145, 145);
-      tCtx.stroke();
-
-      // Leaves
-      const leafColor = tMoisture < 35 ? '#717134' : '#16a34a';
-      function drawLeaf(lx, ly, angle, scale) {
-        tCtx.save();
-        tCtx.translate(lx, ly);
-        tCtx.rotate(angle);
-        tCtx.scale(scale, scale);
-        tCtx.fillStyle = leafColor;
-        tCtx.beginPath();
-        tCtx.ellipse(0, 0, 18, 9, 0, 0, Math.PI * 2);
-        tCtx.fill();
-        tCtx.strokeStyle = '#14532d';
-        tCtx.lineWidth = 1;
-        tCtx.stroke();
-        tCtx.restore();
-      }
-      drawLeaf(135, 175, -0.6, 1);
-      drawLeaf(155, 165, 0.5, 1.1);
-      drawLeaf(140, 135, -0.3, 1.2);
-      drawLeaf(150, 125, 0.4, 1.1);
-
-      // --- Animated Springtails (Collembola) ---
-      springtails.forEach(s => {
-        // Simple micro AI wandering
-        s.x += s.vx;
-        s.y += s.vy;
-        s.vy += 0.08; // small gravity
-
-        // Stay on moss/substrate/rock boundaries
-        if (s.y > 275) { s.y = 275; s.vy = 0; }
-        if (s.y < 210) { s.y = 210; }
-        if (s.x < 80) { s.x = 80; s.vx *= -1; }
-        if (s.x > 320) { s.x = 320; s.vx *= -1; }
-
-        if (Math.random() < 0.03) s.vx = (Math.random() - 0.5) * 0.9;
-
-        // Draw springtail body (ivory/white elongated micro-speck)
-        tCtx.fillStyle = '#ffffff';
-        tCtx.beginPath();
-        tCtx.ellipse(s.x, s.y, s.size, s.size * 0.55, s.vx > 0 ? 0.3 : -0.3, 0, Math.PI * 2);
-        tCtx.fill();
-        tCtx.strokeStyle = '#cbd5e1';
-        tCtx.lineWidth = 0.5;
-        tCtx.stroke();
-      });
-
-      // --- Glass Condensation Drops ---
-      if (tMoisture > 70) {
-        tCtx.fillStyle = 'rgba(255, 255, 255, 0.55)';
-        for (let drop = 0; drop < 35; drop++) {
-          const dx = 70 + (drop * 37) % 260;
-          const dy = 70 + (drop * 23) % 180;
-          tCtx.beginPath();
-          tCtx.arc(dx, dy, 2 + (drop % 3), 0, Math.PI * 2);
-          tCtx.fill();
-        }
-      }
-
-      tCtx.restore(); // Restore clip
-
-      // Glass Highlights & Jar Silhouette
-      tCtx.strokeStyle = '#94a3b8';
-      tCtx.lineWidth = 3;
-      tCtx.stroke();
-
-      // Glass Specular Curve
-      tCtx.strokeStyle = 'rgba(255, 255, 255, 0.65)';
-      tCtx.lineWidth = 4;
-      tCtx.beginPath();
-      tCtx.arc(100, 220, 80, Math.PI * 0.7, Math.PI * 1.1);
-      tCtx.stroke();
-
-      // Jar Glass Lid / Stopper
-      tCtx.fillStyle = '#475569';
-      tCtx.fillRect(100, 25, 200, 20);
-      tCtx.fillStyle = '#64748b';
-      tCtx.fillRect(130, 15, 140, 10);
-      tCtx.restore();
-
-      requestAnimationFrame(drawTerrarium);
-    }
-    drawTerrarium();
-
-    // Tap to inspect science layers
-    tCanvas.addEventListener('click', (e) => {
-      const rect = tCanvas.getBoundingClientRect();
-      const y = e.clientY - rect.top;
-      const x = e.clientX - rect.left;
-
-      if (y > 300) {
-        openExplain('t_drainage');
-      } else if (y > 280) {
-        openExplain('t_charcoal');
-      } else if (y > 230 && x > 140 && x < 240) {
-        openExplain('t_rock');
-      } else if (y > 220) {
-        openExplain('t_substrate');
-      } else if (y > 180) {
-        openExplain('t_springtails');
+      if (v < 40) {
+        // Day Cycle
+        img.classList.remove('night-mode');
+        label.textContent = "Day Cycle (Solar Transpiration)";
+        label.style.color = "var(--cyber-blue)";
+        dew.textContent = "22.8°C";
+        hum.textContent = `${65 + Math.floor(v * 0.2)}%`;
+        loop.textContent = "Transpiring";
+        loop.style.color = "var(--nature-green)";
+      } else if (v < 75) {
+        // Evening Condensation
+        img.classList.remove('night-mode');
+        label.textContent = "Evening (Condensation Aggregating)";
+        label.style.color = "var(--alert-amber)";
+        dew.textContent = "19.5°C";
+        hum.textContent = `${75 + Math.floor(v * 0.15)}%`;
+        loop.textContent = "Condensing";
+        loop.style.color = "var(--alert-amber)";
       } else {
-        openExplain('t_ficus');
+        // Night Rain Cycle
+        img.classList.add('night-mode');
+        label.textContent = "Night Cycle (Precipitation & Drainage)";
+        label.style.color = "#3b82f6";
+        dew.textContent = "16.2°C";
+        hum.textContent = "96%";
+        loop.textContent = "Precipitating";
+        loop.style.color = "#3b82f6";
       }
-    });
+    }
 
-    // --- 7. DUAL-SPECIES BONSAI VISUAL TRANSFORMER (0 to 24 Months) ---
-    const cFicus = document.getElementById('canvasFicus');
-    const ctxF = cFicus.getContext('2d');
-    const cBanyan = document.getElementById('canvasBanyan');
-    const ctxB = cBanyan.getContext('2d');
-
-    const bonsaiStagesInfo = [
-      { maxMo: 3, title: "0 - 3 Months: Wild Sapling Collection & Potting", desc: "Wild ficus & banyan saplings harvested with root flare; potted in coarse pumice without canopy pruning to establish vigorous feeder roots." },
-      { maxMo: 9, title: "6 - 9 Months: Structural Chopping & Wire Training", desc: "Apical leader cut to establish trunk taper; aluminum branch wiring guides primary branch silhouette. Banyan initiates first vertical aerial root drop." },
-      { maxMo: 16, title: "12 - 16 Months: Canopy Ramification & Leaf Reduction", desc: "Defoliation cycles reduce leaf size by 50%; tertiary branch pads compact; Banyan aerial root enters substrate as an auxiliary pillar trunk." },
-      { maxMo: 24, title: "20 - 24 Months: Refined Ceramic Tray & Nebari", desc: "Transferred into shallow display tray; mature flared surface roots (Nebari); dense layered foliage pads and aged corked bark." }
+    // --- 7. DUAL-SPECIES BONSAI PROGRESSION TIMELINE ---
+    const bonsaiStages = [
+      {
+        maxMo: 4,
+        label: "Stage: 0–4 Months (Raw Wild Sapling)",
+        desc: "Wild saplings collected with primary taproot intact. Potted into open, coarse pumice without structural pruning to establish aggressive fine feeder roots.",
+        imgF: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=500&q=80",
+        imgB: "https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        maxMo: 10,
+        label: "Stage: 6–10 Months (Structural Chop & Guy Wiring)",
+        desc: "Apical trunk chopped to set taper; heavy aluminum guy wires applied to guide primary lateral movement. Sacred Banyan initiates first vertical aerial root guide.",
+        imgF: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=500&q=80",
+        imgB: "https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        maxMo: 18,
+        label: "Stage: 12–18 Months (Ramification & Leaf Reduction)",
+        desc: "Secondary branch pinching produces tight tertiary pads. Defoliation reduces leaf size by over 50%. Sacred Banyan aerial prop-roots firmly anchor into substrate.",
+        imgF: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=500&q=80",
+        imgB: "https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        maxMo: 24,
+        label: "Stage: 20–24 Months (Mature Nebari & Ceramic Display)",
+        desc: "Transferred into shallow glazed ceramic exhibition dishes. Flared surface root base (Nebari) locked; dense umbrella foliage pads with corked bark.",
+        imgF: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=500&q=80",
+        imgB: "https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=500&q=80"
+      }
     ];
 
-    function drawFicusBonsai(month) {
-      ctxF.clearRect(0, 0, cFicus.width, cFicus.height);
-      const w = cFicus.width;
-      const h = cFicus.height;
-      const progress = month / 24; // 0 to 1
-
-      // Pot / Tray
-      const potY = h - 25;
-      ctxF.fillStyle = progress > 0.7 ? '#1e293b' : '#78350f';
-      ctxF.fillRect(40, potY, w - 80, 16);
-
-      // Trunk thickness scales with age
-      const baseWidth = 8 + progress * 14;
-      ctxF.strokeStyle = '#573a21';
-      ctxF.lineWidth = baseWidth;
-      ctxF.beginPath();
-      ctxF.moveTo(w / 2, potY);
-      // More dynamic curve as wiring advances
-      const curveX = w / 2 - (progress * 25);
-      ctxF.quadraticCurveTo(curveX, h / 2 + 10, w / 2, h / 2 - 20);
-      ctxF.stroke();
-
-      // Nebari (Root Flare) at base
-      if (progress > 0.4) {
-        ctxF.lineWidth = 4 + progress * 5;
-        ctxF.beginPath();
-        ctxF.moveTo(w / 2 - 15, potY);
-        ctxF.lineTo(w / 2 - baseWidth / 2, potY - 10);
-        ctxF.moveTo(w / 2 + 15, potY);
-        ctxF.lineTo(w / 2 + baseWidth / 2, potY - 10);
-        ctxF.stroke();
-      }
-
-      // Foliage Canopy Pads
-      const leafCount = 8 + Math.floor(progress * 24);
-      const leafSize = progress > 0.6 ? 5 : 8; // Leaf reduction
-      ctxF.fillStyle = '#15803d';
-
-      for (let i = 0; i < leafCount; i++) {
-        const spreadX = (w / 2) + Math.sin(i * 1.3) * (20 + progress * 35);
-        const spreadY = (h / 2 - 25) - Math.cos(i * 1.1) * (15 + progress * 25);
-        ctxF.beginPath();
-        ctxF.arc(spreadX, spreadY, leafSize, 0, Math.PI * 2);
-        ctxF.fill();
-      }
-    }
-
-    function drawBanyanBonsai(month) {
-      ctxB.clearRect(0, 0, cBanyan.width, cBanyan.height);
-      const w = cBanyan.width;
-      const h = cBanyan.height;
-      const progress = month / 24;
-
-      const potY = h - 25;
-      ctxB.fillStyle = progress > 0.7 ? '#0f172a' : '#78350f';
-      ctxB.fillRect(35, potY, w - 70, 16);
-
-      // Banyan Stanyan Central Trunk
-      const baseWidth = 10 + progress * 18;
-      ctxB.strokeStyle = '#4a3319';
-      ctxB.lineWidth = baseWidth;
-      ctxB.beginPath();
-      ctxB.moveTo(w / 2, potY);
-      ctxB.lineTo(w / 2, h / 2 - 25);
-      ctxB.stroke();
-
-      // Banyan Aerial Prop Roots (Pillars)
-      if (progress > 0.25) {
-        ctxB.strokeStyle = '#5c4028';
-        ctxB.lineWidth = 3 + progress * 4;
-        ctxB.beginPath();
-        // Left pillar
-        ctxB.moveTo(w / 2 - 25, h / 2 - 10);
-        ctxB.lineTo(w / 2 - 20, potY);
-        // Right pillar
-        if (progress > 0.6) {
-          ctxB.moveTo(w / 2 + 30, h / 2 - 12);
-          ctxB.lineTo(w / 2 + 25, potY);
-        }
-        ctxB.stroke();
-      }
-
-      // Broad Spreading Canopy (Umbrella style)
-      const leafCount = 12 + Math.floor(progress * 30);
-      const leafSize = progress > 0.6 ? 6 : 9;
-      ctxB.fillStyle = '#166534';
-
-      for (let i = 0; i < leafCount; i++) {
-        const spreadX = (w / 2) + Math.cos(i * 0.9) * (25 + progress * 48);
-        const spreadY = (h / 2 - 32) - Math.sin(i * 1.5) * (12 + progress * 22);
-        ctxB.beginPath();
-        ctxB.arc(spreadX, spreadY, leafSize, 0, Math.PI * 2);
-        ctxB.fill();
-      }
-    }
-
     function onBonsaiSlider(val) {
-      const month = parseInt(val);
-      document.getElementById('bonsaiMonthLabel').textContent = `Stage: ${month} Months (${month < 12 ? 'Year 1 Training' : 'Year 2 Refinement'})`;
+      const mo = parseInt(val);
+      document.getElementById('bonsaiMonthLabel').textContent = `Timeline: ${mo} Months (${mo < 12 ? 'Year 1 Training' : 'Year 2 Refinement'})`;
       
-      let stageObj = bonsaiStagesInfo[0];
-      for (let s of bonsaiStagesInfo) {
-        if (month <= s.maxMo) { stageObj = s; break; }
+      let cur = bonsaiStages[0];
+      for (let s of bonsaiStages) {
+        if (mo <= s.maxMo) { cur = s; break; }
       }
-      document.getElementById('bonsaiDescText').innerHTML = `<strong>${stageObj.title}:</strong> ${stageObj.desc}`;
-
-      drawFicusBonsai(month);
-      drawBanyanBonsai(month);
+      document.getElementById('bonsaiDescText').innerHTML = `<strong>${cur.label}:</strong> ${cur.desc}`;
+      document.getElementById('imgFicus').src = cur.imgF;
+      document.getElementById('imgBanyan').src = cur.imgB;
     }
     onBonsaiSlider(0);
 
@@ -2104,20 +1865,7 @@
     }
     drawStartCanvas();
 
-    // --- 9. Visitor Pass Generator ---
-    function generatePass() {
-      const name = document.getElementById('visitorName').value.trim() || 'Alex Morgan';
-      const org = document.getElementById('visitorOrg').value.trim() || 'Independent Security Researcher';
-      const hash = Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase();
-      
-      document.getElementById('passName').textContent = name;
-      document.getElementById('passOrg').textContent = org;
-      document.getElementById('passHash').textContent = `SHA256::${hash}`;
-      document.getElementById('passTime').textContent = new Date().toLocaleTimeString('en-IN');
-      document.getElementById('badgeResult').style.display = 'block';
-    }
-
-    // --- 10. Modal Inspector Data ---
+    // --- 9. Modal Inspector Data ---
     const modalData = {
       mfa: { title: "Rule #01: Multi-Factor Authentication", tag: "ACCESS CONTROL", text: "Enforcing Time-based One-Time Passwords (TOTP via Google Authenticator or hardware YubiKeys) stops over 99% of automated credential stuffing attacks." },
       phishing: { title: "Rule #02: Phishing & URL Verification", tag: "SOCIAL ENGINEERING DEFENSE", text: "Inspect domain roots, certificate transparencies, and punycode substitutions to prevent credential harvesting attacks." },
