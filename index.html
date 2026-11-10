@@ -637,7 +637,7 @@
       line-height: 1.45;
     }
 
-    /* Calibrated Terrarium Optical Viewer (Inside-the-Jar) */
+    /* Strictly Confined Inside-the-Jar Optical Viewer */
     .photo-viewport-wrap {
       position: relative;
       width: 100%;
@@ -657,13 +657,14 @@
       display: block;
     }
 
+    /* Precise mask strictly bounded within the glass jar glass body */
     .jar-chamber-overlay {
       position: absolute;
-      top: 20%;
-      left: 17%;
-      width: 66%;
-      height: 67%;
-      border-radius: 38% 38% 16% 16% / 24% 24% 12% 12%;
+      top: 18%;
+      left: 24%;
+      width: 52%;
+      height: 68%;
+      border-radius: 42% 42% 18% 18% / 28% 28% 12% 12%;
       pointer-events: none;
       overflow: hidden;
       mix-blend-mode: hard-light;
@@ -769,7 +770,7 @@
       gap: 0.4rem;
     }
 
-    /* Bonsai Progression Container */
+    /* Bonsai Container & Workshop */
     .bonsai-photo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1055,6 +1056,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Success Particle Burst Canvas Overlay -->
+  <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 999999;"></canvas>
 
   <!-- Native Mobile & Desktop Compatible Audio Streams -->
   <audio id="audioRain" loop preload="none">
@@ -1381,7 +1385,7 @@
               id="jarPhotoImg"
             />
 
-            <!-- Confined Inside-the-Glass Lighting & Condensation Mask -->
+            <!-- Strictly Confined Inside-the-Glass Chamber Overlay Mask -->
             <div class="jar-chamber-overlay" id="jarChamber">
               <div class="internal-mist" id="internalMist"></div>
             </div>
@@ -1424,7 +1428,7 @@
           </div>
         </div>
 
-        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression (Using Your Local Assets) -->
+        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression -->
         <div class="feature-card">
           <h3 style="font-size: 1.15rem; color: var(--nature-dark); margin-bottom: 0.35rem;">Dual-Species Bonsai Progression (0–2 Yrs)</h3>
           <p class="module-quote">"A bonsai does not conquer time; it yields to it. Through every wired branch and guided root, patience shapes what force could never master."</p>
@@ -1476,6 +1480,20 @@
           </div>
           <div style="text-align: center; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--nature-dark);" id="bonsaiMonthLabel">
             Timeline: 24 Months (2-Year Mature Specimen)
+          </div>
+
+          <!-- Live Bonsai Styling Workshop Micro-Widget -->
+          <div style="margin-top: 1rem; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <strong style="font-size: 0.85rem; color: var(--nature-dark);">🌿 Live Bonsai Styling Workshop</strong>
+              <span id="workshopStatus" style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--cyber-blue); font-weight: 600;">Ready</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="performWorkshopAction('wire')">⚡ Apply Wire</button>
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="performWorkshopAction('prune')">✂ Canopy Prune</button>
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="performWorkshopAction('nebari')">💧 Expose Nebari</button>
+            </div>
+            <div id="workshopFeedback" style="margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--nature-green); min-height: 16px;"></div>
           </div>
         </div>
       </div>
@@ -1547,7 +1565,7 @@
       <h2 class="section-head tech">Secure Transmission & Direct Contact</h2>
       <p class="section-hint">Send an encrypted inquiry directly to Ranju K W</p>
       <div class="contact-box">
-        <form action="https://formspree.io/f/kwranju@gmail.com" method="POST" class="contact-grid">
+        <form action="https://formspree.io/f/kwranju@gmail.com" method="POST" class="contact-grid" onsubmit="triggerParticleBurst()">
           <div class="form-group">
             <label>YOUR NAME</label>
             <input type="text" name="name" required class="form-input" placeholder="e.g. Jordan Reed" />
@@ -1601,7 +1619,90 @@
   </div>
 
   <script>
-    // --- 1. One-Click Email Copy ---
+    // --- Success Particle Burst Engine ---
+    const pCanvas = document.getElementById('particleCanvas');
+    const pCtx = pCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeParticleCanvas() {
+      pCanvas.width = window.innerWidth;
+      pCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeParticleCanvas);
+    resizeParticleCanvas();
+
+    function triggerParticleBurst() {
+      const colors = ['#059669', '#0284c7', '#38bdf8', '#34d399', '#f59e0b'];
+      for (let i = 0; i < 45; i++) {
+        particles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 0.5) * 12 - 3,
+          radius: Math.random() * 4 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          decay: Math.random() * 0.02 + 0.015
+        });
+      }
+      if (!animatingParticles) animateParticles();
+    }
+
+    let animatingParticles = false;
+    function animateParticles() {
+      animatingParticles = true;
+      pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        pCtx.save();
+        pCtx.globalAlpha = p.alpha;
+        pCtx.fillStyle = p.color;
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        pCtx.fill();
+        pCtx.restore();
+      }
+
+      if (particles.length > 0) {
+        requestAnimationFrame(animateParticles);
+      } else {
+        animatingParticles = false;
+      }
+    }
+
+    // --- Live Bonsai Styling Workshop ---
+    function performWorkshopAction(action) {
+      const feedback = document.getElementById('workshopFeedback');
+      const status = document.getElementById('workshopStatus');
+      
+      if (action === 'wire') {
+        feedback.style.color = "var(--cyber-blue)";
+        feedback.textContent = "✔ Copper wire secured at 45° angle. Primary branch tension optimized!";
+        status.textContent = "Wired";
+      } else if (action === 'prune') {
+        feedback.style.color = "var(--nature-green)";
+        feedback.textContent = "✔ Canopy pruned back to two-node pairs. Energy redirected to pads!";
+        status.textContent = "Pruned";
+      } else if (action === 'nebari') {
+        feedback.style.color = "var(--alert-amber)";
+        feedback.textContent = "✔ Surface soil brushed away. Radial root flare (nebari) exposed!";
+        status.textContent = "Exhibition Ready";
+      }
+      triggerParticleBurst();
+    }
+
+    // --- One-Click Email Copy ---
     function copyEmail(btn) {
       navigator.clipboard.writeText("kwranju@gmail.com").then(() => {
         const textSpan = document.getElementById('copyText');
@@ -1614,7 +1715,7 @@
       });
     }
 
-    // --- 2. Live IST Clock ---
+    // --- Live IST Clock ---
     function updateLiveClock() {
       const now = new Date();
       document.getElementById('liveDate').textContent = now.toLocaleDateString('en-IN', { weekday: 'short', day: '2-digit', month: 'short' });
@@ -1623,7 +1724,7 @@
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
-    // --- 3. Native Mobile-Compatible Audio Engine ---
+    // --- Native Mobile-Compatible Audio Engine ---
     function stopAllAudio() {
       const rain = document.getElementById('audioRain');
       const cyber = document.getElementById('audioCyber');
@@ -1656,7 +1757,7 @@
       }
     }
 
-    // --- 4. Indian Threat Radar Feed ---
+    // --- Indian Threat Radar Feed ---
     async function loadCyberRadar() {
       const feedContainer = document.getElementById('newsFeed');
       const cyberRssUrl = encodeURIComponent('https://news.google.com/rss/search?q=cybersecurity+OR+CERT-In+India&hl=en-IN&gl=IN&ceid=IN:en');
@@ -1683,7 +1784,7 @@
     }
     window.addEventListener('DOMContentLoaded', loadCyberRadar);
 
-    // --- 5. Diagnostic Quiz ---
+    // --- Diagnostic Quiz ---
     const quizData = [
       {
         scenario: `// Inspecting HTTP Response Header:\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\nSet-Cookie: session_id=9f82d1c4b; Path=/; Secure;`,
@@ -1692,7 +1793,7 @@
           { text: "Missing Strict-Transport-Security (HSTS)", correct: false },
           { text: "Weak UTF-8 Character Encoding", correct: false }
         ],
-        explain: "Correct! Without the HttpOnly attribute, JavaScript on the page can access document.cookie, making session hijacking trivial via XSS."
+        explain: "Correct! Without the HttpOnly attribute, JavaScript can access document.cookie, making session hijacking trivial via XSS."
       },
       {
         scenario: `// Inspecting User Authentication SQL Query:\nString query = "SELECT * FROM users WHERE user = '" + inputUser + "' AND pass = '" + inputPass + "'";`,
@@ -1710,7 +1811,7 @@
           { text: "Exposes server version and allows Clickjacking framing", correct: true },
           { text: "Weak SSL/TLS Cipher Negotiation", correct: false }
         ],
-        explain: "Correct! X-Frame-Options must be set to DENY or SAMEORIGIN to prevent Clickjacking, and server_tokens should be 'off' to prevent OS/version fingerprinting."
+        explain: "Correct! X-Frame-Options must be DENY or SAMEORIGIN to prevent Clickjacking, and server_tokens should be 'off'."
       }
     ];
 
@@ -1744,6 +1845,7 @@
         document.getElementById('quizScore').textContent = `Score: ${quizScore}/${quizData.length}`;
         feedback.style.color = "var(--nature-green)";
         feedback.textContent = explain;
+        triggerParticleBurst();
       } else {
         btn.classList.add('wrong');
         feedback.style.color = "var(--alert-red)";
@@ -1756,7 +1858,7 @@
     }
     renderQuiz();
 
-    // --- 6. INSIDE-THE-JAR TERRARIUM SIMULATOR ---
+    // --- STRICTLY CONFINED INSIDE-THE-JAR TERRARIUM SIMULATOR ---
     let jarMoisture = 74;
 
     function updateJarLighting(val) {
@@ -1794,7 +1896,7 @@
 
       jarMoisture = Math.min(98, jarMoisture + 10);
       moistureDisp.textContent = `${jarMoisture}%`;
-      mist.style.opacity = '0.75';
+      mist.style.opacity = '0.85';
       feedback.textContent = 'Misting Chamber...';
 
       setTimeout(() => {
@@ -1805,7 +1907,7 @@
       setTimeout(() => { feedback.textContent = 'Equilibrium'; }, 3800);
     }
 
-    // --- 7. DISCRETE BONSAI TIMELINE ENGINE (EXACT LOCAL ASSETS) ---
+    // --- DISCRETE BONSAI TIMELINE ENGINE (LOCAL ASSETS) ---
     const bonsaiStageData = {
       0: {
         label: "0 Months (Wild Field Sapling Harvest)",
@@ -1870,31 +1972,27 @@
       }, 160);
     }
 
-    // --- 8. 4-GAME ARCADE & SIMULATION HUB CONTROLLER ---
+    // --- 4-GAME ARCADE & SIMULATION HUB CONTROLLER ---
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-    let currentGame = 0; // 0: Runner, 1: Reflex, 2: Zone Ops, 3: Eco Jar
+    let currentGame = 0;
     let isRunning = false;
     let animId = null;
     let scores = [0, 0, 0, 0];
     let highScores = [0, 0, 0, 0];
 
-    // Game 1: Cyber Runner Variables
     let runnerY = 170, runnerVy = 0, isGrounded = true;
     let runnerObstacles = [];
     let runnerSpeed = 5.2;
 
-    // Game 2: Court Reflex Variables
-    let reflexState = 'idle'; // idle, waiting, strike, complete
+    let reflexState = 'idle';
     let reflexTimer = null;
     let reflexStartTime = 0;
 
-    // Game 3: Zone Ops Variables
     let targets = [];
     let safeRadius = 90;
     let waveTimer = 0;
 
-    // Game 4: Eco Jar Variables
     let ecoMoisture = 50, ecoFlora = 50, ecoSpringtails = 50;
     let ecoSeconds = 30;
     let ecoInterval = null;
@@ -1935,7 +2033,6 @@
       }
     }
 
-    // Keyboard Shortcuts (1-4 Switch, Space Action)
     window.addEventListener('keydown', (e) => {
       if (['1', '2', '3', '4'].includes(e.key)) {
         switchGame(parseInt(e.key) - 1);
@@ -1953,7 +2050,6 @@
       else if (currentGame === 3) actionEco();
     }
 
-    // --- GAME 1: CYBER RUNNER ---
     function initCyberRunner() {
       runnerY = 170; runnerVy = 0; isGrounded = true;
       runnerObstacles = [];
@@ -2027,7 +2123,6 @@
       animId = requestAnimationFrame(loopRunner);
     }
 
-    // --- GAME 2: COURT REFLEX ---
     function initCourtReflex() {
       reflexState = 'idle';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -2071,11 +2166,11 @@
         }
         ctx.fillStyle = '#ecfdf5'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
         ctx.fillStyle = '#059669'; ctx.font = '700 20px sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText(`STEEP SMASH! Reaction: ${ms} ms (${ms < 210 ? 'National Tier Reflex' : 'Good Timing'})`, canvas.width / 2, 125);
+        ctx.fillText(`STEEP SMASH! Reaction: ${ms} ms`, canvas.width / 2, 125);
+        triggerParticleBurst();
       }
     }
 
-    // --- GAME 3: ZONE OPS ---
     function initZoneOps() {
       targets = [];
       waveTimer = 0;
@@ -2142,7 +2237,6 @@
       animId = requestAnimationFrame(loopZone);
     }
 
-    // --- GAME 4: ECO JAR BALANCER ---
     function initEcoJar() {
       ecoMoisture = 50; ecoFlora = 50; ecoSpringtails = 50; ecoSeconds = 30;
       drawEcoJar();
@@ -2190,7 +2284,7 @@
 
           drawEcoJar();
           ctx.fillStyle = '#065f46'; ctx.font = '700 14px sans-serif'; ctx.textAlign = 'center';
-          ctx.fillText(`Equilibrium Stable: ${ecoSeconds}s Remaining (Keep in green zone)`, canvas.width / 2, 220);
+          ctx.fillText(`Equilibrium Stable: ${ecoSeconds}s Remaining`, canvas.width / 2, 220);
 
           if (ecoSeconds <= 0) {
             clearInterval(ecoInterval);
@@ -2200,7 +2294,8 @@
             highScores[3] = 100;
             document.getElementById('gameHighScore').innerText = 100;
             ctx.fillStyle = '#059669'; ctx.font = '800 18px sans-serif'; ctx.textAlign = 'center';
-            ctx.fillText("ECOSYSTEM EQUILIBRIUM ACHIEVED! (Score: 100)", canvas.width / 2, 220);
+            ctx.fillText("ECOSYSTEM EQUILIBRIUM ACHIEVED!", canvas.width / 2, 220);
+            triggerParticleBurst();
           }
         }, 1000);
         return;
@@ -2211,38 +2306,38 @@
 
     window.addEventListener('load', () => { switchGame(0); });
 
-    // --- 9. Interactive Technical Modal Inspector ---
+    // --- Modal Inspector ---
     const modalData = {
-      mfa: { title: "Rule #01: Multi-Factor Authentication", tag: "ACCESS CONTROL", text: "Enforcing Time-based One-Time Passwords (TOTP via Google Authenticator or hardware YubiKeys) stops over 99% of automated credential stuffing attacks.", cmd: "" },
-      phishing: { title: "Rule #02: Phishing & URL Verification", tag: "SOCIAL ENGINEERING DEFENSE", text: "Inspect domain roots, certificate transparencies, and punycode substitutions to prevent credential harvesting attacks.", cmd: "" },
-      patching: { title: "Rule #03: Rapid Vulnerability Patching", tag: "THREAT MITIGATION", text: "Patch known CVEs within 24 to 72 hours of public disclosure to neutralize automated exploit scanners.", cmd: "" },
-      public_wifi: { title: "Rule #04: Network Hardening", tag: "COMMUNICATIONS SECURITY", text: "Always tunnel untrusted network connections through WireGuard or OpenVPN to encrypt data handshakes.", cmd: "" },
-      least_privilege: { title: "Rule #05: Principle of Least Privilege", tag: "SYSTEM GOVERNANCE", text: "Users and background processes should only operate with minimal permissions required for their tasks.", cmd: "" },
-      kali: { title: "Kali Linux Specialist", tag: "PENETRATION TESTING OS", text: "Primary auditing OS for network mapping, credential assessments, and vulnerability verification.", cmd: "uname -r && cat /etc/os-release" },
-      metasploit: { title: "Metasploit Framework", tag: "EXPLOITATION ENGINE", text: "Modular platform used for penetration testing, verifying patch efficacy, and simulating real-world adversary actions.", cmd: "msfconsole -q -x 'db_status'" },
-      nmap: { title: "Nmap (Network Mapper)", tag: "NETWORK RECONNAISSANCE", text: "Industry benchmark tool for stealth TCP/UDP port audits, service fingerprinting, and NSE vulnerability scripts.", cmd: "nmap -sC -sV -T4 -p- 192.168.1.1" },
-      burp: { title: "Burp Suite", tag: "WEB APP VAPT", text: "Interception proxy tool applied to inspect and analyze HTTP requests, API contracts, and SQL injection flaws.", cmd: "burpsuite --project-file=audit.burp" },
-      wireshark: { title: "Wireshark", tag: "PACKET INSPECTION", text: "Deep packet analysis platform for inspecting raw network frames and decrypting TLS sessions.", cmd: "tshark -i eth0 -f 'tcp port 443' -w dump.pcap" },
-      zap: { title: "OWASP ZAP", tag: "AUTOMATED SCANNING", text: "Automated vulnerability scanner for crawling modern web endpoints and flagging missing security headers.", cmd: "zap.sh -cmd -quickurl https://target.ai -quickout report.html" },
-      iso: { title: "ISO/IEC 27001 Auditor", tag: "GLOBAL COMPLIANCE", text: "Certified understanding of ISMS controls, risk assessments, and technical policy enforcement.", cmd: "auditctl -l" },
-      isms: { title: "ISMS Audit Controls", tag: "GOVERNANCE", text: "Annex A governance spanning technological, operational, and physical security parameters.", cmd: "" },
+      mfa: { title: "Rule #01: Multi-Factor Authentication", tag: "ACCESS CONTROL", text: "Enforcing TOTP authenticator apps stops over 99% of automated credential stuffing attacks.", cmd: "" },
+      phishing: { title: "Rule #02: Phishing & URL Verification", tag: "SOCIAL ENGINEERING DEFENSE", text: "Inspect domain roots and certificate transparencies before entering sensitive credentials.", cmd: "" },
+      patching: { title: "Rule #03: Rapid Vulnerability Patching", tag: "THREAT MITIGATION", text: "Patch known CVEs within 24 to 72 hours of public disclosure.", cmd: "" },
+      public_wifi: { title: "Rule #04: Network Hardening", tag: "COMMUNICATIONS SECURITY", text: "Always tunnel untrusted network connections through WireGuard or OpenVPN.", cmd: "" },
+      least_privilege: { title: "Rule #05: Principle of Least Privilege", tag: "SYSTEM GOVERNANCE", text: "Users and background processes should only operate with minimal required permissions.", cmd: "" },
+      kali: { title: "Kali Linux Specialist", tag: "PENETRATION TESTING OS", text: "Primary auditing OS for network mapping and vulnerability verification.", cmd: "uname -r" },
+      metasploit: { title: "Metasploit Framework", tag: "EXPLOITATION ENGINE", text: "Modular platform used for penetration testing and verifying patch efficacy.", cmd: "msfconsole -q" },
+      nmap: { title: "Nmap", tag: "RECONNAISSANCE", text: "Industry benchmark for port audits and service fingerprinting.", cmd: "nmap -sC -sV 192.168.1.1" },
+      burp: { title: "Burp Suite", tag: "WEB APP VAPT", text: "Interception proxy tool applied to inspect HTTP requests and API contracts.", cmd: "burpsuite" },
+      wireshark: { title: "Wireshark", tag: "PACKET INSPECTION", text: "Deep packet analysis platform for inspecting raw network frames.", cmd: "tshark -i eth0" },
+      zap: { title: "OWASP ZAP", tag: "AUTOMATED SCANNING", text: "Automated vulnerability scanner for crawling modern web endpoints.", cmd: "zap.sh" },
+      iso: { title: "ISO/IEC 27001 Auditor", tag: "GLOBAL COMPLIANCE", text: "Certified understanding of ISMS controls, risk assessments, and policy enforcement.", cmd: "auditctl -l" },
+      isms: { title: "ISMS Audit Controls", tag: "GOVERNANCE", text: "Annex A governance spanning technological and physical security parameters.", cmd: "" },
       gap_analysis: { title: "Gap Analysis & Risk Treatment", tag: "SECURITY STRATEGY", text: "Systematic auditing of enterprise defenses against formal compliance standards.", cmd: "" },
-      hardening: { title: "Server Hardening", tag: "DEFENSIVE ENGINEERING", text: "Disabling root logins, enforcing SSH keys, configuring host firewalls, and minimizing attack surfaces.", cmd: "sshd -t && ufw status verbose" },
-      nginx: { title: "Nginx Security", tag: "REVERSE PROXY", text: "Configuring robust TLS terminations and defensive headers (HSTS, CSP, X-Frame-Options).", cmd: "nginx -t && systemctl reload nginx" },
-      python: { title: "Python for Security", tag: "AUTOMATION & ML", text: "Scripting custom threat analysis pipelines and machine learning classifiers.", cmd: "python3 -m venv venv && pip install scikit-learn" },
-      java: { title: "Core Java Development", tag: "SOFTWARE ARCHITECTURE", text: "Defensive OOP application design using Collections and robust exception handling.", cmd: "javac -Xlint:all Main.java" },
+      hardening: { title: "Server Hardening", tag: "DEFENSIVE ENGINEERING", text: "Disabling root logins, enforcing SSH keys, and minimizing attack surfaces.", cmd: "ufw status verbose" },
+      nginx: { title: "Nginx Security", tag: "REVERSE PROXY", text: "Configuring robust TLS terminations and defensive headers.", cmd: "nginx -t" },
+      python: { title: "Python for Security", tag: "AUTOMATION & ML", text: "Scripting custom threat analysis pipelines and machine learning classifiers.", cmd: "python3 -m venv venv" },
+      java: { title: "Core Java Development", tag: "SOFTWARE ARCHITECTURE", text: "Defensive OOP application design using Collections and robust exception handling.", cmd: "javac Main.java" },
       bash: { title: "Bash Automation", tag: "SHELL SCRIPTING", text: "Automating scheduled security verification scripts and system auditing cron jobs.", cmd: "crontab -l" },
-      sql: { title: "SQL Security", tag: "DATA LAYER", text: "Auditing database queries against SQL injection flaws and verifying access logging.", cmd: "sqlmap -u 'http://target/api' --batch" },
+      sql: { title: "SQL Security", tag: "DATA LAYER", text: "Auditing database queries against SQL injection flaws and verifying access logging.", cmd: "sqlmap -u 'target'" },
       anomaly: { title: "Anomaly Detection", tag: "SECURITY ANALYTICS", text: "Identifying abnormal data exfiltration behaviors using statistical baselines.", cmd: "" },
-      proj_phishing: { title: "Phishing URL Detection Tool", tag: "PROJECT ARCHITECTURE", text: "Python and ML pipeline analyzing domain lexical metrics to detect phishing attempts in real-time.", cmd: "" },
-      proj_replica: { title: "Network Security Tool Replica", tag: "PROJECT ARCHITECTURE", text: "Virtualized testing environment simulating live network attacks and testing packet inspection behavior.", cmd: "" },
-      all_sports: { title: "Badminton, Cricket & Volleyball", tag: "ATHLETICS", text: "Competitive court badminton, field cricket, and volleyball building stamina, agility, and split-second spatial coordination.", cmd: "" },
-      esports: { title: "Competitive Mobile Esports", tag: "TACTICAL STRATEGY", text: "Strategic play in Free Fire MAX demanding rapid communication and map positioning under pressure.", cmd: "" },
-      t_drainage: { title: "Base Drainage Horizon", tag: "HYDROLOGICAL BALANCE", text: "The bottom horizon collects gravitational moisture runoff, preventing roots from drowning in anaerobic standing water.", cmd: "" },
-      t_substrate: { title: "Bioactive Substrate Horizon", tag: "ORGANIC MEDIA", text: "Rich, aerated substrate bed retaining essential micro-nutrients and sustaining the microbial network.", cmd: "" },
-      t_springtails: { title: "Springtails (Collembola)", tag: "BIOACTIVE JANITORS", text: "Micro-arthropods feeding continuously on decaying leaf litter and fungal mold spores, keeping the enclosed jar spotless.", cmd: "" },
-      t_rock: { title: "River Stone Hardscape", tag: "MINERAL FOUNDATION", text: "Dense, smooth river stones providing structural terracing, natural mineral mass, and shelter crevices for microfauna.", cmd: "" },
-      t_ficus: { title: "Cushion & Fern Moss Canopy", tag: "ACTIVE PHOTOSYNTHESIS", text: "Dense green moss mats cycling atmospheric humidity through daylight transpiration and oxygen release.", cmd: "" }
+      proj_phishing: { title: "Phishing URL Detection Tool", tag: "PROJECT ARCHITECTURE", text: "Python and ML pipeline analyzing domain lexical metrics to detect phishing attempts.", cmd: "" },
+      proj_replica: { title: "Network Security Tool Replica", tag: "PROJECT ARCHITECTURE", text: "Virtualized testing environment simulating live network attacks.", cmd: "" },
+      all_sports: { title: "Badminton, Cricket & Volleyball", tag: "ATHLETICS", text: "Competitive court badminton, field cricket, and volleyball building stamina and agility.", cmd: "" },
+      esports: { title: "Competitive Mobile Esports", tag: "TACTICAL STRATEGY", text: "Strategic play in Free Fire MAX demanding rapid communication and map positioning.", cmd: "" },
+      t_drainage: { title: "Base Drainage Horizon", tag: "HYDROLOGICAL BALANCE", text: "Collects gravitational moisture runoff, preventing roots from drowning in standing water.", cmd: "" },
+      t_substrate: { title: "Bioactive Substrate Horizon", tag: "ORGANIC MEDIA", text: "Rich, aerated substrate bed retaining essential micro-nutrients and sustaining microbes.", cmd: "" },
+      t_springtails: { title: "Springtails (Collembola)", tag: "BIOACTIVE JANITORS", text: "Micro-arthropods feeding continuously on decaying leaf litter and fungal mold spores.", cmd: "" },
+      t_rock: { title: "River Stone Hardscape", tag: "MINERAL FOUNDATION", text: "Dense, smooth river stones providing structural terracing and microfauna crevices.", cmd: "" },
+      t_ficus: { title: "Cushion & Fern Moss Canopy", tag: "ACTIVE PHOTOSYNTHESIS", text: "Dense green moss mats cycling atmospheric humidity through daylight transpiration.", cmd: "" }
     };
 
     function openExplain(key) {
