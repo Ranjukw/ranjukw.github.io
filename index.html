@@ -293,38 +293,6 @@
       margin-bottom: 1.25rem;
     }
 
-    /* Cards Grid */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.35rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: var(--cyber-blue);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
-    }
-
-    .card-type {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--nature-green);
-      margin-bottom: 0.3rem;
-    }
-
-    .card h3 { font-size: 1.15rem; color: var(--text); margin-bottom: 0.45rem; font-weight: 700; }
-    .card p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
-
     /* Skills Grid */
     .skills-grid {
       display: grid;
@@ -410,7 +378,39 @@
     }
     .t-item li { margin-bottom: 0.4rem; }
 
-    /* Threat Radar */
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyber-blue);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+    }
+
+    .card-type {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--nature-green);
+      margin-bottom: 0.3rem;
+    }
+
+    .card h3 { font-size: 1.15rem; color: var(--text); margin-bottom: 0.45rem; font-weight: 700; }
+    .card p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+
+    /* Radar Box */
     .radar-box {
       background: var(--bg-alt);
       border: 1px solid var(--border);
@@ -637,7 +637,7 @@
       line-height: 1.45;
     }
 
-    /* CALIBRATED TERRARIUM OPTICAL VIEWER (INSIDE-THE-JAR ONLY) */
+    /* Calibrated Terrarium Optical Viewer (Inside-the-Jar) */
     .photo-viewport-wrap {
       position: relative;
       width: 100%;
@@ -657,7 +657,6 @@
       display: block;
     }
 
-    /* Glass Chamber Interior Mask */
     .jar-chamber-overlay {
       position: absolute;
       top: 20%;
@@ -683,7 +682,6 @@
       transition: opacity 0.5s ease;
     }
 
-    /* Interactive Inspect Pins */
     .inspect-pin {
       position: absolute;
       width: 24px;
@@ -723,7 +721,6 @@
       100% { transform: scale(2.4); opacity: 0; }
     }
 
-    /* Terrarium Interactive Controls */
     .sim-controls-wrap {
       background: var(--bg-alt);
       border: 1px solid var(--border);
@@ -772,7 +769,7 @@
       gap: 0.4rem;
     }
 
-    /* DISCRETE BONSAI PROGRESSION ENGINE */
+    /* Bonsai Progression Container */
     .bonsai-photo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -832,7 +829,7 @@
       line-height: 1.5;
     }
 
-    /* 4-GAME ARCADE & SIMULATION HUB */
+    /* 4-Game Arcade Hub */
     .arcade-box {
       background: var(--bg-alt);
       border: 1px solid var(--border);
@@ -915,7 +912,7 @@
       color: var(--text-muted);
     }
 
-    /* Contact Form */
+    /* Direct Contact Form */
     .contact-box {
       background: var(--bg-alt);
       border: 1px solid var(--border);
@@ -977,7 +974,7 @@
     .footer-links a { color: var(--cyber-blue); text-decoration: none; font-weight: 600; }
     .footer-links a:hover { text-decoration: underline; }
 
-    /* Modal */
+    /* Inspector Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -1089,7 +1086,7 @@
       </div>
     </div>
 
-    <!-- Personal Information (Hero) -->
+    <!-- Personal Hero -->
     <header class="hero">
       <div class="hero-text">
         <div class="role-badge">CYBERSECURITY SPECIALIST & ISO/IEC 27001 AUDITOR</div>
@@ -1120,7 +1117,7 @@
       </div>
     </header>
 
-    <!-- 2. Security Arsenal & Core Skills with Interactive Terminal Command Badges -->
+    <!-- 2. Security Arsenal & Core Skills -->
     <section>
       <h2 class="section-head tech">Security Arsenal & Core Skills</h2>
       <p class="section-hint">Tap any badge to view technical competency details and production audit flags</p>
@@ -1353,7 +1350,7 @@
         An organic exploration honoring biological balance, living earth, and botanical craftsmanship
       </p>
 
-      <!-- Pure Nature Motivational Banner -->
+      <!-- Motivational Banner -->
       <div class="motivation-banner">
         <p class="pure-nature-quote">
           "To love nature is to protect life itself. From towering mountain canopies to the smallest micro-organisms in the soil, every living system matters. Let us leave the earth greener, richer, and wilder than we found it."
@@ -1427,7 +1424,7 @@
           </div>
         </div>
 
-        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression -->
+        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression (Using Your Local Assets) -->
         <div class="feature-card">
           <h3 style="font-size: 1.15rem; color: var(--nature-dark); margin-bottom: 0.35rem;">Dual-Species Bonsai Progression (0–2 Yrs)</h3>
           <p class="module-quote">"A bonsai does not conquer time; it yields to it. Through every wired branch and guided root, patience shapes what force could never master."</p>
@@ -1759,7 +1756,7 @@
     }
     renderQuiz();
 
-    // --- 6. INSIDE-THE-JAR TERRARIUM SIMULATOR & MICRO-CLIMATE STATUS ---
+    // --- 6. INSIDE-THE-JAR TERRARIUM SIMULATOR ---
     let jarMoisture = 74;
 
     function updateJarLighting(val) {
@@ -1808,36 +1805,36 @@
       setTimeout(() => { feedback.textContent = 'Equilibrium'; }, 3800);
     }
 
-    // --- 7. DISCRETE BONSAI TIMELINE ENGINE (5 DISTINCT GROWTH STAGES) ---
+    // --- 7. DISCRETE BONSAI TIMELINE ENGINE (EXACT LOCAL ASSETS) ---
     const bonsaiStageData = {
       0: {
         label: "0 Months (Wild Field Sapling Harvest)",
-        banyanImg: "https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=450&q=80",
-        ficusImg: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=450&q=80",
+        banyanImg: "banyan_0m.jpg",
+        ficusImg: "ficus_0m.jpg",
         banyanTag: "Wild Field Sapling",
         ficusTag: "Fresh Stem Cutting",
         desc: "<strong>Stage 1 (0 Months — Sapling Collection):</strong> Raw saplings harvested with intact feeder root systems. Established in coarse pumice without structural pruning to build trunk caliper."
       },
       6: {
         label: "6 Months (Trunk Chop & Structural Wiring)",
-        banyanImg: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=450&q=80",
-        ficusImg: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=450&q=80",
+        banyanImg: "banyan_6m.jpg",
+        ficusImg: "ficus_6m.jpg",
         banyanTag: "Primary Guy-Wire",
         ficusTag: "Trunk Chop & Taper",
         desc: "<strong>Stage 2 (6 Months — Directional Pruning):</strong> The primary trunk is chopped to initiate taper. Heavy anodized aluminum wire sets primary branches and guides apex angle."
       },
       12: {
         label: "12 Months (Canopy Wiring & Root Descent)",
-        banyanImg: "https://images.unsplash.com/photo-1599598425947-320b9e87515e?auto=format&fit=crop&w=450&q=80",
-        ficusImg: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=450&q=80",
+        banyanImg: "banyan_12m.jpg",
+        ficusImg: "ficus_12m.jpg",
         banyanTag: "Aerial Prop Roots",
         ficusTag: "Branch Scaffolding",
         desc: "<strong>Stage 3 (12 Months — Year 1 Ramification):</strong> Secondary branch tiers form. Under high ambient humidity, the Banyan drops vertical prop roots toward the substrate."
       },
       18: {
         label: "18 Months (Defoliation & Pad Refinement)",
-        banyanImg: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=450&q=80",
-        ficusImg: "ficus.jpg",
+        banyanImg: "banyan_18m.jpg",
+        ficusImg: "ficus_18m.jpg",
         banyanTag: "Tertiary Ramification",
         ficusTag: "Exhibition Prep",
         desc: "<strong>Stage 4 (18 Months — Leaf Reduction):</strong> Systematic defoliation halves leaf size. Tertiary branch pads develop, and radial surface root flare (nebari) thickens."
@@ -1891,7 +1888,6 @@
     let reflexState = 'idle'; // idle, waiting, strike, complete
     let reflexTimer = null;
     let reflexStartTime = 0;
-    let shuttleX = 350, shuttleY = 50;
 
     // Game 3: Zone Ops Variables
     let targets = [];
@@ -2079,7 +2075,7 @@
       }
     }
 
-    // --- GAME 3: ZONE OPS (TACTICAL PERIMETER DEFENSE) ---
+    // --- GAME 3: ZONE OPS ---
     function initZoneOps() {
       targets = [];
       waveTimer = 0;
@@ -2168,7 +2164,7 @@
         ctx.fillText(b.label, 60, y - 8);
 
         ctx.fillStyle = '#e2e8f0'; ctx.fillRect(60, y, 580, 16);
-        ctx.fillStyle = '#bbf7d0'; ctx.fillRect(250, y, 200, 16); // Green Equilibrium Zone
+        ctx.fillStyle = '#bbf7d0'; ctx.fillRect(250, y, 200, 16);
 
         ctx.fillStyle = b.color;
         const width = (b.val / 100) * 580;
