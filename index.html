@@ -1,677 +1,2902 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranju K W | Cybersecurity Specialist & VAPT Analyst</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            900: '#14532d',
-                            950: '#052e16'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-mono { font-family: 'Fira Code', monospace; }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-        .light .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(22, 163, 74, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ranju K W | Cybersecurity Specialist & ISO 27001 Auditor</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --border-blue: #bae6fd;
+      --border-green: #bbf7d0;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --cyber-blue: #0284c7;
+      --cyber-blue-hover: #0369a1;
+      --cyber-blue-soft: #f0f9ff;
+      --nature-green: #059669;
+      --nature-green-hover: #047857;
+      --nature-green-soft: #ecfdf5;
+      --nature-dark: #065f46;
+      --alert-amber: #d97706;
+      --alert-red: #dc2626;
+      --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    /* Dark Mode (Matrix Theme) */
+    body.dark-mode {
+      --bg: #0b0f19;
+      --bg-alt: #111827;
+      --card-bg: #1f2937;
+      --border: #374151;
+      --border-blue: #0369a1;
+      --border-green: #065f46;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --cyber-blue: #38bdf8;
+      --cyber-blue-hover: #0ea5e9;
+      --cyber-blue-soft: #082f49;
+      --nature-green: #34d399;
+      --nature-green-hover: #10b981;
+      --nature-green-soft: #064e3b;
+      --nature-dark: #6ee7b7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      padding: 0 1.25rem 4rem;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* Top Bar & Telemetry */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .top-left, .top-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--cyber-blue);
+      font-weight: 600;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--nature-green);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--nature-green);
+      animation: pulseAnim 2s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    .clock-badge {
+      background: var(--cyber-blue-soft);
+      border: 1px solid var(--border-blue);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      color: var(--cyber-blue);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    #liveDate {
+      cursor: pointer;
+      text-decoration: underline dotted;
+    }
+    #liveDate:hover { color: var(--nature-green); }
+
+    /* Interactive Calendar Popup */
+    .calendar-popup {
+      position: absolute;
+      top: 38px;
+      left: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 99999;
+      width: 260px;
+      font-family: var(--font-main);
+    }
+    .cal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .cal-day-header {
+      font-weight: 700;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding-bottom: 4px;
+    }
+    .cal-cell {
+      padding: 6px 0;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .cal-cell:hover {
+      background: var(--cyber-blue-soft);
+      color: var(--cyber-blue);
+    }
+    .cal-cell.today {
+      background: var(--nature-green);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Network Ping Monitor Badge */
+    .ping-badge {
+      background: var(--nature-green-soft);
+      border: 1px solid var(--border-green);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      color: var(--nature-green);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .audio-wave {
+      display: none;
+      color: var(--nature-green);
+      font-weight: 700;
+      animation: wavePulse 1.2s infinite ease-in-out;
+    }
+
+    @keyframes wavePulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .audio-btn, .theme-btn, .recruiter-toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .audio-btn:hover, .theme-btn:hover, .recruiter-toggle-btn:hover { color: var(--text); border-color: var(--cyber-blue); }
+    .recruiter-toggle-btn.active {
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
+      font-weight: 700;
+    }
+
+    .audio-btn.active-nature {
+      background: var(--nature-green-soft);
+      border-color: var(--nature-green);
+      color: var(--nature-green);
+      font-weight: 700;
+    }
+    .audio-btn.active-cyber {
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
+      font-weight: 700;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2rem;
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .hero-text { flex: 1; }
+
+    .role-badge {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      background: var(--cyber-blue-soft);
+      border: 1px solid var(--border-blue);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+
+    .tagline {
+      color: var(--cyber-blue);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .bio {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+      max-width: 640px;
+      line-height: 1.65;
+    }
+
+    /* Recruiter Snapshot Box (Toggled) */
+    .recruiter-snapshot {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-blue);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .recruiter-snapshot h4 {
+      color: var(--cyber-blue);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .recruiter-snapshot ul {
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .recruiter-snapshot li { margin-bottom: 0.3rem; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.15rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-resume { background: var(--nature-green); color: #ffffff; }
+    .btn-resume:hover { background: var(--nature-green-hover); }
+
+    .btn-primary { background: var(--cyber-blue); color: #ffffff; }
+    .btn-primary:hover { background: var(--cyber-blue-hover); }
+
+    .btn-outline {
+      background: var(--card-bg);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-outline:hover { background: var(--bg-alt); border-color: var(--cyber-blue); }
+
+    .btn-insta {
+      background: var(--cyber-blue-soft);
+      color: var(--cyber-blue);
+      border-color: var(--border-blue);
+    }
+    .btn-insta:hover { background: var(--cyber-blue-soft); filter: brightness(1.1); }
+
+    .copy-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.6rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s;
+    }
+    .copy-pill:hover { border-color: var(--cyber-blue); color: var(--text); }
+
+    .profile-photo {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid var(--cyber-blue);
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15);
+    }
+
+    .photo-fallback {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      border: 3px solid var(--cyber-blue);
+    }
+
+    /* Section Headings */
+    section { margin-top: 3.5rem; }
+
+    .section-head {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-head.tech { color: var(--cyber-blue); }
+    .section-head.nature { color: var(--nature-dark); }
+
+    .section-hint {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .skill-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .skill-card h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.03em;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.65rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+    .pill:hover {
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
+    }
+    .pill.pill-green:hover {
+      background: var(--nature-green-soft);
+      border-color: var(--nature-green);
+      color: var(--nature-green);
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .t-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .t-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .t-role { font-weight: 700; color: var(--text); font-size: 1.05rem; }
+    .t-org { color: var(--cyber-blue); font-weight: 600; }
+    .t-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+
+    .t-item ul {
+      padding-left: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .t-item li { margin-bottom: 0.4rem; }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyber-blue);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+    }
+
+    .card-type {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--nature-green);
+      margin-bottom: 0.3rem;
+    }
+
+    .card h3 { font-size: 1.15rem; color: var(--text); margin-bottom: 0.45rem; font-weight: 700; }
+    .card p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+
+    /* Hacker vs Defender Split Screen */
+    .split-screen-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      margin-top: 1.5rem;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .split-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .split-pane {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem;
+    }
+
+    .split-pane.attacker { border-left: 4px solid var(--alert-red); }
+    .split-pane.defender { border-left: 4px solid var(--nature-green); }
+
+    .split-pane h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Radar Box */
+    .radar-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+    }
+
+    .threat-ticker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      margin-bottom: 1.1rem;
+      font-size: 0.85rem;
+    }
+    body.dark-mode .threat-ticker {
+      background: #451a03;
+      border-color: #78350f;
+    }
+
+    .ticker-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--alert-red);
+      font-weight: 700;
+    }
+
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+    }
+
+    .news-num {
+      font-family: var(--font-mono);
+      color: var(--nature-green);
+      font-weight: 700;
+      min-width: 24px;
+    }
+
+    .news-link {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .news-link:hover { color: var(--cyber-blue); text-decoration: underline; }
+
+    /* Precautions Grid */
+    .precautions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .precaution-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .precaution-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--alert-amber);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
+    }
+
+    .precaution-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .precaution-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #92400e;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+    body.dark-mode .precaution-tag {
+      color: #fcd34d;
+      background: #451a03;
+      border-color: #78350f;
+    }
+
+    .precaution-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .precaution-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Quiz Card */
+    .quiz-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+    }
+
+    .quiz-scenario {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      white-space: pre-wrap;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .quiz-opt-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt-btn:hover { background: var(--bg-alt); border-color: var(--cyber-blue); }
+    .quiz-opt-btn.correct {
+      background: var(--nature-green-soft);
+      border-color: var(--nature-green);
+      color: var(--nature-green);
+      font-weight: 700;
+    }
+    .quiz-opt-btn.wrong {
+      background: #fef2f2;
+      border-color: var(--alert-red);
+      color: var(--alert-red);
+    }
+
+    .quiz-feedback {
+      font-size: 0.88rem;
+      min-height: 22px;
+      font-weight: 600;
+    }
+
+    /* LIVING SYSTEMS & NATURE SANCTUARY */
+    .sanctuary-box {
+      background: #f0fdf4;
+      border: 1px solid var(--border-green);
+      border-radius: 14px;
+      padding: 2.25rem 1.5rem;
+    }
+    body.dark-mode .sanctuary-box {
+      background: #022c22;
+      border-color: #065f46;
+    }
+
+    .motivation-banner {
+      background: var(--card-bg);
+      border: 1px solid #86efac;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.75rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.06);
+    }
+
+    .pure-nature-quote {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--nature-dark);
+      margin-bottom: 0.5rem;
+      line-height: 1.55;
+    }
+
+    .nature-author-quote {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .dual-nature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 820px) {
+      .dual-nature-grid { grid-template-columns: 1.05fr 1fr; }
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.35rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+
+    .module-quote {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--nature-green-hover);
+      border-left: 3px solid var(--nature-green);
+      padding-left: 0.65rem;
+      margin-bottom: 1rem;
+      line-height: 1.45;
+    }
+
+    /* Upgraded Realistic Terrarium Optical Viewer */
+    .photo-viewport-wrap {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.04);
+    }
+
+    .jar-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      display: block;
+    }
+
+    .jar-chamber-overlay {
+      position: absolute;
+      top: 18%;
+      left: 24%;
+      width: 52%;
+      height: 68%;
+      border-radius: 42% 42% 18% 18% / 28% 28% 12% 12%;
+      pointer-events: none;
+      overflow: hidden;
+      mix-blend-mode: overlay;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    /* Glass Specular Gloss Highlight Sweep */
+    .glass-specular {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: skewX(-20deg);
+      pointer-events: none;
+      transition: left 0.6s ease;
+    }
+
+    .internal-mist {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.15;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.9) 1.5px, transparent 1.5px),
+                        radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px);
+      background-size: 16px 16px, 22px 22px;
+      background-position: 0 0, 8px 8px;
+      transition: opacity 0.5s ease;
+    }
+
+    .inspect-pin {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.95);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      transform: translate(-50%, -50%);
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+    .inspect-pin:hover {
+      transform: translate(-50%, -50%) scale(1.35);
+      background: var(--cyber-blue);
+    }
+
+    .pin-pulse {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      animation: pinWave 2s infinite ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes pinWave {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    .sim-controls-wrap {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      margin-top: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .btn-mist {
+      background: var(--cyber-blue-soft);
+      border: 1px solid var(--border-blue);
+      color: var(--cyber-blue);
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-mist:hover {
+      background: var(--cyber-blue);
+      color: #ffffff;
+    }
+
+    .sim-telemetry {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 0.45rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* Bonsai Container & Workshop */
+    .bonsai-photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .bonsai-frame {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 240px;
+    }
+
+    .bonsai-specimen-img {
+      width: 100%;
+      height: 175px;
+      object-fit: contain;
+      background: var(--card-bg);
+      border-radius: 6px;
+      display: block;
+      transition: opacity 0.35s ease;
+    }
+
+    .bonsai-species-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--nature-dark);
+      margin-top: 0.35rem;
+    }
+
+    .bonsai-stage-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--nature-green);
+      background: var(--nature-green-soft);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 0.25rem;
+    }
+
+    .bonsai-desc-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      min-height: 72px;
+      line-height: 1.5;
+    }
+
+    /* Bonsai Wire / Style Guide Hover Tooltip Styles */
+    .style-guide-tips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .tip-pill {
+      font-size: 0.75rem;
+      background: var(--nature-green-soft);
+      border: 1px solid var(--border-green);
+      color: var(--nature-dark);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      cursor: help;
+      position: relative;
+    }
+    .tip-pill:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    /* 4-Game Arcade Hub */
+    .arcade-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .arcade-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .arcade-tab {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.45rem 0.95rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .arcade-tab:hover { border-color: var(--cyber-blue); color: var(--text); }
+    .arcade-tab.active {
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
+    }
+
+    .game-telemetry {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    #gameCanvas {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      cursor: pointer;
+    }
+
+    .arcade-actions {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-action {
+      padding: 0.75rem 2.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      background: var(--nature-green);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-action:hover { background: var(--nature-green-hover); }
+
+    .arcade-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Athletics & Competitive Gaming Interactive Widgets */
+    .athletics-widget-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .reflex-arena {
+      background: var(--bg-alt);
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 0.75rem;
+      transition: background 0.2s;
+    }
+    .reflex-arena.waiting { background: #fef2f2; border-color: #fca5a5; }
+    .reflex-arena.ready { background: #ecfdf5; border-color: #34d399; }
+
+    /* Direct Contact Form */
+    .contact-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cyber-blue);
+    }
+
+    .form-input, .form-textarea {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: var(--font-main);
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--cyber-blue); }
+    .form-textarea { min-height: 100px; resize: vertical; }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a { color: var(--cyber-blue); text-decoration: none; font-weight: 600; }
+    .footer-links a:hover { text-decoration: underline; }
+
+    /* Inspector Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 1rem;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: var(--bg-alt);
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      color: var(--cyber-blue);
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    .modal-body {
+      padding: 1.35rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .modal-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      background: var(--nature-green-soft);
+      color: var(--nature-green);
+      border: 1px solid #a7f3d0;
+    }
+
+    .cmd-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      margin-top: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Cyber Pet ("Byte") Styling */
+    #cyberPet {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 56px;
+      height: 56px;
+      z-index: 99998;
+      cursor: pointer;
+      user-select: none;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+      transition: transform 0.15s ease;
+    }
+    #cyberPet:hover {
+      transform: scale(1.1);
+    }
+    .pet-speech {
+      position: fixed;
+      bottom: 85px;
+      left: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--cyber-blue);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: var(--text);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 99999;
+      max-width: 220px;
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-cyber-500 selection:text-black transition-colors duration-300">
+<body>
 
-    <!-- Top Utility & Navigation Bar -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/60 px-4 lg:px-8 py-3 flex items-center justify-between">
-        <div class="flex items-center space-x-4">
-            <a href="#" class="flex items-center space-x-2 font-mono font-bold text-cyber-400 tracking-wider">
-                <span class="text-slate-500">&lt;</span>Ranju.KW<span class="text-slate-500">/&gt;</span>
-            </a>
-            <div class="hidden md:flex items-center space-x-3 text-xs font-mono text-slate-400 bg-slate-900/80 px-3 py-1 rounded-full border border-slate-800">
-                <span class="flex h-2 w-2 relative">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-cyber-500"></span>
-                </span>
-                <span id="ping-display">Ping: 24ms</span>
-                <span class="text-slate-600">|</span>
-                <span id="live-clock">00:00:00 IST</span>
+  <!-- Cyber Pet ("Byte") Mascot -->
+  <div id="cyberPet" title="Click Byte for a Cybersecurity Tip!" onclick="petSurprise()">
+    <svg viewBox="0 0 64 64" width="56" height="56">
+      <path d="M32 10 C20 10 14 20 14 32 C14 44 20 54 32 54 C44 54 50 44 50 32 C50 20 44 10 32 10 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+      <rect x="20" y="26" width="24" height="6" rx="3" fill="#34d399" />
+      <circle cx="26" cy="29" r="1.5" fill="#0f172a" />
+      <circle cx="38" cy="29" r="1.5" fill="#0f172a" />
+      <text x="22" y="44" fill="#38bdf8" font-size="8" font-family="monospace">10</text>
+    </svg>
+  </div>
+  <div id="petSpeech" class="pet-speech">"Byte says: Always use PreparedStatements!"</div>
+
+  <!-- Native Audio Streams (Rain & Cyber Hum) -->
+  <audio id="audioRain" loop preload="none">
+    <source src="https://assets.mixkit.co/active_storage/sfx/1255/1255-preview.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="audioCyber" loop preload="none">
+    <source src="https://assets.mixkit.co/active_storage/sfx/2658/2658-preview.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="container">
+
+    <!-- Top Bar & Telemetry -->
+    <div class="top-bar">
+      <div class="top-left">
+        <div class="status-badge">
+          <span class="pulse"></span>
+          <span>Security Hardened & Active</span>
+        </div>
+        <div class="clock-badge" style="position: relative;">
+          <span id="liveDate" onclick="toggleCalendarPopup(event)">Loading date...</span> | <span id="liveClock">00:00:00</span> IST
+          <span id="audioWave" class="audio-wave">(( ılı.lıllılı. ))</span>
+
+          <!-- Interactive Calendar Popup -->
+          <div id="calendarPopup" class="calendar-popup" onclick="event.stopPropagation()">
+            <div class="cal-header">
+              <span id="calMonthYear">November 2026</span>
+              <span style="cursor: pointer;" onclick="closeCalendarPopup()">&times;</span>
             </div>
-        </div>
-
-        <div class="flex items-center space-x-3">
-            <!-- Calendar Modal Toggle -->
-            <button onclick="toggleCalendarModal()" class="p-2 text-slate-300 hover:text-cyber-400 bg-slate-900/60 hover:bg-slate-800 rounded-lg border border-slate-800 transition text-xs font-mono flex items-center space-x-2">
-                <i class="fa-regular fa-calendar-days text-cyber-400"></i>
-                <span class="hidden sm:inline" id="top-bar-date">Nov 11, 2026</span>
-            </button>
-
-            <!-- Recruiter Executive Mode Toggle -->
-            <button onclick="toggleExecutiveMode()" id="exec-mode-btn" class="px-3 py-1.5 bg-cyber-500/10 text-cyber-400 border border-cyber-500/30 hover:bg-cyber-500/20 rounded-lg font-mono text-xs transition flex items-center space-x-1.5">
-                <i class="fa-solid fa-briefcase"></i>
-                <span id="exec-mode-text">Recruiter Mode</span>
-            </button>
-
-            <!-- Theme Toggle -->
-            <button onclick="toggleTheme()" class="p-2 text-slate-300 hover:text-cyber-400 bg-slate-900/60 hover:bg-slate-800 rounded-lg border border-slate-800 transition">
-                <i class="fa-solid fa-circle-half-stroke" id="theme-icon"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Calendar Modal Popup -->
-    <div id="calendar-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-panel max-w-sm w-full p-6 rounded-2xl border border-cyber-500/30 shadow-2xl relative">
-            <button onclick="toggleCalendarModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            <div class="text-center">
-                <div class="font-mono text-cyber-400 text-xs tracking-widest uppercase mb-1">System Schedule & Calendar</div>
-                <h3 class="text-xl font-bold mb-4" id="modal-full-date">Wednesday, Nov 11, 2026</h3>
-                <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 font-mono text-sm space-y-3">
-                    <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
-                        <span>Timezone</span>
-                        <span class="text-cyber-400">IST (UTC+5:30)</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
-                        <span>Availability Status</span>
-                        <span class="text-emerald-400">Available for Opportunities</span>
-                    </div>
-                    <div class="text-left text-xs text-slate-300 pt-1">
-                        <p class="font-semibold text-cyber-400 mb-1">Active Milestone:</p>
-                        <p class="text-slate-400">Cybersecurity Intern at Ayu Devices — VAPT & ISO 27001 Auditing.</p>
-                    </div>
-                </div>
+            <div class="cal-grid" id="calGridContainer">
+              <!-- Rendered via JS -->
             </div>
+          </div>
         </div>
+        <div class="ping-badge" id="pingBadge">
+          <span>📶 Ping: 22ms</span>
+        </div>
+      </div>
+      <div class="top-right">
+        <button class="recruiter-toggle-btn" id="recruiterToggleBtn" onclick="toggleRecruiterMode()">⚡ Recruiter View</button>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggleBtn">🌓 Theme Mode</button>
+        <button class="audio-btn" id="btnAudioRain" onclick="setAtmosphere('rain')">🌧 Sanctuary Rain</button>
+        <button class="audio-btn" id="btnAudioCyber" onclick="setAtmosphere('cyber')">🌐 Cyber Hum</button>
+        <button class="audio-btn" id="btnAudioMute" onclick="setAtmosphere('mute')">🔇 Mute</button>
+      </div>
     </div>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-10 space-y-16">
+    <!-- Personal Hero -->
+    <header class="hero">
+      <div class="hero-text">
+        <div class="role-badge">CYBERSECURITY SPECIALIST & ISO/IEC 27001 AUDITOR</div>
+        <h1>Ranju K W</h1>
+        <p class="tagline">Penetration Tester | Cyber Forensics | Web Application VAPT</p>
+        
+        <!-- Recruiter Executive Snapshot (Toggleable) -->
+        <div class="recruiter-snapshot" id="recruiterSnapshotBox">
+          <h4>⚡ Recruiter Executive Snapshot (30-Sec Summary)</h4>
+          <ul>
+            <li><strong>Role:</strong> Cybersecurity Specialist & ISO 27001 Auditor at Ayu Devices.</li>
+            <li><strong>Core Expertise:</strong> Web VAPT, Nginx Server Hardening, Kali Linux, Python & Java.</li>
+            <li><strong>Education:</strong> B.Tech in Cybersecurity & Cyber Forensics (Srinivas University, 2025).</li>
+            <li><strong>Highlights:</strong> Built phishing detection ML tools, automated security audit scripts, and active in competitive esports & botanical bonsai.</li>
+          </ul>
+        </div>
 
-        <!-- Hero Section -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-8 space-y-6">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyber-500/10 border border-cyber-500/30 text-cyber-400 font-mono text-xs">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span id="hero-greeting">Good evening — SOC Systems Secure</span>
-                </div>
-                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
-                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-400 to-emerald-500">Ranju K W</span>
-                </h1>
-                <p class="text-lg text-slate-300 font-mono">
-                    Cybersecurity Specialist | VAPT Analyst | ISO/IEC 27001 Auditor
-                </p>
-                <p class="text-slate-400 max-w-2xl leading-relaxed">
-                    B.Tech graduate in Cybersecurity & Cyber Forensics from Srinivas University (2025). Currently securing the <span class="text-cyber-400">ayusynk.ai</span> platform at Ayu Devices through rigorous vulnerability assessments, penetration testing, server hardening, and compliance audits.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="#contact" class="px-6 py-3 bg-cyber-500 hover:bg-cyber-600 text-black font-semibold rounded-xl transition flex items-center space-x-2 text-sm font-mono shadow-lg shadow-cyber-500/20">
-                        <span class="fa-solid fa-terminal"></span>
-                        <span>Secure Contact</span>
-                    </a>
-                    <a href="#bonsai-workshop" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 rounded-xl transition flex items-center space-x-2 text-sm font-mono">
-                        <span class="fa-solid fa-seedling text-emerald-400"></span>
-                        <span>Bonsai & Terrarium Hub</span>
-                    </a>
-                </div>
+        <p class="bio">
+          Cybersecurity & Cyber Forensics graduate with practical expertise in web vulnerability assessments (VAPT), production server hardening, and ISO/IEC 27001 compliance auditing. Based in Chikkamagaluru, Karnataka.
+        </p>
+        <div class="hero-actions">
+          <a href="resume.pdf" download class="btn btn-resume">📄 Download Resume (PDF)</a>
+          <button class="copy-pill" onclick="copyEmail(this)">
+            <span>✉ kwranju@gmail.com</span>
+            <strong style="color: var(--nature-green);" id="copyText">[Copy]</strong>
+          </button>
+          <a href="https://linkedin.com/in/ranju-kw" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+          <a href="https://www.instagram.com/ranju__wilson?cplk=M2NoYWhqNTdmMTQ5" target="_blank" rel="noopener" class="btn btn-insta">Instagram (@ranju__wilson)</a>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrapper">
+        <img 
+          src="1000256433.png" 
+          alt="Ranju K W" 
+          class="profile-photo"
+          onerror="this.style.display='none'; document.getElementById('photoFallback').style.display='flex';"
+        />
+        <div id="photoFallback" class="photo-fallback" style="display: none;">RK</div>
+      </div>
+    </header>
+
+    <!-- Security Arsenal & Core Skills -->
+    <section>
+      <h2 class="section-head tech">Security Arsenal & Core Skills</h2>
+      <p class="section-hint">Tap any badge to view technical competency details and production audit flags</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>VAPT & AUDITING</h4>
+          <div class="pills">
+            <span class="pill" onclick="openExplain('kali')">Kali Linux Specialist</span>
+            <span class="pill" onclick="openExplain('metasploit')">Metasploit</span>
+            <span class="pill" onclick="openExplain('nmap')">Nmap</span>
+            <span class="pill" onclick="openExplain('burp')">Burp Suite</span>
+            <span class="pill" onclick="openExplain('wireshark')">Wireshark</span>
+            <span class="pill" onclick="openExplain('zap')">OWASP ZAP</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h4>COMPLIANCE & DEFENSE</h4>
+          <div class="pills">
+            <span class="pill" onclick="openExplain('iso')">ISO/IEC 27001 Auditor</span>
+            <span class="pill" onclick="openExplain('isms')">ISMS Audit Controls</span>
+            <span class="pill" onclick="openExplain('gap_analysis')">Gap Analysis</span>
+            <span class="pill" onclick="openExplain('hardening')">Server Hardening</span>
+            <span class="pill" onclick="openExplain('nginx')">Nginx Security</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h4>DEV & AUTOMATION</h4>
+          <div class="pills">
+            <span class="pill" onclick="openExplain('python')">Python</span>
+            <span class="pill" onclick="openExplain('java')">Java (OOP, Collections)</span>
+            <span class="pill" onclick="openExplain('bash')">Bash Scripting</span>
+            <span class="pill" onclick="openExplain('sql')">SQL</span>
+            <span class="pill" onclick="openExplain('anomaly')">Anomaly Detection</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Updates & Experience Timeline -->
+    <section>
+      <h2 class="section-head tech">Career Updates & Experience</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-header">
+            <div>
+              <span class="t-role">Cybersecurity & Forensics Intern</span> – 
+              <span class="t-org">Ayu Devices</span>
+            </div>
+            <span class="t-date">Oct 2026 – Present</span>
+          </div>
+          <ul>
+            <li>Conducting web application vulnerability assessments (VAPT) and incident root-cause investigations for ayusynk.ai.</li>
+            <li>Auditing production server hardening, Nginx headers, and validating ISO/IEC 27001 technical compliance controls.</li>
+            <li>Writing automated shell verification scripts to inspect system configurations continuously.</li>
+          </ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-header">
+            <div>
+              <span class="t-role">Ethical Hacking Intern</span> – 
+              <span class="t-org">IIIT Allahabad</span>
+            </div>
+            <span class="t-date">2023</span>
+          </div>
+          <ul>
+            <li>Applied Kali Linux suites (Metasploit, Nmap, Burp Suite) for deep-packet inspection and risk-based vulnerability testing.</li>
+            <li>Identified critical application flaws and drafted detailed remediation audit reports.</li>
+          </ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-header">
+            <div>
+              <span class="t-role">Data Science Intern</span> – 
+              <span class="t-org">Accolade Tech Solutions</span>
+            </div>
+            <span class="t-date">2024</span>
+          </div>
+          <ul>
+            <li>Analyzed enterprise network datasets with Python to detect anomalous traffic patterns and security threats.</li>
+            <li>Engineered predictive machine learning classification models with feature preprocessing pipelines.</li>
+          </ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-header">
+            <div>
+              <span class="t-role">Core Java Development Intern</span> – 
+              <span class="t-org">FUEL (Bangalore)</span>
+            </div>
+            <span class="t-date">2024</span>
+          </div>
+          <ul>
+            <li>Applied Object-Oriented Programming (OOP) and Collections Framework to architect robust software systems.</li>
+            <li>Enforced defensive coding patterns to prevent logic bugs and application-level security flaws.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Projects & Vulnerability Patch Simulator -->
+    <section>
+      <h2 class="section-head tech">Technical Projects & Remediation Simulator</h2>
+      <div class="cards-grid">
+        <div class="card" onclick="openExplain('proj_phishing')">
+          <div class="card-type">SECURITY ANALYTICS / ML</div>
+          <h3>Phishing URL Detection Tool</h3>
+          <p>
+            An automated classification tool analyzing lexical structures and deceptive domain techniques to flag phishing addresses before execution.
+          </p>
+          <div class="pills">
+            <span class="pill">Python</span>
+            <span class="pill">Machine Learning</span>
+            <span class="pill">Threat Detection</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openExplain('proj_replica')">
+          <div class="card-type">NETWORK SIMULATION / DEFENSE</div>
+          <h3>Replica Model of Network Security Tool</h3>
+          <p>
+            A virtualized security testing environment simulating attack vectors, firewall rule effectiveness, and packet-filtering behavior.
+          </p>
+          <div class="pills">
+            <span class="pill">Kali Linux</span>
+            <span class="pill">Network Defense</span>
+            <span class="pill">Virtualization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vulnerability Patch Simulator Widget -->
+      <div class="card" style="margin-top: 1.25rem; background: var(--bg-alt); border: 1px solid var(--border);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span class="card-type">LIVE VAPT REMEDIATION SIMULATOR</span>
+          <span id="patchStatusBadge" style="font-size: 0.75rem; font-weight: 700; color: var(--alert-red); background: #fef2f2; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid #fecaca;">Status: Vulnerable</span>
+        </div>
+        <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">SQL Injection (SQLi) Input Sanitization</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Inspect the unparameterized query below and apply secure coding remediation to neutralize injection vectors.
+        </p>
+        
+        <div id="codeSnippetBox" style="background: #0f172a; color: #38bdf8; font-family: var(--font-mono); font-size: 0.82rem; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 0.75rem; overflow-x: auto;">
+          <span style="color: #94a3b8;">// Vulnerable Code:</span><br>
+          String q = "SELECT * FROM users WHERE username = '" + userInput + "'";
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+          <button class="btn btn-primary" onclick="applyVulnerabilityPatch()" id="patchBtn">⚡ Apply Secure PreparedStatement</button>
+          <span id="patchFeedback" style="font-size: 0.85rem; font-weight: 600; color: var(--nature-green);"></span>
+        </div>
+      </div>
+
+      <!-- Hacker vs Defender Split Screen -->
+      <div class="split-screen-box">
+        <h3 style="font-size: 1.1rem; color: var(--cyber-blue); margin-bottom: 0.35rem;">⚔️ Hacker vs. Defender Matrix</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">Direct comparison of adversarial exploitation vectors versus robust defensive hardening controls.</p>
+        <div class="split-grid">
+          <div class="split-pane attacker">
+            <h4 style="color: var(--alert-red);">🔴 Attacker Vector (Red Team)</h4>
+            <ul style="padding-left: 1.1rem; font-size: 0.88rem; color: var(--text-muted);">
+              <li>Reconnaissance & port scans via Nmap & Metasploit.</li>
+              <li>Exploiting unparameterized inputs for SQLi & XSS.</li>
+              <li>Attempting privilege escalation via weak file permissions.</li>
+            </ul>
+          </div>
+          <div class="split-pane defender">
+            <h4 style="color: var(--nature-green);">🟢 Defender Control (Blue Team & ISO 27001)</h4>
+            <ul style="padding-left: 1.1rem; font-size: 0.88rem; color: var(--text-muted);">
+              <li>Strict input validation & parameterized PreparedStatements.</li>
+              <li>Nginx rate-limiting, secure cookies, and HSTS headers.</li>
+              <li>Continuous ISMS monitoring and least-privilege enforcement.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Indian Daily Cybersecurity Radar -->
+    <section>
+      <h2 class="section-head tech">Indian Daily Cybersecurity Radar</h2>
+      <p class="section-hint">Live incident feeds, CERT-In vulnerability bulletins, and active monitoring</p>
+      <div class="radar-box">
+        <div class="threat-ticker">
+          <div class="ticker-left">
+            <span class="pulse" style="background: var(--alert-red); box-shadow: 0 0 6px var(--alert-red);"></span>
+            <span>NATIONAL THREAT STATUS: ELEVATED / ACTIVE SURVEILLANCE</span>
+          </div>
+          <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 600;">SOC Advisory Feed</span>
+        </div>
+        <ul id="newsFeed" class="news-list">
+          <li class="news-item"><span class="news-num">01</span><span>Fetching national cybersecurity advisories...</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cyber Defense: 5 Basic Anti-Hacking Precautions -->
+    <section>
+      <h2 class="section-head tech">Cyber Defense: 5 Basic Anti-Hacking Precautions</h2>
+      <p class="section-hint">Tap any card for detailed security implementation guidelines</p>
+      <div class="precautions-grid">
+        <div class="precaution-card" onclick="openExplain('mfa')">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #01</span>
+            <span class="precaution-title">Enforce MFA / 2FA Everywhere</span>
+          </div>
+          <p class="precaution-desc">
+            Never rely on passwords alone. Use authenticator apps (TOTP) or hardware tokens to block unauthorized logins even if credentials leak.
+          </p>
+        </div>
+
+        <div class="precaution-card" onclick="openExplain('phishing')">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #02</span>
+            <span class="precaution-title">Inspect Deceptive URLs & Phishing</span>
+          </div>
+          <p class="precaution-desc">
+            Inspect domain syntax, homograph tricks, and redirects before inputting sensitive credentials or clicking email attachments.
+          </p>
+        </div>
+
+        <div class="precaution-card" onclick="openExplain('patching')">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #03</span>
+            <span class="precaution-title">Patch & Automate Firmware Updates</span>
+          </div>
+          <p class="precaution-desc">
+            Neutralize automated vulnerability scans by updating OS kernels, browser engines, and network appliances immediately.
+          </p>
+        </div>
+
+        <div class="precaution-card" onclick="openExplain('public_wifi')">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #04</span>
+            <span class="precaution-title">Avoid Open Public Wi-Fi Without VPN</span>
+          </div>
+          <p class="precaution-desc">
+            Public hotspots permit Man-in-the-Middle and DNS spoofing. Always tunnel traffic through an encrypted WireGuard or OpenVPN channel.
+          </p>
+        </div>
+
+        <div class="precaution-card" onclick="openExplain('least_privilege')">
+          <div class="precaution-header">
+            <span class="precaution-tag">RULE #05</span>
+            <span class="precaution-title">Follow Principle of Least Privilege</span>
+          </div>
+          <p class="precaution-desc">
+            Avoid running daily tasks as root or local admin. Segment data access and isolate critical backups offline against ransomware.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Diagnostic: Spot the Vulnerability -->
+    <section>
+      <h2 class="section-head tech">Security Diagnostic: Spot the Vulnerability</h2>
+      <p class="section-hint">Test your code auditing reflexes against real-world misconfigurations</p>
+      <div class="quiz-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <strong id="quizQuestionNum" style="color: var(--cyber-blue); font-size: 0.9rem;">SCENARIO 1 OF 3</strong>
+          <span id="quizScore" style="color: var(--nature-green); font-size: 0.85rem; font-weight: 700;">Score: 0/3</span>
+        </div>
+        <div class="quiz-scenario" id="quizScenarioCode"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+      </div>
+    </section>
+
+    <!-- LIVING SYSTEMS & NATURE SANCTUARY -->
+    <section class="sanctuary-box">
+      <h2 class="section-head nature">Living Systems & Nature Sanctuary</h2>
+      <p class="section-hint" style="color: var(--nature-dark);">
+        An organic exploration honoring biological balance, living earth, and botanical craftsmanship
+      </p>
+
+      <!-- Motivational Banner -->
+      <div class="motivation-banner">
+        <p class="pure-nature-quote">
+          "To love nature is to protect life itself. From towering mountain canopies to the smallest micro-organisms in the soil, every living system matters. Let us leave the earth greener, richer, and wilder than we found it."
+        </p>
+        <p class="nature-author-quote">"The creation of a thousand forests is in one acorn." — Ralph Waldo Emerson</p>
+        <a href="https://www.instagram.com/ranju__wilson?cplk=M2NoYWhqNTdmMTQ5" target="_blank" rel="noopener" class="btn btn-resume">
+          🌿 Commission a Custom Terrarium (DM on Instagram)
+        </a>
+      </div>
+
+      <div class="dual-nature-grid">
+        <!-- Upgraded Realistic Terrarium Optical Explorer -->
+        <div class="feature-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+            <h3 style="font-size: 1.15rem; color: var(--nature-dark);">Bioactive Terrarium Optical Explorer</h3>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--nature-dark); background:#dcfce7; padding:0.15rem 0.5rem; border-radius:4px;">
+              Chikkamagaluru Elevation: ~975m
+            </span>
+          </div>
+          <p class="module-quote">"Under a dome of glass, an entire world quietly breathes—proving that when harmony is preserved, life creates its own balance."</p>
+          
+          <div class="photo-viewport-wrap" id="terrariumViewport">
+            <!-- Authentic Macro Jar Photograph -->
+            <img 
+              src="terrarium.jpg" 
+              alt="Bioactive Enclosed Glass Terrarium" 
+              class="jar-photo" 
+              id="jarPhotoImg"
+            />
+
+            <!-- Upgraded Glass Chamber Overlay with Realistic Light Transitions & Specular Highlight -->
+            <div class="jar-chamber-overlay" id="jarChamber">
+              <div class="glass-specular" id="glassSpecular"></div>
+              <div class="internal-mist" id="internalMist"></div>
             </div>
 
-            <!-- Cyber Pet "Byte" & Status Widget -->
-            <div class="lg:col-span-4">
-                <div class="glass-panel p-6 rounded-2xl border border-cyber-500/30 relative overflow-hidden space-y-4">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-cyber-500/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                        <div class="flex items-center space-x-2 font-mono text-xs text-cyber-400">
-                            <i class="fa-solid fa-robot"></i>
-                            <span>Cyber Pet Companion</span>
-                        </div>
-                        <span class="text-xs font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">Byte v2.4</span>
-                    </div>
-                    <div class="flex items-center space-x-4 py-2">
-                        <div class="w-12 h-12 rounded-xl bg-cyber-500/20 border border-cyber-500/40 flex items-center justify-center text-cyber-400 text-xl font-mono animate-pulse">
-                            &lt;^&gt;
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm">Byte is on watch</h4>
-                            <p class="text-xs text-slate-400 font-mono">Status: VAPT Guard Active</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800 text-xs font-mono text-slate-300 space-y-2">
-                        <div class="text-cyber-400 font-bold"><i class="fa-solid fa-shield-virus mr-1"></i> Security Tip #402:</div>
-                        <p id="byte-tip" class="text-slate-400">"Always validate input parameters and enforce strict CSP headers to mitigate cross-site scripting risks."</p>
-                    </div>
-                    <button onclick="rotateByteTip()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-mono transition">
-                        Generate New Security Insight
-                    </button>
-                </div>
-            </div>
-        </section>
+            <!-- Calibrated Physical Layer Pins -->
+            <div class="inspect-pin" style="top: 42%; left: 34%;" onclick="openExplain('t_ficus')">1<div class="pin-pulse"></div></div>
+            <div class="inspect-pin" style="top: 54%; left: 52%;" onclick="openExplain('t_rock')">2<div class="pin-pulse"></div></div>
+            <div class="inspect-pin" style="top: 65%; left: 63%;" onclick="openExplain('t_springtails')">3<div class="pin-pulse"></div></div>
+            <div class="inspect-pin" style="top: 76%; left: 45%;" onclick="openExplain('t_substrate')">4<div class="pin-pulse"></div></div>
+            <div class="inspect-pin" style="top: 86%; left: 50%;" onclick="openExplain('t_drainage')">5<div class="pin-pulse"></div></div>
+          </div>
 
-        <!-- Cyber Security & Vulnerability Simulation Section -->
-        <section class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <div>
-                    <h2 class="text-2xl font-bold flex items-center space-x-3">
-                        <i class="fa-solid fa-shield-cat text-cyber-400"></i>
-                        <span>VAPT & Threat Intelligence Center</span>
-                    </h2>
-                    <p class="text-slate-400 text-sm mt-1">Live simulation tools and Indian cyber radar feed.</p>
-                </div>
-                <div class="hidden sm:flex items-center space-x-2 text-xs font-mono text-cyber-400 bg-cyber-500/10 px-3 py-1 rounded-lg border border-cyber-500/20">
-                    <span>ISO/IEC 27001:2022 ISMS Compliant</span>
-                </div>
+          <!-- Realistic Photoperiod Controls & Micro-Climate Telemetry -->
+          <div class="sim-controls-wrap">
+            <div class="control-row">
+              <span>Photoperiod Lighting:</span>
+              <input 
+                type="range" 
+                id="lightSlider" 
+                min="0" 
+                max="100" 
+                value="50" 
+                style="flex: 1; accent-color: var(--alert-amber);"
+                oninput="updateRealisticJarLighting(this.value)"
+              />
+              <span id="lightLabel" style="min-width: 110px; text-align: right; color: var(--alert-amber); font-weight:700;">Noon / Daylight</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Vulnerability Patch Simulator -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-mono text-sm font-bold text-cyber-400 flex items-center space-x-2">
-                            <i class="fa-solid fa-bug"></i>
-                            <span>Vulnerability Patch Simulator</span>
-                        </h3>
-                        <span id="patch-status-badge" class="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-400">Vulnerable: High</span>
-                    </div>
-                    <p class="text-xs text-slate-400">Simulate finding and patching a critical injection vulnerability in target endpoint <code class="text-cyber-400">/api/v1/auth</code>.</p>
-                    
-                    <div class="bg-slate-900/90 rounded-xl p-4 font-mono text-xs space-y-3 border border-slate-800">
-                        <div class="flex justify-between text-slate-400">
-                            <span>Target: ayusynk.ai/api</span>
-                            <span id="sim-state">Status: Unpatched</span>
-                        </div>
-                        <div class="p-3 bg-red-950/40 border border-red-900/50 rounded text-red-300" id="sim-log">
-                            [ALERT] SQL Injection vector identified in query parameter 'user_id'. Exploitable.
-                        </div>
-                    </div>
-
-                    <div class="flex space-x-3">
-                        <button onclick="runVulnerabilityScan()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-mono text-xs transition">
-                            Run Scan
-                        </button>
-                        <button onclick="applyPatch()" class="flex-1 py-2 bg-cyber-500 hover:bg-cyber-600 text-black font-bold rounded-lg font-mono text-xs transition shadow-lg shadow-cyber-500/20">
-                            Apply Patch & Secure
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Indian Cyber Radar Feed -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-mono text-sm font-bold text-cyber-400 flex items-center space-x-2">
-                            <i class="fa-solid fa-radar"></i>
-                            <span>Indian Cyber Radar & Telemetry</span>
-                        </h3>
-                        <span class="text-xs font-mono text-slate-400">CERT-In Aligned</span>
-                    </div>
-                    <p class="text-xs text-slate-400">Simulated threat intelligence stream tracking regional network anomalies and defensive measures.</p>
-                    
-                    <div class="bg-slate-900/90 rounded-xl p-4 font-mono text-xs space-y-3 border border-slate-800 h-44 overflow-y-auto">
-                        <div class="text-slate-300 flex items-center space-x-2 border-b border-slate-800 pb-2">
-                            <span class="text-emerald-400">[18:15]</span>
-                            <span>Firewall rule updated: Port 443 SSL handshake optimized.</span>
-                        </div>
-                        <div class="text-slate-300 flex items-center space-x-2 border-b border-slate-800 pb-2">
-                            <span class="text-cyber-400">[18:10]</span>
-                            <span>Nmap scan completed on staging cluster. Zero critical findings.</span>
-                        </div>
-                        <div class="text-slate-300 flex items-center space-x-2 border-b border-slate-800 pb-2">
-                            <span class="text-amber-400">[17:55]</span>
-                            <span>Rate limiting triggered on IP subnet 192.168.x.x (Brute-force mitigation).</span>
-                        </div>
-                        <div class="text-slate-300 flex items-center space-x-2">
-                            <span class="text-emerald-400">[17:40]</span>
-                            <span>ISO 27001 access control audit log archived successfully.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Athletics & Competitive Gaming Section -->
-        <section class="space-y-6">
-            <div class="border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold flex items-center space-x-3">
-                    <i class="fa-solid fa-gamepad text-cyber-400"></i>
-                    <span>Athletics & Competitive Gaming</span>
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Reflex training, tactical zone strategies, and performance metrics.</p>
+            <div class="control-row">
+              <span>Hydration / Rain:</span>
+              <button class="btn-mist" onclick="mistInsideJar()">🌧 Mist Chamber (Inside Jar)</button>
+              <span id="mistFeedback" style="color: var(--nature-green); font-size: 0.8rem; font-weight:600;">Equilibrium</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Reflex Benchmarker -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-mono text-sm font-bold text-cyber-400 mb-1">Reflex Benchmarker</h3>
-                        <p class="text-xs text-slate-400">Test your reaction time for fast-paced tactical gaming and SOC incident response.</p>
-                    </div>
-                    <div id="reflex-box" onclick="handleReflexClick()" class="h-32 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center cursor-pointer select-none transition">
-                        <span id="reflex-text" class="font-mono text-xs text-slate-300 font-bold">Click to Start Test</span>
-                        <span id="reflex-result" class="font-mono text-lg text-cyber-400 mt-1">-- ms</span>
-                    </div>
-                    <button onclick="resetReflex()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-mono transition">
-                        Reset Test
-                    </button>
-                </div>
-
-                <!-- Tactical Zone / Squad Rotation Map -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
-                    <h3 class="font-mono text-sm font-bold text-cyber-400 mb-1">Tactical Zone & Squad Map</h3>
-                    <p class="text-xs text-slate-400">Simulated rotation grid for competitive esports coordination (Free Fire MAX / BGMI).</p>
-                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 h-32 relative flex items-center justify-center overflow-hidden">
-                        <div class="absolute inset-0 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
-                        <div class="relative z-10 flex flex-col items-center space-y-2">
-                            <span class="px-3 py-1 bg-cyber-500/20 border border-cyber-500/40 rounded text-cyber-400 font-mono text-xs font-bold animate-bounce">Zone Alpha Secure</span>
-                            <span class="text-xs font-mono text-slate-400">Squad Rotation: Optimal</span>
-                        </div>
-                    </div>
-                    <div class="text-xs font-mono text-slate-400 text-center">Active Callout: Center Ridge</div>
-                </div>
-
-                <!-- Stat Grid -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
-                    <h3 class="font-mono text-sm font-bold text-cyber-400 mb-1">Athletic & Gaming Stat Grid</h3>
-                    <p class="text-xs text-slate-400">Core physical and competitive gaming benchmarks.</p>
-                    <div class="space-y-2 font-mono text-xs">
-                        <div class="flex justify-between bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                            <span class="text-slate-300"><i class="fa-solid fa-shuttlecock text-cyber-400 mr-2"></i>Badminton</span>
-                            <span class="text-cyber-400 font-bold">Competitive Club Level</span>
-                        </div>
-                        <div class="flex justify-between bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                            <span class="text-slate-300"><i class="fa-solid fa-baseball text-cyber-400 mr-2"></i>Cricket & Volleyball</span>
-                            <span class="text-emerald-400 font-bold">Active All-Rounder</span>
-                        </div>
-                        <div class="flex justify-between bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                            <span class="text-slate-300"><i class="fa-solid fa-trophy text-cyber-400 mr-2"></i>Free Fire MAX</span>
-                            <span class="text-amber-400 font-bold">Grandmaster Tier</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="sim-telemetry">
+              <span>Moisture: <strong id="telemetryMoisture" style="color: var(--nature-green);">74%</strong></span>
+              <span>Glass Dew Point: <strong id="telemetryDew">19.4°C</strong></span>
+              <span>Micro-Climate: <strong id="telemetryClimate" style="color: var(--cyber-blue);">Balanced Closed Loop</strong></span>
             </div>
-        </section>
+          </div>
+        </div>
 
-        <!-- Immersive Terrarium Sanctuary -->
-        <section class="space-y-6">
-            <div class="border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold flex items-center space-x-3">
-                    <i class="fa-solid fa-flask text-emerald-400"></i>
-                    <span>Immersive Terrarium Sanctuary</span>
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Adjust photoperiod lighting modes and inspect micro-ecosystem health.</p>
+        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression with Style Guide Hover Tips -->
+        <div class="feature-card">
+          <h3 style="font-size: 1.15rem; color: var(--nature-dark); margin-bottom: 0.35rem;">Dual-Species Bonsai Progression (0–2 Yrs)</h3>
+          <p class="module-quote">"A bonsai does not conquer time; it yields to it. Through every wired branch and guided root, patience shapes what force could never master."</p>
+
+          <div class="bonsai-photo-grid">
+            <div class="bonsai-frame">
+              <img 
+                id="imgBanyan" 
+                src="banyan.png" 
+                alt="Sacred Banyan Bonsai" 
+                class="bonsai-specimen-img"
+              />
+              <div>
+                <div class="bonsai-species-title">Sacred Banyan</div>
+                <span class="bonsai-stage-tag" id="tagBanyan">2 Yrs Specimen</span>
+              </div>
             </div>
-
-            <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-6">
-                <!-- Lighting Mode Selector -->
-                <div class="flex flex-wrap items-center justify-between gap-4 bg-slate-900/80 p-4 rounded-xl border border-slate-800">
-                    <div class="font-mono text-xs text-slate-300">
-                        <span class="text-emerald-400 font-bold">Photoperiod Engine:</span> Select natural lighting stage
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="setTerrariumLight('dawn')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-amber-300 border border-amber-500/30 transition">Dawn</button>
-                        <button onclick="setTerrariumLight('noon')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-cyber-400 border border-cyber-500/30 transition">Noon</button>
-                        <button onclick="setTerrariumLight('golden')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-orange-400 border border-orange-500/30 transition">Golden Hour</button>
-                        <button onclick="setTerrariumLight('night')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-indigo-400 border border-indigo-500/30 transition">Night Cycle</button>
-                    </div>
-                </div>
-
-                <!-- Terrarium Visual Canvas & Tip Display -->
-                <div id="terrarium-container" class="h-64 rounded-xl bg-gradient-to-b from-amber-950/30 to-slate-950 border border-emerald-500/30 p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-700">
-                    <div class="absolute inset-0 bg-emerald-500/5 pointer-events-none"></div>
-                    <div class="flex justify-between items-start relative z-10">
-                        <div class="bg-slate-900/80 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-800 font-mono text-xs text-emerald-400" id="terrarium-mode-label">
-                            Mode: Noon High-Intensity Spectrum
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900/80 px-3 py-1 rounded-lg border border-slate-800">Humidity: 88% | Springtails: Active</span>
-                    </div>
-                    <div class="relative z-10 bg-slate-900/90 backdrop-blur p-4 rounded-xl border border-slate-800 font-mono text-xs space-y-1">
-                        <div class="text-emerald-400 font-bold flex items-center space-x-2">
-                            <i class="fa-solid fa-seedling"></i>
-                            <span id="terrarium-tip-title">Horticultural Tip: Photoperiod Balance</span>
-                        </div>
-                        <p id="terrarium-tip-desc" class="text-slate-300">Providing 12-14 hours of calibrated full-spectrum LED light stimulates robust moss growth and fern root expansion.</p>
-                    </div>
-                </div>
+            <div class="bonsai-frame">
+              <img 
+                id="imgFicus" 
+                src="ficus.jpg" 
+                alt="Ficus microcarpa Bonsai" 
+                class="bonsai-specimen-img"
+              />
+              <div>
+                <div class="bonsai-species-title">Ficus microcarpa</div>
+                <span class="bonsai-stage-tag" id="tagFicus">2 Yrs Specimen</span>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <!-- Live Bonsai Styling Workshop -->
-        <section id="bonsai-workshop" class="space-y-6">
-            <div class="border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold flex items-center space-x-3">
-                    <i class="fa-solid fa-tree text-emerald-400"></i>
-                    <span>Live Bonsai Styling Workshop</span>
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Advanced horticultural simulation tracking seasonal cycles, nebari inspection, and trunk tapering.</p>
+          <div class="bonsai-desc-box" id="bonsaiDescText">
+            <strong>Stage 5 (Month 24 / 2 Years — Exhibition Maturity):</strong> Mature cultivated bonsai. Repotted into glazed ceramic stoneware dishes with exposed surface nebari and refined foliage silhouettes.
+          </div>
+
+          <!-- Style Guide & Wire Progression Hover Tooltips -->
+          <div class="style-guide-tips">
+            <span class="tip-pill" data-tooltip="Set at 45° angle to prevent branch bark scarring">⚡ Copper Wiring Guide</span>
+            <span class="tip-pill" data-tooltip="Prune back to 2 healthy leaf nodes to encourage ramification">✂ Canopy Pruning</span>
+            <span class="tip-pill" data-tooltip="Gradually brush topsoil annually to reveal radial root flare">💧 Nebari Exposure</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem;">
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">0 Mo</span>
+            <input 
+              type="range" 
+              id="bonsaiSlider" 
+              min="0" 
+              max="24" 
+              value="24" 
+              step="6" 
+              style="flex: 1; accent-color: var(--nature-green);" 
+              oninput="updateBonsaiTimeline(this.value)" 
+            />
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">2 Years</span>
+          </div>
+          <div style="text-align: center; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--nature-dark);" id="bonsaiMonthLabel">
+            Timeline: 24 Months (2-Year Mature Specimen)
+          </div>
+
+          <!-- Fixed Live Bonsai Styling Workshop Micro-Widget -->
+          <div style="margin-top: 1rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <strong style="font-size: 0.85rem; color: var(--nature-dark);">🌿 Live Bonsai Styling Workshop</strong>
+              <span id="workshopStatus" style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--cyber-blue); font-weight: 600;">Ready</span>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- 1. Seasonal Growth Cycle Phase Tracker -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-mono text-sm font-bold text-emerald-400">Seasonal Phase</h3>
-                        <span class="text-xs font-mono text-slate-400" id="season-name">Spring Flush</span>
-                    </div>
-                    <p class="text-xs text-slate-400">Bonsai follows strict seasonal maintenance rules for optimal health and vigor.</p>
-                    <div class="space-y-2 font-mono text-xs">
-                        <button onclick="setBonsaiSeason('spring')" class="w-full text-left px-3 py-2 bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 text-slate-300 transition flex justify-between">
-                            <span>Spring Flush & Repotting</span>
-                            <span class="text-emerald-400">Active</span>
-                        </button>
-                        <button onclick="setBonsaiSeason('summer')" class="w-full text-left px-3 py-2 bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 text-slate-300 transition flex justify-between">
-                            <span>Summer Pinching & Watering</span>
-                            <span class="text-slate-500">Idle</span>
-                        </button>
-                        <button onclick="setBonsaiSeason('autumn')" class="w-full text-left px-3 py-2 bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 text-slate-300 transition flex justify-between">
-                            <span>Autumn Wiring & Bark Thickening</span>
-                            <span class="text-slate-500">Idle</span>
-                        </button>
-                        <button onclick="setBonsaiSeason('winter')" class="w-full text-left px-3 py-2 bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 text-slate-300 transition flex justify-between">
-                            <span>Winter Dormancy & Protection</span>
-                            <span class="text-slate-500">Idle</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. Root Flare (Nebari) & Soil Top-Dressing Inspector -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-mono text-sm font-bold text-emerald-400 mb-1">Nebari & Soil Inspector</h3>
-                        <p class="text-xs text-slate-400">Expose radial surface roots and apply traditional akadama top-dressing.</p>
-                    </div>
-                    <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 font-mono text-xs space-y-3">
-                        <div class="flex justify-between text-slate-300">
-                            <span>Soil Medium:</span>
-                            <span id="soil-type" class="text-emerald-400">Akadama / Kanuma Blend</span>
-                        </div>
-                        <div class="flex justify-between text-slate-300">
-                            <span>Nebari Spread:</span>
-                            <span id="nebari-status" class="text-cyber-400">Exposed & Radial (Stable)</span>
-                        </div>
-                    </div>
-                    <button onclick="toggleNebariInspection()" class="w-full py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 rounded-lg font-mono text-xs transition">
-                        Toggle Nebari Exposure
-                    </button>
-                </div>
-
-                <!-- 3. Sacrifice Branch Trunk-Taper Strategy -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-mono text-sm font-bold text-emerald-400 mb-1">Trunk Taper Strategy</h3>
-                        <p class="text-xs text-slate-400">Manage sacrifice branches to thicken lower trunk calipers effectively.</p>
-                    </div>
-                    <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 font-mono text-xs space-y-3">
-                        <div class="flex justify-between text-slate-300">
-                            <span>Sacrifice Branch:</span>
-                            <span id="sacrifice-status" class="text-amber-400">Growing Unchecked (Season 1)</span>
-                        </div>
-                        <div class="text-slate-300 text-slate-400" id="sacrifice-desc">
-                            Allows lower trunk expansion before final pruning back to scar-healing pad.
-                        </div>
-                    </div>
-                    <button onclick="toggleSacrificeBranch()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-mono text-xs transition">
-                        Toggle Sacrifice State
-                    </button>
-                </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="performWorkshopAction('wire')">⚡ Apply Wire</button>
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="performWorkshopAction('prune')">✂ Canopy Prune</button>
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;" onclick="performWorkshopAction('nebari')">💧 Expose Nebari</button>
             </div>
-        </section>
+            <div id="workshopFeedback" style="margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--nature-green); min-height: 16px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Secure Contact Section -->
-        <section id="contact" class="space-y-6">
-            <div class="border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold flex items-center space-x-3">
-                    <i class="fa-solid fa-paper-plane text-cyber-400"></i>
-                    <span>Secure Contact & Professional Inquiries</span>
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Get in touch for cybersecurity auditing, VAPT consulting, or collaboration.</p>
-            </div>
+    <!-- TERMINAL & SIMULATION ARCADE HUB (4 GAMES) -->
+    <section>
+      <h2 class="section-head tech">Interactive Terminal & Simulation Hub</h2>
+      <p class="section-hint">Select a simulation module below or press [1 - 4] on your keyboard</p>
+      <div class="arcade-box">
+        <div class="arcade-nav">
+          <button class="arcade-tab active" id="tab0" onclick="switchGame(0)">🕹 1. Cyber Runner</button>
+          <button class="arcade-tab" id="tab1" onclick="switchGame(1)">🏸 2. Court Reflex</button>
+          <button class="arcade-tab" id="tab2" onclick="switchGame(2)">🎯 3. Zone Ops</button>
+          <button class="arcade-tab" id="tab3" onclick="switchGame(3)">🌿 4. Eco Jar</button>
+        </div>
 
-            <div class="glass-panel p-8 rounded-2xl border border-cyber-500/30 max-w-2xl mx-auto space-y-6">
-                <div class="space-y-4 font-mono text-xs">
-                    <div class="flex items-center justify-between bg-slate-900 p-4 rounded-xl border border-slate-800">
-                        <span class="text-slate-400">Professional Email</span>
-                        <div class="flex items-center space-x-3">
-                            <span class="text-cyber-400 select-all">ranjukw@ayusynk.ai</span>
-                            <button onclick="copyToClipboard('ranjukw@ayusynk.ai', this)" class="px-3 py-1 bg-cyber-500/20 hover:bg-cyber-500/30 text-cyber-400 rounded border border-cyber-500/30 transition">Copy</button>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between bg-slate-900 p-4 rounded-xl border border-slate-800">
-                        <span class="text-slate-400">GitHub Profile</span>
-                        <a href="https://ranjukw.github.io" target="_blank" class="text-cyber-400 hover:underline">ranjukw.github.io <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a>
-                    </div>
-                </div>
+        <div class="game-telemetry">
+          <span id="gameTitleStatus" style="font-weight: 700; color: var(--nature-green);">CYBER RUNNER: Evade Data Breaches</span>
+          <div>
+            <span>Score: <strong id="gameScore" style="color: var(--cyber-blue);">0</strong></span> | 
+            <span>Best: <strong id="gameHighScore" style="color: var(--nature-dark);">0</strong></span>
+          </div>
+        </div>
 
-                <form onsubmit="handleContactSubmit(event)" class="space-y-4">
-                    <div>
-                        <label class="block font-mono text-xs text-slate-300 mb-1">Your Name / Organization</label>
-                        <input type="text" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-400 font-mono" placeholder="Recruiter / Security Lead">
-                    </div>
-                    <div>
-                        <label class="block font-mono text-xs text-slate-300 mb-1">Secure Message</label>
-                        <textarea required rows="4" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-400 font-mono" placeholder="Inquiry regarding cybersecurity VAPT or ISO 27001 assessment..."></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-3 bg-cyber-500 hover:bg-cyber-600 text-black font-bold rounded-xl font-mono text-sm transition shadow-lg shadow-cyber-500/20 flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-terminal"></i>
-                        <span>Transmit Secure Payload</span>
-                    </button>
-                </form>
-            </div>
-        </section>
+        <canvas id="gameCanvas" width="700" height="240"></canvas>
 
-    </main>
+        <div class="arcade-actions">
+          <button class="btn-action" id="btnMainAction" onclick="handleArcadeAction()">ACTION / JUMP [SPACE]</button>
+          <p class="arcade-hint">Desktop: Press <strong>SPACEBAR</strong> or Click. Mobile: Tap the action button above or canvas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Athletics & Competitive Gaming Section (With Ideas 1, 2, and 3) -->
+    <section>
+      <h2 class="section-head nature">Athletics & Competitive Gaming</h2>
+      <p class="section-hint">Court stamina, reflex agility, and tactical team communication</p>
+      
+      <div class="cards-grid" style="margin-bottom: 1.25rem; grid-template-columns: 1fr 1fr;">
+        <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; border-left: 4px solid var(--nature-green);">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--nature-green); margin-bottom: 0.3rem;">OUTDOOR SPORTS MINDSET</div>
+          <p style="font-style: italic; font-size: 0.9rem; color: var(--text);">
+            "Sweat on the court, precision in the air. Real victory isn't just about outplaying your opponent; it's about pushing past the limits of your own stamina."
+          </p>
+        </div>
+        <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; border-left: 4px solid var(--cyber-blue);">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--cyber-blue); margin-bottom: 0.3rem;">MOBILE ESPORTS MINDSET</div>
+          <p style="font-style: italic; font-size: 0.9rem; color: var(--text);">
+            "Victory isn't decided by the screen in your hands, but by the focus in your mind. Lightning-fast reflexes, calculated rotations, and unshakeable teamwork turn every clutch moment into triumph."
+          </p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card" onclick="openExplain('all_sports')">
+          <div class="card-type">ACTIVE COURT & FIELD SPORTS</div>
+          <h3>Badminton, Cricket & Volleyball</h3>
+          <p>
+            Competitive badminton (split-step agility, deceptive net drop shots, baseline smashes), field cricket (batting timing and seam bowling), and volleyball spikes.
+          </p>
+          <div class="pills">
+            <span class="pill pill-green">Badminton</span>
+            <span class="pill pill-green">Cricket</span>
+            <span class="pill pill-green">Volleyball</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openExplain('esports')">
+          <div class="card-type">COMPETITIVE MOBILE GAMING</div>
+          <h3>Free Fire MAX & BGMI</h3>
+          <p>
+            Competitive battle royale esports focusing on rapid spatial decision-making, clutch team callouts, squad rotations, and high-precision tactical engagements.
+          </p>
+          <div class="pills">
+            <span class="pill pill-green">Free Fire MAX</span>
+            <span class="pill pill-green">BGMI</span>
+            <span class="pill pill-green">Squad Rotation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Athletics Interactive Addition 1, 2, and 3 -->
+      <div class="athletics-widget-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <h3 style="font-size: 1.05rem; color: var(--nature-dark);">⚡ Court & Esports Agility Benchmarker (Idea 1)</h3>
+          <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--nature-green);" id="reflexScoreDisplay">Best: -- ms</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Test your hand-eye coordination speed (crucial for badminton returns & esports crosshair flicks).
+        </p>
+        <div class="reflex-arena" id="reflexArenaBox" onclick="triggerReflexTest()">
+          <span id="reflexArenaText" style="font-weight: 700; color: var(--text);">Click Here to Start Reflex Test</span>
+        </div>
+
+        <div style="margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <strong style="font-size: 0.88rem; color: var(--cyber-blue);">🗺️ Tactical Zone & Squad Rotation (Idea 2)</strong>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              Phase 1: Safe Drop Zone ➔ Phase 2: Loot Optimization & Comms ➔ Phase 3: Final Circle Positioning & Crossfire Control.
+            </p>
+          </div>
+          <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <strong style="font-size: 0.88rem; color: var(--nature-dark);">📊 Agility vs. Strategy Stat Grid (Idea 3)</strong>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              Court Stamina: 95% | Badminton Smash Velocity: High | Map Awareness: 98% | Clutch Decision Speed: &lt;180ms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Direct Secure Transmission Contact Form -->
+    <section id="contact">
+      <h2 class="section-head tech">Secure Transmission & Direct Contact</h2>
+      <p class="section-hint">Send an encrypted inquiry directly to Ranju K W</p>
+      <div class="contact-box">
+        <form action="https://formspree.io/f/kwranju@gmail.com" method="POST" class="contact-grid">
+          <div class="form-group">
+            <label>YOUR NAME</label>
+            <input type="text" name="name" required class="form-input" placeholder="e.g. Jordan Reed" />
+          </div>
+          <div class="form-group">
+            <label>RETURN EMAIL</label>
+            <input type="email" name="_replyto" required class="form-input" placeholder="e.g. jordan@enterprise.com" />
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label>COLLABORATION MESSAGE</label>
+            <textarea name="message" required class="form-textarea" placeholder="Inquire about VAPT audits, ISO 27001 consultations, or custom botanical terrariums..."></textarea>
+          </div>
+          <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary">Transmit Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="glass-panel border-t border-slate-800 py-8 mt-20 text-center font-mono text-xs text-slate-500 space-y-2">
-        <p>&copy; 2026 Ranju K W. All Rights Reserved. Built with precision for secure web standards.</p>
-        <p class="text-slate-600">ISMS ISO/IEC 27001 Aligned | VAPT Analyst & Horticultural Enthusiast</p>
+    <footer>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/ranju-kw" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/ranju__wilson?cplk=M2NoYWhqNTdmMTQ5" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:kwranju@gmail.com">kwranju@gmail.com</a>
+        <a href="resume.pdf" download>Resume</a>
+      </div>
+      <p>© Ranju K W. Designed for Corporate & Cybersecurity Excellence. Hosted on GitHub Pages.</p>
     </footer>
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Clock & Date Updates
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { hour12: false });
-            document.getElementById('live-clock').innerText = timeString + ' IST';
-            
-            const options = { month: 'short', day: 'numeric', year: 'numeric' };
-            const dateString = now.toLocaleDateString('en-US', options);
-            document.getElementById('top-bar-date').innerText = dateString;
-            
-            const fullOptions = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
-            document.getElementById('modal-full-date').innerText = now.toLocaleDateString('en-US', fullOptions);
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+  </div>
 
-        // Calendar Modal Toggle
-        function toggleCalendarModal() {
-            const modal = document.getElementById('calendar-modal');
-            modal.classList.toggle('hidden');
+  <!-- Interactive Explanation Modal -->
+  <div id="explainModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Inspector</div>
+        <button class="modal-close" onclick="forceCloseModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <span id="modalTag" class="modal-tag">OVERVIEW</span>
+        <div id="modalText">Select an item to view technical specifications.</div>
+        <div id="modalCmdWrapper" style="display: none;">
+          <div class="cmd-box">
+            <span id="modalCmdText"></span>
+            <button onclick="copyCmdSyntax()" style="background:transparent; border:none; color:#38bdf8; cursor:pointer; font-weight:700;">[Copy]</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Cyber Pet ("Byte") Surprise Interaction ---
+    const petTips = [
+      "Byte says: Always validate and sanitize user inputs!",
+      "Byte says: Keep your Kali Linux tools updated!",
+      "Byte says: ISO 27001 Annex A controls protect data integrity.",
+      "Byte says: Never reuse passwords across enterprise accounts!",
+      "Byte says: Take a break and check on your bonsai trees!"
+    ];
+    function petSurprise() {
+      const speech = document.getElementById('petSpeech');
+      const randomTip = petTips[Math.floor(Math.random() * petTips.length)];
+      speech.textContent = randomTip;
+      speech.style.display = 'block';
+      setTimeout(() => { speech.style.display = 'none'; }, 4000);
+    }
+
+    // --- One-Click Recruiter Mode Toggle ---
+    function toggleRecruiterMode() {
+      const box = document.getElementById('recruiterSnapshotBox');
+      const btn = document.getElementById('recruiterToggleBtn');
+      if (box.style.display === 'block') {
+        box.style.display = 'none';
+        btn.classList.remove('active');
+        btn.textContent = "⚡ Recruiter View";
+      } else {
+        box.style.display = 'block';
+        btn.classList.add('active');
+        btn.textContent = "🛡️ Technical View";
+      }
+    }
+
+    // --- Interactive Calendar Popup ---
+    function toggleCalendarPopup(e) {
+      e.stopPropagation();
+      const popup = document.getElementById('calendarPopup');
+      if (popup.style.display === 'block') {
+        popup.style.display = 'none';
+      } else {
+        renderCalendarGrid();
+        popup.style.display = 'block';
+      }
+    }
+    function closeCalendarPopup() {
+      document.getElementById('calendarPopup').style.display = 'none';
+    }
+    window.addEventListener('click', () => { closeCalendarPopup(); });
+
+    function renderCalendarGrid() {
+      const container = document.getElementById('calGridContainer');
+      container.innerHTML = '';
+      const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+      days.forEach(d => {
+        const div = document.createElement('div');
+        div.className = 'cal-day-header';
+        div.textContent = d;
+        container.appendChild(div);
+      });
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
+      const todayDate = now.getDate();
+
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      document.getElementById('calMonthYear').textContent = now.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+
+      for (let i = 0; i < firstDayIndex; i++) {
+        const emptyCell = document.createElement('div');
+        container.appendChild(emptyCell);
+      }
+
+      for (let d = 1; d <= totalDays; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell';
+        if (d === todayDate) cell.classList.add('today');
+        cell.textContent = d;
+        container.appendChild(cell);
+      }
+    }
+
+    // --- Dark / Light Mode Theme Toggle ---
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('portfolio_theme', isDark ? 'dark' : 'light');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('portfolio_theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+
+    // --- Vulnerability Patch Simulator ---
+    function applyVulnerabilityPatch() {
+      const codeBox = document.getElementById('codeSnippetBox');
+      const badge = document.getElementById('patchStatusBadge');
+      const feedback = document.getElementById('patchFeedback');
+      const btn = document.getElementById('patchBtn');
+
+      codeBox.innerHTML = `
+        <span style="color: #34d399;">// Patched Secure Code (PreparedStatement):</span><br>
+        String query = "SELECT * FROM users WHERE username = ?";<br>
+        PreparedStatement stmt = conn.prepareStatement(query);<br>
+        stmt.setString(1, userInput);
+      `;
+      badge.textContent = "Status: Fully Remediated";
+      badge.style.color = "var(--nature-green)";
+      badge.style.background = "var(--nature-green-soft)";
+      badge.style.borderColor = "#a7f3d0";
+      feedback.textContent = "✔ SQL Injection vector neutralized successfully!";
+      btn.style.display = 'none';
+    }
+
+    // --- Fixed Live Bonsai Styling Workshop ---
+    function performWorkshopAction(action) {
+      const feedback = document.getElementById('workshopFeedback');
+      const status = document.getElementById('workshopStatus');
+      
+      if (action === 'wire') {
+        feedback.style.color = "var(--cyber-blue)";
+        feedback.textContent = "✔ Copper wire secured at 45° angle. Primary branch tension optimized!";
+        status.textContent = "Wired";
+      } else if (action === 'prune') {
+        feedback.style.color = "var(--nature-green)";
+        feedback.textContent = "✔ Canopy pruned back to two-node pairs. Energy redirected to pads!";
+        status.textContent = "Pruned";
+      } else if (action === 'nebari') {
+        feedback.style.color = "var(--alert-amber)";
+        feedback.textContent = "✔ Surface soil brushed away. Radial root flare (nebari) exposed!";
+        status.textContent = "Exhibition Ready";
+      }
+    }
+
+    // --- One-Click Email Copy ---
+    function copyEmail(btn) {
+      navigator.clipboard.writeText("kwranju@gmail.com").then(() => {
+        const textSpan = document.getElementById('copyText');
+        textSpan.textContent = "[Copied!]";
+        textSpan.style.color = "var(--cyber-blue)";
+        setTimeout(() => {
+          textSpan.textContent = "[Copy]";
+          textSpan.style.color = "var(--nature-green)";
+        }, 2000);
+      });
+    }
+
+    // --- Live IST Clock & Ping Monitor ---
+    function updateLiveClock() {
+      const now = new Date();
+      document.getElementById('liveDate').textContent = now.toLocaleDateString('en-IN', { weekday: 'short', day: '2-digit', month: 'short' });
+      document.getElementById('liveClock').textContent = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    }
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
+
+    // Simulated Ping Fluctuation
+    function updatePingMonitor() {
+      const pings = [18, 22, 24, 21, 25, 19, 23];
+      const p = pings[Math.floor(Math.random() * pings.length)];
+      document.getElementById('pingBadge').innerHTML = `<span>📶 Ping: ${p}ms</span>`;
+    }
+    setInterval(updatePingMonitor, 5000);
+
+    // --- Native Mobile-Compatible Audio Engine ---
+    function stopAllAudio() {
+      const rain = document.getElementById('audioRain');
+      const cyber = document.getElementById('audioCyber');
+      if (rain) { rain.pause(); rain.currentTime = 0; }
+      if (cyber) { cyber.pause(); cyber.currentTime = 0; }
+      document.querySelectorAll('.audio-btn').forEach(btn => btn.classList.remove('active-nature', 'active-cyber'));
+      document.getElementById('audioWave').style.display = 'none';
+    }
+
+    function setAtmosphere(mode) {
+      const rain = document.getElementById('audioRain');
+      const cyber = document.getElementById('audioCyber');
+      const wave = document.getElementById('audioWave');
+
+      stopAllAudio();
+      if (mode === 'mute') return;
+
+      if (mode === 'rain' && rain) {
+        rain.volume = 0.65;
+        rain.play().then(() => {
+          document.getElementById('btnAudioRain').classList.add('active-nature');
+          wave.style.display = 'inline';
+        }).catch(e => console.warn(e));
+      } else if (mode === 'cyber' && cyber) {
+        cyber.volume = 0.55;
+        cyber.play().then(() => {
+          document.getElementById('btnAudioCyber').classList.add('active-cyber');
+          wave.style.display = 'inline';
+        }).catch(e => console.warn(e));
+      }
+    }
+
+    // --- Indian Threat Radar Feed ---
+    async function loadCyberRadar() {
+      const feedContainer = document.getElementById('newsFeed');
+      const cyberRssUrl = encodeURIComponent('https://news.google.com/rss/search?q=cybersecurity+OR+CERT-In+India&hl=en-IN&gl=IN&ceid=IN:en');
+      try {
+        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${cyberRssUrl}`);
+        const data = await res.json();
+        if (data.status === 'ok' && data.items.length > 0) {
+          feedContainer.innerHTML = '';
+          data.items.slice(0, 5).forEach((item, idx) => {
+            const li = document.createElement('li');
+            li.className = 'news-item';
+            li.innerHTML = `<span class="news-num">0${idx + 1}</span><a href="${item.link}" target="_blank" rel="noopener" class="news-link">${item.title}</a>`;
+            feedContainer.appendChild(li);
+          });
+          return;
+        }
+      } catch (e) {}
+
+      feedContainer.innerHTML = `
+        <li class="news-item"><span class="news-num">01</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">CERT-In issues critical advisory on high-severity vulnerabilities in Cisco networking equipment</a></li>
+        <li class="news-item"><span class="news-num">02</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">Indian enterprise banking sector warns of coordinated spear-phishing campaigns</a></li>
+        <li class="news-item"><span class="news-num">03</span><a href="https://www.cert-in.org.in" target="_blank" rel="noopener" class="news-link">NCIIPC releases mandatory patch guidance for critical information infrastructure hosts</a></li>
+      `;
+    }
+    window.addEventListener('DOMContentLoaded', loadCyberRadar);
+
+    // --- Diagnostic Quiz ---
+    const quizData = [
+      {
+        scenario: `// Inspecting HTTP Response Header:\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\nSet-Cookie: session_id=9f82d1c4b; Path=/; Secure;`,
+        options: [
+          { text: "Missing HttpOnly flag (Exposes session cookie to XSS exfiltration)", correct: true },
+          { text: "Missing Strict-Transport-Security (HSTS)", correct: false },
+          { text: "Weak UTF-8 Character Encoding", correct: false }
+        ],
+        explain: "Correct! Without the HttpOnly attribute, JavaScript can access document.cookie, making session hijacking trivial via XSS."
+      },
+      {
+        scenario: `// Inspecting User Authentication SQL Query:\nString query = "SELECT * FROM users WHERE user = '" + inputUser + "' AND pass = '" + inputPass + "'";`,
+        options: [
+          { text: "Buffer Overflow Vulnerability", correct: false },
+          { text: "Classic SQL Injection via unparameterized concatenation", correct: true },
+          { text: "Cross-Site Request Forgery (CSRF)", correct: false }
+        ],
+        explain: "Correct! Direct string concatenation allows attackers to supply inputs like ' OR '1'='1 to bypass authentication."
+      },
+      {
+        scenario: `// Inspecting Nginx Virtual Host Config:\nadd_header X-Frame-Options "ALLOWALL";\nserver_tokens on;`,
+        options: [
+          { text: "Memory Leak Vulnerability", correct: false },
+          { text: "Exposes server version and allows Clickjacking framing", correct: true },
+          { text: "Weak SSL/TLS Cipher Negotiation", correct: false }
+        ],
+        explain: "Correct! X-Frame-Options must be DENY or SAMEORIGIN to prevent Clickjacking, and server_tokens should be 'off'."
+      }
+    ];
+
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+
+    function renderQuiz() {
+      const q = quizData[currentQuizIndex];
+      document.getElementById('quizQuestionNum').textContent = `SCENARIO ${currentQuizIndex + 1} OF ${quizData.length}`;
+      document.getElementById('quizScenarioCode').textContent = q.scenario;
+      const optsContainer = document.getElementById('quizOptions');
+      optsContainer.innerHTML = '';
+      document.getElementById('quizFeedback').textContent = '';
+
+      q.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt-btn';
+        btn.textContent = opt.text;
+        btn.onclick = () => selectQuizOption(btn, opt.correct, q.explain);
+        optsContainer.appendChild(btn);
+      });
+    }
+
+    function selectQuizOption(btn, isCorrect, explain) {
+      const allBtns = document.querySelectorAll('.quiz-opt-btn');
+      allBtns.forEach(b => b.disabled = true);
+      const feedback = document.getElementById('quizFeedback');
+      if (isCorrect) {
+        btn.classList.add('correct');
+        quizScore++;
+        document.getElementById('quizScore').textContent = `Score: ${quizScore}/${quizData.length}`;
+        feedback.style.color = "var(--nature-green)";
+        feedback.textContent = explain;
+      } else {
+        btn.classList.add('wrong');
+        feedback.style.color = "var(--alert-red)";
+        feedback.textContent = "Incorrect vulnerability. Review header flags and parameters.";
+      }
+      setTimeout(() => {
+        currentQuizIndex = (currentQuizIndex + 1) % quizData.length;
+        renderQuiz();
+      }, 3500);
+    }
+    renderQuiz();
+
+    // --- Athletics Interactive Reflex Benchmarker (Idea 1) ---
+    let reflexState = 'idle';
+    let reflexTimer = null;
+    let reflexStart = 0;
+    let bestReflex = 0;
+
+    function triggerReflexTest() {
+      const box = document.getElementById('reflexArenaBox');
+      const text = document.getElementById('reflexArenaText');
+      const scoreDisp = document.getElementById('reflexScoreDisplay');
+
+      if (reflexState === 'idle') {
+        reflexState = 'waiting';
+        box.className = 'reflex-arena waiting';
+        text.textContent = "Wait for GREEN... (Keep ready!)";
+        
+        const delay = 1500 + Math.random() * 2500;
+        reflexTimer = setTimeout(() => {
+          reflexState = 'ready';
+          box.className = 'reflex-arena ready';
+          text.textContent = "CLICK NOW!";
+          reflexStart = performance.now();
+        }, delay);
+      } else if (reflexState === 'waiting') {
+        clearTimeout(reflexTimer);
+        reflexState = 'idle';
+        box.className = 'reflex-arena';
+        text.textContent = "Too early! Click to try again.";
+      } else if (reflexState === 'ready') {
+        const elapsed = Math.round(performance.now() - reflexStart);
+        reflexState = 'idle';
+        box.className = 'reflex-arena';
+        text.textContent = `Reaction Speed: ${elapsed} ms! Click to retry.`;
+        if (bestReflex === 0 || elapsed < bestReflex) {
+          bestReflex = elapsed;
+          scoreDisp.textContent = `Best: ${bestReflex} ms`;
+        }
+      }
+    }
+
+    // --- Upgraded Realistic Terrarium Photoperiod Lighting & Specular Gloss ---
+    function updateRealisticJarLighting(val) {
+      const v = parseInt(val);
+      const chamber = document.getElementById('jarChamber');
+      const gloss = document.getElementById('glassSpecular');
+      const label = document.getElementById('lightLabel');
+      const dew = document.getElementById('telemetryDew');
+      const climate = document.getElementById('telemetryClimate');
+
+      if (v < 25) {
+        // Dawn
+        chamber.style.background = 'radial-gradient(circle at center, rgba(30, 58, 138, 0.45) 20%, rgba(11, 15, 25, 0.8) 100%)';
+        gloss.style.left = '10%';
+        label.textContent = 'Dawn / Morning';
+        label.style.color = 'var(--cyber-blue)';
+        dew.textContent = '16.5°C';
+        climate.textContent = 'Dew Condensation Active';
+      } else if (v < 70) {
+        // Noon / Daylight
+        chamber.style.background = 'radial-gradient(circle at top, rgba(255, 255, 255, 0.35) 15%, rgba(5, 150, 105, 0.15) 85%)';
+        gloss.style.left = '45%';
+        label.textContent = 'Noon / Daylight';
+        label.style.color = 'var(--alert-amber)';
+        dew.textContent = '21.0°C';
+        climate.textContent = 'Transpiration Peak';
+      } else if (v < 90) {
+        // Golden Hour
+        chamber.style.background = 'radial-gradient(circle at right, rgba(245, 158, 11, 0.35) 20%, rgba(120, 53, 15, 0.45) 100%)';
+        gloss.style.left = '75%';
+        label.textContent = 'Golden Hour';
+        label.style.color = 'var(--alert-amber)';
+        dew.textContent = '19.2°C';
+        climate.textContent = 'Warm Sidelight Cycle';
+      } else {
+        // Night
+        chamber.style.background = 'radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 30%, rgba(3, 7, 18, 0.95) 100%)';
+        gloss.style.left = '90%';
+        label.textContent = 'Night Moonlighting';
+        label.style.color = 'var(--cyber-blue)';
+        dew.textContent = '14.8°C';
+        climate.textContent = 'Dormant Respiration';
+      }
+    }
+
+    let jarMoisture = 74;
+    function mistInsideJar() {
+      const mist = document.getElementById('internalMist');
+      const feedback = document.getElementById('mistFeedback');
+      const moistureDisp = document.getElementById('telemetryMoisture');
+
+      jarMoisture = Math.min(98, jarMoisture + 10);
+      moistureDisp.textContent = `${jarMoisture}%`;
+      mist.style.opacity = '0.85';
+      feedback.textContent = 'Misting Chamber...';
+
+      setTimeout(() => {
+        mist.style.opacity = '0.35';
+        feedback.textContent = 'Substrate Hydrated';
+      }, 1600);
+
+      setTimeout(() => { feedback.textContent = 'Equilibrium'; }, 3800);
+    }
+
+    // --- DISCRETE BONSAI TIMELINE ENGINE (LOCAL ASSETS) ---
+    const bonsaiStageData = {
+      0: {
+        label: "0 Months (Wild Field Sapling Harvest)",
+        banyanImg: "banyan_0m.jpg",
+        ficusImg: "ficus_0m.jpg",
+        banyanTag: "Wild Field Sapling",
+        ficusTag: "Fresh Stem Cutting",
+        desc: "<strong>Stage 1 (0 Months — Sapling Collection):</strong> Raw saplings harvested with intact feeder root systems. Established in coarse pumice without structural pruning to build trunk caliper."
+      },
+      6: {
+        label: "6 Months (Trunk Chop & Structural Wiring)",
+        banyanImg: "banyan_6m.jpg",
+        ficusImg: "ficus_6m.jpg",
+        banyanTag: "Primary Guy-Wire",
+        ficusTag: "Trunk Chop & Taper",
+        desc: "<strong>Stage 2 (6 Months — Directional Pruning):</strong> The primary trunk is chopped to initiate taper. Heavy anodized aluminum wire sets primary branches and guides apex angle."
+      },
+      12: {
+        label: "12 Months (Canopy Wiring & Root Descent)",
+        banyanImg: "banyan_12m.jpg",
+        ficusImg: "ficus_12m.jpg",
+        banyanTag: "Aerial Prop Roots",
+        ficusTag: "Branch Scaffolding",
+        desc: "<strong>Stage 3 (12 Months — Year 1 Ramification):</strong> Secondary branch tiers form. Under high ambient humidity, the Banyan drops vertical prop roots toward the substrate."
+      },
+      18: {
+        label: "18 Months (Defoliation & Pad Refinement)",
+        banyanImg: "banyan_18m.jpg",
+        ficusImg: "ficus_18m.jpg",
+        banyanTag: "Tertiary Ramification",
+        ficusTag: "Exhibition Prep",
+        desc: "<strong>Stage 4 (18 Months — Leaf Reduction):</strong> Systematic defoliation halves leaf size. Tertiary branch pads develop, and radial surface root flare (nebari) thickens."
+      },
+      24: {
+        label: "24 Months (2-Year Exhibition Maturity)",
+        banyanImg: "banyan.png",
+        ficusImg: "ficus.jpg",
+        banyanTag: "2 Yrs Mature Specimen",
+        ficusTag: "2 Yrs Mature Specimen",
+        desc: "<strong>Stage 5 (Month 24 / 2 Years — Exhibition Display):</strong> Mature cultivated specimens. Potted in glazed ceramic dishes with exposed surface nebari and compact canopy pads."
+      }
+    };
+
+    function updateBonsaiTimeline(val) {
+      const step = parseInt(val);
+      const data = bonsaiStageData[step] || bonsaiStageData[24];
+      document.getElementById('bonsaiMonthLabel').textContent = `Timeline: ${data.label}`;
+      document.getElementById('bonsaiDescText').innerHTML = data.desc;
+
+      const bImg = document.getElementById('imgBanyan');
+      const fImg = document.getElementById('imgFicus');
+      bImg.style.opacity = '0.25';
+      fImg.style.opacity = '0.25';
+
+      setTimeout(() => {
+        bImg.src = data.banyanImg;
+        fImg.src = data.ficusImg;
+        document.getElementById('tagBanyan').textContent = data.banyanTag;
+        document.getElementById('tagFicus').textContent = data.ficusTag;
+        bImg.style.opacity = '1';
+        fImg.style.opacity = '1';
+      }, 160);
+    }
+
+    // --- 4-GAME ARCADE & SIMULATION HUB CONTROLLER ---
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentGame = 0;
+    let isRunning = false;
+    let animId = null;
+    let scores = [0, 0, 0, 0];
+    let highScores = [0, 0, 0, 0];
+
+    let runnerY = 170, runnerVy = 0, isGrounded = true;
+    let runnerObstacles = [];
+    let runnerSpeed = 5.2;
+
+    let arcadeReflexState = 'idle';
+    let arcadeReflexTimer = null;
+    let arcadeReflexStart = 0;
+
+    let targets = [];
+    let safeRadius = 90;
+    let waveTimer = 0;
+
+    let ecoMoisture = 50, ecoFlora = 50, ecoSpringtails = 50;
+    let ecoSeconds = 30;
+    let ecoInterval = null;
+
+    function switchGame(index) {
+      if (animId) cancelAnimationFrame(animId);
+      if (arcadeReflexTimer) clearTimeout(arcadeReflexTimer);
+      if (ecoInterval) clearInterval(ecoInterval);
+      isRunning = false;
+      currentGame = index;
+
+      document.querySelectorAll('.arcade-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+      });
+
+      document.getElementById('gameScore').innerText = scores[index];
+      document.getElementById('gameHighScore').innerText = highScores[index];
+
+      const btn = document.getElementById('btnMainAction');
+      const status = document.getElementById('gameTitleStatus');
+
+      if (index === 0) {
+        status.innerText = "CYBER RUNNER: Leap Over Malformed Data Packets";
+        btn.innerText = "JUMP / START [SPACE]";
+        initCyberRunner();
+      } else if (index === 1) {
+        status.innerText = "SMASH REFLEX: Strike Shuttlecock When Red Circle Turns GREEN";
+        btn.innerText = "SMASH / STRIKE [SPACE]";
+        initCourtReflex();
+      } else if (index === 2) {
+        status.innerText = "ZONE OPS: Intercept Intruder Targets Before They Enter Safe Ring";
+        btn.innerText = "CLEAR TARGETS / START [SPACE]";
+        initZoneOps();
+      } else if (index === 3) {
+        status.innerText = "ECO JAR: Balance Moisture, Flora & Springtails in Green Zones";
+        btn.innerText = "STABILIZE / START [SPACE]";
+        initEcoJar();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (['1', '2', '3', '4'].includes(e.key)) {
+        switchGame(parseInt(e.key) - 1);
+      } else if (e.code === 'Space') {
+        e.preventDefault();
+        handleArcadeAction();
+      }
+    });
+    canvas.addEventListener('click', handleArcadeAction);
+
+    function handleArcadeAction() {
+      if (currentGame === 0) actionRunner();
+      else if (currentGame === 1) actionReflex();
+      else if (currentGame === 2) actionZone();
+      else if (currentGame === 3) actionEco();
+    }
+
+    function initCyberRunner() {
+      runnerY = 170; runnerVy = 0; isGrounded = true;
+      runnerObstacles = [];
+      runnerSpeed = 5.2;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#059669';
+      ctx.fillRect(50, runnerY, 24, 36);
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.beginPath(); ctx.moveTo(0, 206); ctx.lineTo(canvas.width, 206); ctx.stroke();
+      ctx.fillStyle = '#0284c7'; ctx.font = '700 16px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("TAP OR PRESS SPACEBAR TO RUN", canvas.width / 2, 110);
+    }
+
+    function actionRunner() {
+      if (!isRunning) {
+        isRunning = true;
+        scores[0] = 0;
+        document.getElementById('gameScore').innerText = 0;
+        initCyberRunner();
+        requestAnimationFrame(loopRunner);
+        return;
+      }
+      if (isGrounded) {
+        runnerVy = -13.5;
+        isGrounded = false;
+      }
+    }
+
+    function loopRunner() {
+      if (!isRunning || currentGame !== 0) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.beginPath(); ctx.moveTo(0, 206); ctx.lineTo(canvas.width, 206); ctx.stroke();
+
+      runnerVy += 0.85;
+      runnerY += runnerVy;
+      if (runnerY >= 170) { runnerY = 170; runnerVy = 0; isGrounded = true; }
+
+      ctx.fillStyle = '#059669';
+      ctx.fillRect(50, runnerY, 24, 36);
+
+      if (Math.random() < 0.018 && runnerObstacles.length < 3) {
+        runnerObstacles.push({ x: canvas.width + 20, y: 174, w: 22, h: 32 });
+      }
+
+      for (let i = runnerObstacles.length - 1; i >= 0; i--) {
+        const obs = runnerObstacles[i];
+        obs.x -= runnerSpeed;
+        ctx.fillStyle = '#dc2626';
+        ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+
+        if (50 < obs.x + obs.w && 50 + 24 > obs.x && runnerY < obs.y + obs.h && runnerY + 36 > obs.y) {
+          isRunning = false;
+          ctx.fillStyle = '#dc2626'; ctx.font = '700 18px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText("PACKET INTERCEPTED! TAP TO RETRY", canvas.width / 2, 110);
+          return;
         }
 
-        // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            html.classList.toggle('light');
+        if (obs.x + obs.w < 0) {
+          runnerObstacles.splice(i, 1);
+          scores[0] += 10;
+          document.getElementById('gameScore').innerText = scores[0];
+          if (scores[0] > highScores[0]) {
+            highScores[0] = scores[0];
+            document.getElementById('gameHighScore').innerText = highScores[0];
+          }
+          runnerSpeed += 0.08;
         }
+      }
+      animId = requestAnimationFrame(loopRunner);
+    }
 
-        // Recruiter Executive Mode Toggle
-        let isExecutiveMode = false;
-        function toggleExecutiveMode() {
-            isExecutiveMode = !isExecutiveMode;
-            const btnText = document.getElementById('exec-mode-text');
-            const btn = document.getElementById('exec-mode-btn');
-            if (isExecutiveMode) {
-                btnText.innerText = "Executive Mode: ON";
-                btn.classList.add('bg-cyber-500', 'text-black', 'font-bold');
-                alert("Recruiter Executive Mode Activated: Simplified metrics and key career milestones highlighted.");
-            } else {
-                btnText.innerText = "Recruiter Mode";
-                btn.classList.remove('bg-cyber-500', 'text-black', 'font-bold');
-            }
-        }
+    function initCourtReflex() {
+      arcadeReflexState = 'idle';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'var(--card-bg)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 3;
+      ctx.strokeRect(40, 20, canvas.width - 80, canvas.height - 40);
+      ctx.beginPath(); ctx.moveTo(canvas.width / 2, 20); ctx.lineTo(canvas.width / 2, canvas.height - 20); ctx.stroke();
+      ctx.fillStyle = '#0284c7'; ctx.font = '700 16px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("PRESS STRIKE TO SERVE", canvas.width / 2, 125);
+    }
 
-        // Cyber Pet "Byte" Tips
-        const byteTips = [
-            "Always validate input parameters and enforce strict CSP headers to mitigate cross-site scripting risks.",
-            "Regular port scanning and Nessus audits help maintain robust perimeter defense hygiene.",
-            "ISO 27001 compliance requires continuous access reviews and strict role-based privilege management.",
-            "When performing VAPT, always verify false positives before compiling the final remediation report."
-        ];
-        function rotateByteTip() {
-            const randomTip = byteTips[Math.floor(Math.random() * byteTips.length)];
-            document.getElementById('byte-tip').innerText = `"${randomTip}"`;
-        }
+    function actionReflex() {
+      if (arcadeReflexState === 'idle' || arcadeReflexState === 'complete') {
+        arcadeReflexState = 'waiting';
+        ctx.fillStyle = '#fef2f2'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
+        ctx.fillStyle = '#dc2626'; ctx.font = '700 18px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText("WAIT FOR GREEN SWEET-SPOT...", canvas.width / 2, 125);
 
-        // Vulnerability Patch Simulator
-        function runVulnerabilityScan() {
-            document.getElementById('sim-state').innerText = "Status: Vulnerability Confirmed";
-            document.getElementById('sim-log').className = "p-3 bg-red-950/40 border border-red-900/50 rounded text-red-300";
-            document.getElementById('sim-log').innerHTML = "[CRITICAL] SQL Injection vector confirmed in parameter 'user_id' on endpoint /api/v1/auth.";
-            document.getElementById('patch-status-badge').className = "text-xs font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-400";
-            document.getElementById('patch-status-badge').innerText = "Vulnerable: Critical";
+        const delay = 1200 + Math.random() * 2500;
+        arcadeReflexTimer = setTimeout(() => {
+          arcadeReflexState = 'strike';
+          arcadeReflexStart = performance.now();
+          ctx.fillStyle = '#ecfdf5'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
+          ctx.fillStyle = '#059669'; ctx.font = '800 24px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText("SMASH NOW!", canvas.width / 2, 125);
+        }, delay);
+      } else if (arcadeReflexState === 'waiting') {
+        clearTimeout(arcadeReflexTimer);
+        arcadeReflexState = 'complete';
+        ctx.fillStyle = '#fef2f2'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
+        ctx.fillStyle = '#dc2626'; ctx.font = '700 18px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText("FAULT! EARLY STRIKE. TAP TO RESET", canvas.width / 2, 125);
+      } else if (arcadeReflexState === 'strike') {
+        const ms = Math.round(performance.now() - arcadeReflexStart);
+        arcadeReflexState = 'complete';
+        scores[1] = ms;
+        document.getElementById('gameScore').innerText = `${ms} ms`;
+        if (highScores[1] === 0 || ms < highScores[1]) {
+          highScores[1] = ms;
+          document.getElementById('gameHighScore').innerText = `${ms} ms`;
         }
-        function applyPatch() {
-            document.getElementById('sim-state').innerText = "Status: Fully Patched & Secured";
-            document.getElementById('sim-log').className = "p-3 bg-emerald-950/40 border border-emerald-900/50 rounded text-emerald-300";
-            document.getElementById('sim-log').innerHTML = "[SUCCESS] Parameterized queries enforced. Input sanitization middleware active. Threat mitigated.";
-            document.getElementById('patch-status-badge').className = "text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400";
-            document.getElementById('patch-status-badge').innerText = "Status: Secure";
-        }
+        ctx.fillStyle = '#ecfdf5'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
+        ctx.fillStyle = '#059669'; ctx.font = '700 20px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(`STEEP SMASH! Reaction: ${ms} ms`, canvas.width / 2, 125);
+      }
+    }
 
-        // Reflex Benchmarker
-        let reflexStartTime = 0;
-        let reflexTimeout = null;
-        let reflexState = 'idle'; // idle, waiting, ready, finished
-        function handleReflexClick() {
-            const box = document.getElementById('reflex-box');
-            const text = document.getElementById('reflex-text');
-            const result = document.getElementById('reflex-result');
+    function initZoneOps() {
+      targets = [];
+      waveTimer = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#0284c7'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(canvas.width / 2, canvas.height / 2, safeRadius, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = '#0284c7'; ctx.font = '700 16px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("TAP OR PRESS SPACE TO ACTIVATE PERIMETER", canvas.width / 2, canvas.height / 2 + 5);
+    }
 
-            if (reflexState === 'idle') {
-                reflexState = 'waiting';
-                box.className = "h-32 rounded-xl bg-amber-950/40 border border-amber-600/50 flex flex-col items-center justify-center cursor-pointer select-none transition";
-                text.innerText = "Wait for green...";
-                result.innerText = "-- ms";
-                
-                const randomDelay = Math.floor(Math.random() * 2000) + 1500;
-                reflexTimeout = setTimeout(() => {
-                    reflexState = 'ready';
-                    reflexStartTime = performance.now();
-                    box.className = "h-32 rounded-xl bg-emerald-950/60 border border-emerald-500 flex flex-col items-center justify-center cursor-pointer select-none transition";
-                    text.innerText = "CLICK NOW!";
-                }, randomDelay);
-            } else if (reflexState === 'waiting') {
-                clearTimeout(reflexTimeout);
-                reflexState = 'idle';
-                box.className = "h-32 rounded-xl bg-red-950/40 border border-red-600/50 flex flex-col items-center justify-center cursor-pointer select-none transition";
-                text.innerText = "Too early! Click to retry.";
-            } else if (reflexState === 'ready') {
-                const elapsed = Math.round(performance.now() - reflexStartTime);
-                reflexState = 'idle';
-                box.className = "h-32 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center cursor-pointer select-none transition";
-                text.innerText = "Click to Restart Test";
-                result.innerText = elapsed + " ms";
-            }
+    function actionZone() {
+      if (!isRunning) {
+        isRunning = true;
+        scores[2] = 0;
+        document.getElementById('gameScore').innerText = 0;
+        targets = [];
+        requestAnimationFrame(loopZone);
+        return;
+      }
+      if (targets.length > 0) {
+        targets.shift();
+        scores[2] += 15;
+        document.getElementById('gameScore').innerText = scores[2];
+        if (scores[2] > highScores[2]) {
+          highScores[2] = scores[2];
+          document.getElementById('gameHighScore').innerText = highScores[2];
         }
-        function resetReflex() {
-            clearTimeout(reflexTimeout);
-            reflexState = 'idle';
-            const box = document.getElementById('reflex-box');
-            box.className = "h-32 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center cursor-pointer select-none transition";
-            document.getElementById('reflex-text').innerText = "Click to Start Test";
-            document.getElementById('reflex-result').innerText = "-- ms";
-        }
+      }
+    }
 
-        // Terrarium Photoperiod Lighting
-        function setTerrariumLight(mode) {
-            const container = document.getElementById('terrarium-container');
-            const label = document.getElementById('terrarium-mode-label');
-            const title = document.getElementById('terrarium-tip-title');
-            const desc = document.getElementById('terrarium-tip-desc');
+    function loopZone() {
+      if (!isRunning || currentGame !== 2) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            if (mode === 'dawn') {
-                container.className = "h-64 rounded-xl bg-gradient-to-b from-amber-900/40 to-slate-950 border border-amber-500/30 p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-700";
-                label.innerText = "Mode: Dawn Spectrum (Soft Blue/Warm Red)";
-                title.innerText = "Horticultural Tip: Morning Photosynthesis";
-                desc.innerText = "Soft dawn spectrum triggers early stomatal opening without heat stress.";
-            } else if (mode === 'noon') {
-                container.className = "h-64 rounded-xl bg-gradient-to-b from-emerald-950/40 to-slate-950 border border-emerald-500/30 p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-700";
-                label.innerText = "Mode: Noon High-Intensity Spectrum";
-                title.innerText = "Horticultural Tip: Photoperiod Balance";
-                desc.innerText = "Providing 12-14 hours of calibrated full-spectrum LED light stimulates robust moss growth.";
-            } else if (mode === 'golden') {
-                container.className = "h-64 rounded-xl bg-gradient-to-b from-orange-950/40 to-slate-950 border border-orange-500/30 p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-700";
-                label.innerText = "Mode: Golden Hour Warm Glow";
-                title.innerText = "Horticultural Tip: Evening Transition";
-                desc.innerText = "Warm spectral shifting signals the cessation of active carbon fixation and prepares the ecosystem.";
-            } else if (mode === 'night') {
-                container.className = "h-64 rounded-xl bg-gradient-to-b from-indigo-950/60 to-slate-950 border border-indigo-500/30 p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-700";
-                label.innerText = "Mode: Night Dark Cycle (Moonlight Simulation)";
-                title.innerText = "Horticultural Tip: Cellular Respiration";
-                desc.innerText = "Total darkness allows springtails and microorganisms to process organic detritus uninterrupted.";
-            }
-        }
+      ctx.strokeStyle = '#0284c7'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(canvas.width / 2, canvas.height / 2, safeRadius, 0, Math.PI * 2); ctx.stroke();
 
-        // Bonsai Workshop Mechanics
-        function setBonsaiSeason(season) {
-            const seasonName = document.getElementById('season-name');
-            if (season === 'spring') seasonName.innerText = "Spring Flush";
-            else if (season === 'summer') seasonName.innerText = "Summer Pinching";
-            else if (season === 'autumn') seasonName.innerText = "Autumn Wiring";
-            else if (season === 'winter') seasonName.innerText = "Winter Dormancy";
-            alert("Bonsai seasonal maintenance phase updated to: " + seasonName.innerText);
-        }
+      waveTimer++;
+      if (waveTimer % 45 === 0 && targets.length < 5) {
+        const angle = Math.random() * Math.PI * 2;
+        targets.push({
+          x: canvas.width / 2 + Math.cos(angle) * 190,
+          y: canvas.height / 2 + Math.sin(angle) * 190,
+          angle: angle
+        });
+      }
 
-        let nebariExposed = true;
-        function toggleNebariInspection() {
-            nebariExposed = !nebariExposed;
-            document.getElementById('nebari-status').innerText = nebariExposed ? "Exposed & Radial (Stable)" : "Covered with Soil Top-Dressing";
-        }
+      for (let i = targets.length - 1; i >= 0; i--) {
+        const t = targets[i];
+        t.x -= Math.cos(t.angle) * 1.6;
+        t.y -= Math.sin(t.angle) * 1.6;
 
-        let sacrificeActive = true;
-        function toggleSacrificeBranch() {
-            sacrificeActive = !sacrificeActive;
-            document.getElementById('sacrifice-status').innerText = sacrificeActive ? "Growing Unchecked (Season 1)" : "Pruned Back to Pad (Taper Achieved)";
-            document.getElementById('sacrifice-desc').innerText = sacrificeActive ? "Allows lower trunk expansion before final pruning." : "Scar healing underway with master paste protection.";
-        }
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath(); ctx.arc(t.x, t.y, 8, 0, Math.PI * 2); ctx.fill();
 
-        // Clipboard Copy Helper
-        function copyToClipboard(text, btnElement) {
-            navigator.clipboard.writeText(text);
-            const originalText = btnElement.innerText;
-            btnElement.innerText = "Copied!";
-            setTimeout(() => btnElement.innerText = originalText, 2000);
+        const dist = Math.hypot(t.x - canvas.width / 2, t.y - canvas.height / 2);
+        if (dist <= safeRadius) {
+          isRunning = false;
+          ctx.fillStyle = '#dc2626'; ctx.font = '700 18px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText("PERIMETER BREACHED! TAP TO RESET", canvas.width / 2, canvas.height / 2 + 5);
+          return;
         }
+      }
+      animId = requestAnimationFrame(loopZone);
+    }
 
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            alert("Secure payload transmitted successfully. Thank you for your inquiry!");
-            e.target.reset();
-        }
-    </script>
+    function initEcoJar() {
+      ecoMoisture = 50; ecoFlora = 50; ecoSpringtails = 50; ecoSeconds = 30;
+      drawEcoJar();
+      ctx.fillStyle = '#065f46'; ctx.font = '700 16px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("TAP OR PRESS SPACE TO REGULATE ECOSYSTEM", canvas.width / 2, 220);
+    }
+
+    function drawEcoJar() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const bars = [
+        { label: "Moisture", val: ecoMoisture, color: "#0284c7" },
+        { label: "Flora Transpiration", val: ecoFlora, color: "#059669" },
+        { label: "Springtail Microfauna", val: ecoSpringtails, color: "#d97706" }
+      ];
+
+      bars.forEach((b, idx) => {
+        const y = 45 + idx * 52;
+        ctx.fillStyle = '#475569'; ctx.font = '700 13px sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText(b.label, 60, y - 8);
+
+        ctx.fillStyle = '#e2e8f0'; ctx.fillRect(60, y, 580, 16);
+        ctx.fillStyle = '#bbf7d0'; ctx.fillRect(250, y, 200, 16);
+
+        ctx.fillStyle = b.color;
+        const width = (b.val / 100) * 580;
+        ctx.fillRect(60, y, width, 16);
+      });
+    }
+
+    function actionEco() {
+      if (!isRunning) {
+        isRunning = true;
+        scores[3] = 0;
+        ecoSeconds = 30;
+        initEcoJar();
+        ecoInterval = setInterval(() => {
+          ecoSeconds--;
+          ecoMoisture += (Math.random() * 8 - 4);
+          ecoFlora += (Math.random() * 6 - 3);
+          ecoSpringtails += (Math.random() * 10 - 5);
+
+          ecoMoisture = Math.max(10, Math.min(95, ecoMoisture));
+          ecoFlora = Math.max(10, Math.min(95, ecoFlora));
+          ecoSpringtails = Math.max(10, Math.min(95, ecoSpringtails));
+
+          drawEcoJar();
+          ctx.fillStyle = '#065f46'; ctx.font = '700 14px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(`Equilibrium Stable: ${ecoSeconds}s Remaining`, canvas.width / 2, 220);
+
+          if (ecoSeconds <= 0) {
+            clearInterval(ecoInterval);
+            isRunning = false;
+            scores[3] = 100;
+            document.getElementById('gameScore').innerText = 100;
+            highScores[3] = 100;
+            document.getElementById('gameHighScore').innerText = 100;
+            ctx.fillStyle = '#059669'; ctx.font = '800 18px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText("ECOSYSTEM EQUILIBRIUM ACHIEVED!", canvas.width / 2, 220);
+          }
+        }, 1000);
+        return;
+      }
+      ecoMoisture = 50; ecoFlora = 50; ecoSpringtails = 50;
+      drawEcoJar();
+    }
+
+    window.addEventListener('load', () => { switchGame(0); });
+
+    // --- Modal Inspector ---
+    const modalData = {
+      mfa: { title: "Rule #01: Multi-Factor Authentication", tag: "ACCESS CONTROL", text: "Enforcing TOTP authenticator apps stops over 99% of automated credential stuffing attacks.", cmd: "" },
+      phishing: { title: "Rule #02: Phishing & URL Verification", tag: "SOCIAL ENGINEERING DEFENSE", text: "Inspect domain roots and certificate transparencies before entering sensitive credentials.", cmd: "" },
+      patching: { title: "Rule #03: Rapid Vulnerability Patching", tag: "THREAT MITIGATION", text: "Patch known CVEs within 24 to 72 hours of public disclosure.", cmd: "" },
+      public_wifi: { title: "Rule #04: Network Hardening", tag: "COMMUNICATIONS SECURITY", text: "Always tunnel untrusted network connections through WireGuard or OpenVPN.", cmd: "" },
+      least_privilege: { title: "Rule #05: Principle of Least Privilege", tag: "SYSTEM GOVERNANCE", text: "Users and background processes should only operate with minimal required permissions.", cmd: "" },
+      kali: { title: "Kali Linux Specialist", tag: "PENETRATION TESTING OS", text: "Primary auditing OS for network mapping and vulnerability verification.", cmd: "uname -r" },
+      metasploit: { title: "Metasploit Framework", tag: "EXPLOITATION ENGINE", text: "Modular platform used for penetration testing and verifying patch efficacy.", cmd: "msfconsole -q" },
+      nmap: { title: "Nmap", tag: "RECONNAISSANCE", text: "Industry benchmark for port audits and service fingerprinting.", cmd: "nmap -sC -sV 192.168.1.1" },
+      burp: { title: "Burp Suite", tag: "WEB APP VAPT", text: "Interception proxy tool applied to inspect HTTP requests and API contracts.", cmd: "burpsuite" },
+      wireshark: { title: "Wireshark", tag: "PACKET INSPECTION", text: "Deep packet analysis platform for inspecting raw network frames.", cmd: "tshark -i eth0" },
+      zap: { title: "OWASP ZAP", tag: "AUTOMATED SCANNING", text: "Automated vulnerability scanner for crawling modern web endpoints.", cmd: "zap.sh" },
+      iso: { title: "ISO/IEC 27001 Auditor", tag: "GLOBAL COMPLIANCE", text: "Certified understanding of ISMS controls, risk assessments, and policy enforcement.", cmd: "auditctl -l" },
+      isms: { title: "ISMS Audit Controls", tag: "GOVERNANCE", text: "Annex A governance spanning technological and physical security parameters.", cmd: "" },
+      gap_analysis: { title: "Gap Analysis & Risk Treatment", tag: "SECURITY STRATEGY", text: "Systematic auditing of enterprise defenses against formal compliance standards.", cmd: "" },
+      hardening: { title: "Server Hardening", tag: "DEFENSIVE ENGINEERING", text: "Disabling root logins, enforcing SSH keys, and minimizing attack surfaces.", cmd: "ufw status verbose" },
+      nginx: { title: "Nginx Security", tag: "REVERSE PROXY", text: "Configuring robust TLS terminations and defensive headers.", cmd: "nginx -t" },
+      python: { title: "Python for Security", tag: "AUTOMATION & ML", text: "Scripting custom threat analysis pipelines and machine learning classifiers.", cmd: "python3 -m venv venv" },
+      java: { title: "Core Java Development", tag: "SOFTWARE ARCHITECTURE", text: "Defensive OOP application design using Collections and robust exception handling.", cmd: "javac Main.java" },
+      bash: { title: "Bash Automation", tag: "SHELL SCRIPTING", text: "Automating scheduled security verification scripts and system auditing cron jobs.", cmd: "crontab -l" },
+      sql: { title: "SQL Security", tag: "DATA LAYER", text: "Auditing database queries against SQL injection flaws and verifying access logging.", cmd: "sqlmap -u 'target'" },
+      anomaly: { title: "Anomaly Detection", tag: "SECURITY ANALYTICS", text: "Identifying abnormal data exfiltration behaviors using statistical baselines.", cmd: "" },
+      proj_phishing: { title: "Phishing URL Detection Tool", tag: "PROJECT ARCHITECTURE", text: "Python and ML pipeline analyzing domain lexical metrics to detect phishing attempts.", cmd: "" },
+      proj_replica: { title: "Network Security Tool Replica", tag: "PROJECT ARCHITECTURE", text: "Virtualized testing environment simulating live network attacks.", cmd: "" },
+      all_sports: { title: "Badminton, Cricket & Volleyball", tag: "ATHLETICS", text: "Competitive court badminton, field cricket, and volleyball building stamina and agility.", cmd: "" },
+      esports: { title: "Free Fire MAX & BGMI", tag: "TACTICAL ESPORTS", text: "Strategic battle royale gameplay in Free Fire MAX and BGMI demanding rapid communication and squad rotations.", cmd: "" },
+      t_drainage: { title: "Base Drainage Horizon", tag: "HYDROLOGICAL BALANCE", text: "Collects gravitational moisture runoff, preventing roots from drowning in standing water.", cmd: "" },
+      t_substrate: { title: "Bioactive Substrate Horizon", tag: "ORGANIC MEDIA", text: "Rich, aerated substrate bed retaining essential micro-nutrients and sustaining microbes.", cmd: "" },
+      t_springtails: { title: "Springtails (Collembola)", tag: "BIOACTIVE JANITORS", text: "Micro-arthropods feeding continuously on decaying leaf litter and fungal mold spores.", cmd: "" },
+      t_rock: { title: "River Stone Hardscape", tag: "MINERAL FOUNDATION", text: "Dense, smooth river stones providing structural terracing and microfauna crevices.", cmd: "" },
+      t_ficus: { title: "Cushion & Fern Moss Canopy", tag: "ACTIVE PHOTOSYNTHESIS", text: "Dense green moss mats cycling atmospheric humidity through daylight transpiration.", cmd: "" }
+    };
+
+    function openExplain(key) {
+      const item = modalData[key] || { title: "Information", tag: "OVERVIEW", text: "Detailed documentation available on request.", cmd: "" };
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalTag').textContent = item.tag;
+      document.getElementById('modalText').textContent = item.text;
+
+      const cmdWrapper = document.getElementById('modalCmdWrapper');
+      if (item.cmd) {
+        cmdWrapper.style.display = 'block';
+        document.getElementById('modalCmdText').textContent = item.cmd;
+      } else {
+        cmdWrapper.style.display = 'none';
+      }
+
+      document.getElementById('explainModal').style.display = 'flex';
+    }
+
+    function copyCmdSyntax() {
+      const cmd = document.getElementById('modalCmdText').textContent;
+      navigator.clipboard.writeText(cmd);
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'explainModal') forceCloseModal();
+    }
+
+    function forceCloseModal() {
+      document.getElementById('explainModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') forceCloseModal();
+    });
+  </script>
 </body>
 </html>
