@@ -642,7 +642,54 @@
       font-weight: 600;
     }
 
-    /* NATURE SANCTUARY SECTION */
+    /* NEW ADDITION: Idea 2 - Interactive Risk Assessment Matrix */
+    .risk-matrix-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      margin-top: 1.5rem;
+    }
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+    .risk-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .risk-card:hover {
+      border-color: var(--cyber-blue);
+      transform: translateY(-2px);
+    }
+
+    /* NEW ADDITION: Idea 3 - Pomodoro Focus Timer */
+    .pomodoro-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .timer-display {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--cyber-blue);
+    }
+
+    /* LIVING SYSTEMS & NATURE SANCTUARY */
     .sanctuary-box {
       background: #f0fdf4;
       border: 1px solid var(--border-green);
@@ -1123,7 +1170,7 @@
       align-items: center;
     }
 
-    /* Interactive Cyber Pet ("Byte") Styling */
+    /* Cyber Pet ("Byte") Styling */
     #cyberPet {
       position: fixed;
       bottom: 20px;
@@ -1134,31 +1181,41 @@
       cursor: pointer;
       user-select: none;
       filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-      transition: transform 0.1s ease;
+      transition: transform 0.15s ease;
     }
     #cyberPet:hover {
-      transform: scale(1.15);
+      transform: scale(1.1);
+    }
+    .pet-speech {
+      position: fixed;
+      bottom: 85px;
+      left: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--cyber-blue);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: var(--text);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 99999;
+      max-width: 220px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Success Particle Burst Canvas Overlay -->
-  <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 999999;"></canvas>
-
-  <!-- Interactive Wandering Cyber Pet ("Byte") -->
-  <div id="cyberPet" title="Byte the Cyber Hacker Pet! Click to scamper!" onclick="scarePet()">
+  <!-- Cyber Pet ("Byte") Mascot -->
+  <div id="cyberPet" title="Click Byte for a Cybersecurity Tip!" onclick="petSurprise()">
     <svg viewBox="0 0 64 64" width="56" height="56">
-      <!-- Hooded Body -->
       <path d="M32 10 C20 10 14 20 14 32 C14 44 20 54 32 54 C44 54 50 44 50 32 C50 20 44 10 32 10 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-      <!-- Glowing Visor / Eyes -->
       <rect x="20" y="26" width="24" height="6" rx="3" fill="#34d399" />
       <circle cx="26" cy="29" r="1.5" fill="#0f172a" />
       <circle cx="38" cy="29" r="1.5" fill="#0f172a" />
-      <!-- Terminal Binary Code Spark -->
       <text x="22" y="44" fill="#38bdf8" font-size="8" font-family="monospace">10</text>
     </svg>
   </div>
+  <div id="petSpeech" class="pet-speech">"Byte says: Always use PreparedStatements!"</div>
 
   <!-- Native Audio Streams (Rain & Cyber Hum) -->
   <audio id="audioRain" loop preload="none">
@@ -1379,7 +1436,40 @@
         </div>
       </div>
 
-      <!-- Hacker vs Defender Split Screen (Idea 2) -->
+      <!-- NEW ADDITION (Idea 2): Interactive ISO 27001 Risk Assessment Matrix -->
+      <div class="risk-matrix-box">
+        <h3 style="font-size: 1.1rem; color: var(--cyber-blue); margin-bottom: 0.35rem;">🛡️ ISO 27001 Risk Assessment Matrix</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Click a threat scenario below to calculate its risk score and review treatment controls.</p>
+        <div class="risk-grid">
+          <div class="risk-card" onclick="evalRisk('SQLi', 'High (16)', 'Mandatory PreparedStatement & WAF Rule')">
+            <strong style="color: var(--alert-red); font-size: 0.9rem;">SQL Injection</strong>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Likelihood: High | Impact: Critical</p>
+          </div>
+          <div class="risk-card" onclick="evalRisk('Missing MFA', 'High (15)', 'Enforce TOTP / Hardware Tokens')">
+            <strong style="color: var(--alert-amber); font-size: 0.9rem;">Credential Stuffing</strong>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Likelihood: Med | Impact: High</p>
+          </div>
+          <div class="risk-card" onclick="evalRisk('Outdated Kernel', 'Critical (20)', 'Automated Patch Management Schedule')">
+            <strong style="color: var(--alert-red); font-size: 0.9rem;">Unpatched CVEs</strong>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Likelihood: High | Impact: Critical</p>
+          </div>
+        </div>
+        <div id="riskFeedback" style="margin-top: 0.85rem; font-size: 0.85rem; font-weight: 600; color: var(--nature-green); min-height: 20px;"></div>
+      </div>
+
+      <!-- NEW ADDITION (Idea 3): Pomodoro Focus & Productivity Timer -->
+      <div class="pomodoro-box">
+        <div>
+          <h3 style="font-size: 1.05rem; color: var(--cyber-blue); margin-bottom: 0.25rem;">⏱️ Security Focus Timer (Pomodoro)</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Stay focused while auditing code or reviewing infrastructure logs.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div class="timer-display" id="pomodoroTimer">25:00</div>
+          <button class="btn btn-primary" onclick="togglePomodoro()" id="pomodoroBtn">Start Timer</button>
+        </div>
+      </div>
+
+      <!-- Hacker vs Defender Split Screen -->
       <div class="split-screen-box">
         <h3 style="font-size: 1.1rem; color: var(--cyber-blue); margin-bottom: 0.35rem;">⚔️ Hacker vs. Defender Matrix</h3>
         <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">Direct comparison of adversarial exploitation vectors versus robust defensive hardening controls.</p>
@@ -1675,12 +1765,11 @@
       </div>
     </section>
 
-    <!-- Athletics & Gaming Section (Enhanced with Motivational Quotes) -->
+    <!-- Athletics & Gaming Section -->
     <section>
       <h2 class="section-head nature">Athletics & Competitive Gaming</h2>
       <p class="section-hint">Court stamina, reflex agility, and tactical team communication</p>
       
-      <!-- Motivational Quotes Banner -->
       <div class="cards-grid" style="margin-bottom: 1.25rem; grid-template-columns: 1fr 1fr;">
         <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; border-left: 4px solid var(--nature-green);">
           <div style="font-size: 0.75rem; font-weight: 700; color: var(--nature-green); margin-bottom: 0.3rem;">OUTDOOR SPORTS MINDSET</div>
@@ -1730,7 +1819,7 @@
       <h2 class="section-head tech">Secure Transmission & Direct Contact</h2>
       <p class="section-hint">Send an encrypted inquiry directly to Ranju K W</p>
       <div class="contact-box">
-        <form action="https://formspree.io/f/kwranju@gmail.com" method="POST" class="contact-grid" onsubmit="triggerParticleBurst()">
+        <form action="https://formspree.io/f/kwranju@gmail.com" method="POST" class="contact-grid">
           <div class="form-group">
             <label>YOUR NAME</label>
             <input type="text" name="name" required class="form-input" placeholder="e.g. Jordan Reed" />
@@ -1784,36 +1873,60 @@
   </div>
 
   <script>
-    // --- Interactive Cyber Pet ("Byte") Wandering & Scared Mechanics ---
-    const pet = document.getElementById('cyberPet');
-    let petX = 20, petY = window.innerHeight - 80;
-    let targetX = petX, targetY = petY;
-
-    function movePetRandomly() {
-      targetX = Math.random() * (window.innerWidth - 80);
-      targetY = window.innerHeight - 100 - Math.random() * 200;
-    }
-    setInterval(movePetRandomly, 5000);
-
-    function updatePetPosition() {
-      petX += (targetX - petX) * 0.05;
-      petY += (targetY - petY) * 0.05;
-      pet.style.left = `${petX}px`;
-      pet.style.top = `${petY}px`;
-      requestAnimationFrame(updatePetPosition);
-    }
-    updatePetPosition();
-
-    function scarePet() {
-      // Scamper away rapidly across screen when clicked!
-      targetX = Math.random() * (window.innerWidth - 100);
-      targetY = Math.random() * (window.innerHeight - 150);
-      pet.style.transform = "scale(1.3) rotate(15deg)";
-      setTimeout(() => { pet.style.transform = "scale(1) rotate(0deg)"; }, 400);
-      triggerParticleBurst();
+    // --- Cyber Pet ("Byte") Surprise Interaction ---
+    const petTips = [
+      "Byte says: Always validate and sanitize user inputs!",
+      "Byte says: Keep your Kali Linux tools updated!",
+      "Byte says: ISO 27001 Annex A controls protect data integrity.",
+      "Byte says: Never reuse passwords across enterprise accounts!",
+      "Byte says: Take a break and check on your bonsai trees!"
+    ];
+    function petSurprise() {
+      const speech = document.getElementById('petSpeech');
+      const randomTip = petTips[Math.floor(Math.random() * petTips.length)];
+      speech.textContent = randomTip;
+      speech.style.display = 'block';
+      setTimeout(() => { speech.style.display = 'none'; }, 4000);
     }
 
-    // --- Dark / Light Mode Theme Toggle (Idea 10) ---
+    // --- Idea 2: Risk Assessment Matrix Evaluation ---
+    function evalRisk(threat, score, control) {
+      const fb = document.getElementById('riskFeedback');
+      fb.textContent = `Evaluated [${threat}] ➔ Risk Score: ${score}. Treatment Control: ${control}`;
+    }
+
+    // --- Idea 3: Pomodoro Focus Timer ---
+    let timerInterval = null;
+    let timerSeconds = 25 * 60;
+    let isTimerRunning = false;
+    function togglePomodoro() {
+      const btn = document.getElementById('pomodoroBtn');
+      const display = document.getElementById('pomodoroTimer');
+      if (!isTimerRunning) {
+        isTimerRunning = true;
+        btn.textContent = "Pause";
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) {
+            timerSeconds--;
+            let m = Math.floor(timerSeconds / 60);
+            let s = timerSeconds % 60;
+            display.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+          } else {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            btn.textContent = "Start Timer";
+            alert("Pomodoro session completed! Take a short break.");
+            timerSeconds = 25 * 60;
+          }
+        }, 1000);
+      } else {
+        isTimerRunning = false;
+        clearInterval(timerInterval);
+        btn.textContent = "Resume";
+      }
+    }
+
+    // --- Dark / Light Mode Theme Toggle ---
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
       const isDark = document.body.classList.contains('dark-mode');
@@ -1825,68 +1938,6 @@
         document.body.classList.add('dark-mode');
       }
     });
-
-    // --- Success Particle Burst Engine ---
-    const pCanvas = document.getElementById('particleCanvas');
-    const pCtx = pCanvas.getContext('2d');
-    let particles = [];
-
-    function resizeParticleCanvas() {
-      pCanvas.width = window.innerWidth;
-      pCanvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeParticleCanvas);
-    resizeParticleCanvas();
-
-    function triggerParticleBurst() {
-      const colors = ['#059669', '#0284c7', '#38bdf8', '#34d399', '#f59e0b'];
-      for (let i = 0; i < 45; i++) {
-        particles.push({
-          x: window.innerWidth / 2,
-          y: window.innerHeight / 2,
-          vx: (Math.random() - 0.5) * 12,
-          vy: (Math.random() - 0.5) * 12 - 3,
-          radius: Math.random() * 4 + 2,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          alpha: 1,
-          decay: Math.random() * 0.02 + 0.015
-        });
-      }
-      if (!animatingParticles) animateParticles();
-    }
-
-    let animatingParticles = false;
-    function animateParticles() {
-      animatingParticles = true;
-      pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-
-      for (let i = particles.length - 1; i >= 0; i--) {
-        let p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.35;
-        p.alpha -= p.decay;
-
-        if (p.alpha <= 0) {
-          particles.splice(i, 1);
-          continue;
-        }
-
-        pCtx.save();
-        pCtx.globalAlpha = p.alpha;
-        pCtx.fillStyle = p.color;
-        pCtx.beginPath();
-        pCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        pCtx.fill();
-        pCtx.restore();
-      }
-
-      if (particles.length > 0) {
-        requestAnimationFrame(animateParticles);
-      } else {
-        animatingParticles = false;
-      }
-    }
 
     // --- Vulnerability Patch Simulator ---
     function applyVulnerabilityPatch() {
@@ -1907,7 +1958,6 @@
       badge.style.borderColor = "#a7f3d0";
       feedback.textContent = "✔ SQL Injection vector neutralized successfully!";
       btn.style.display = 'none';
-      triggerParticleBurst();
     }
 
     // --- Live Bonsai Styling Workshop ---
@@ -1928,7 +1978,6 @@
         feedback.textContent = "✔ Surface soil brushed away. Radial root flare (nebari) exposed!";
         status.textContent = "Exhibition Ready";
       }
-      triggerParticleBurst();
     }
 
     // --- One-Click Email Copy ---
@@ -2074,7 +2123,6 @@
         document.getElementById('quizScore').textContent = `Score: ${quizScore}/${quizData.length}`;
         feedback.style.color = "var(--nature-green)";
         feedback.textContent = explain;
-        triggerParticleBurst();
       } else {
         btn.classList.add('wrong');
         feedback.style.color = "var(--alert-red)";
@@ -2396,7 +2444,6 @@
         ctx.fillStyle = '#ecfdf5'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
         ctx.fillStyle = '#059669'; ctx.font = '700 20px sans-serif'; ctx.textAlign = 'center';
         ctx.fillText(`STEEP SMASH! Reaction: ${ms} ms`, canvas.width / 2, 125);
-        triggerParticleBurst();
       }
     }
 
@@ -2524,7 +2571,6 @@
             document.getElementById('gameHighScore').innerText = 100;
             ctx.fillStyle = '#059669'; ctx.font = '800 18px sans-serif'; ctx.textAlign = 'center';
             ctx.fillText("ECOSYSTEM EQUILIBRIUM ACHIEVED!", canvas.width / 2, 220);
-            triggerParticleBurst();
           }
         }, 1000);
         return;
