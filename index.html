@@ -81,6 +81,7 @@
       align-items: center;
       gap: 0.75rem;
       flex-wrap: wrap;
+      position: relative;
     }
 
     .status-badge {
@@ -117,6 +118,81 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      position: relative;
+    }
+
+    #liveDate {
+      cursor: pointer;
+      text-decoration: underline dotted;
+    }
+    #liveDate:hover { color: var(--nature-green); }
+
+    /* Interactive Calendar Popup */
+    .calendar-popup {
+      position: absolute;
+      top: 38px;
+      left: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 99999;
+      width: 260px;
+      font-family: var(--font-main);
+    }
+    .cal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .cal-day-header {
+      font-weight: 700;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding-bottom: 4px;
+    }
+    .cal-cell {
+      padding: 6px 0;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .cal-cell:hover {
+      background: var(--cyber-blue-soft);
+      color: var(--cyber-blue);
+    }
+    .cal-cell.today {
+      background: var(--nature-green);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Network Ping Monitor Badge */
+    .ping-badge {
+      background: var(--nature-green-soft);
+      border: 1px solid var(--border-green);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      color: var(--nature-green);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     .audio-wave {
@@ -131,7 +207,7 @@
       50% { opacity: 1; }
     }
 
-    .audio-btn, .theme-btn {
+    .audio-btn, .theme-btn, .recruiter-toggle-btn {
       background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text-muted);
@@ -142,7 +218,14 @@
       font-weight: 500;
       transition: all 0.2s;
     }
-    .audio-btn:hover, .theme-btn:hover { color: var(--text); border-color: var(--cyber-blue); }
+    .audio-btn:hover, .theme-btn:hover, .recruiter-toggle-btn:hover { color: var(--text); border-color: var(--cyber-blue); }
+    .recruiter-toggle-btn.active {
+      background: var(--cyber-blue-soft);
+      border-color: var(--cyber-blue);
+      color: var(--cyber-blue);
+      font-weight: 700;
+    }
+
     .audio-btn.active-nature {
       background: var(--nature-green-soft);
       border-color: var(--nature-green);
@@ -210,6 +293,28 @@
       max-width: 640px;
       line-height: 1.65;
     }
+
+    /* Recruiter Snapshot Box (Toggled) */
+    .recruiter-snapshot {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-blue);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .recruiter-snapshot h4 {
+      color: var(--cyber-blue);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .recruiter-snapshot ul {
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .recruiter-snapshot li { margin-bottom: 0.3rem; }
 
     .hero-actions {
       display: flex;
@@ -642,53 +747,6 @@
       font-weight: 600;
     }
 
-    /* NEW ADDITION: Idea 2 - Interactive Risk Assessment Matrix */
-    .risk-matrix-box {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.35rem;
-      margin-top: 1.5rem;
-    }
-    .risk-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.85rem;
-      margin-top: 1rem;
-    }
-    .risk-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .risk-card:hover {
-      border-color: var(--cyber-blue);
-      transform: translateY(-2px);
-    }
-
-    /* NEW ADDITION: Idea 3 - Pomodoro Focus Timer */
-    .pomodoro-box {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.35rem;
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .timer-display {
-      font-family: var(--font-mono);
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--cyber-blue);
-    }
-
     /* LIVING SYSTEMS & NATURE SANCTUARY */
     .sanctuary-box {
       background: #f0fdf4;
@@ -754,7 +812,7 @@
       line-height: 1.45;
     }
 
-    /* Strictly Confined Inside-the-Jar Optical Viewer */
+    /* Upgraded Realistic Terrarium Optical Viewer */
     .photo-viewport-wrap {
       position: relative;
       width: 100%;
@@ -783,8 +841,21 @@
       border-radius: 42% 42% 18% 18% / 28% 28% 12% 12%;
       pointer-events: none;
       overflow: hidden;
-      mix-blend-mode: hard-light;
-      transition: background 0.4s ease;
+      mix-blend-mode: overlay;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    /* Glass Specular Gloss Highlight Sweep */
+    .glass-specular {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: skewX(-20deg);
+      pointer-events: none;
+      transition: left 0.6s ease;
     }
 
     .internal-mist {
@@ -946,6 +1017,39 @@
       line-height: 1.5;
     }
 
+    /* Bonsai Wire / Style Guide Hover Tooltip Styles */
+    .style-guide-tips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .tip-pill {
+      font-size: 0.75rem;
+      background: var(--nature-green-soft);
+      border: 1px solid var(--border-green);
+      color: var(--nature-dark);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      cursor: help;
+      position: relative;
+    }
+    .tip-pill:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 100;
+      pointer-events: none;
+    }
+
     /* 4-Game Arcade Hub */
     .arcade-box {
       background: var(--bg-alt);
@@ -1028,6 +1132,29 @@
       font-size: 0.82rem;
       color: var(--text-muted);
     }
+
+    /* Athletics & Competitive Gaming Interactive Widgets */
+    .athletics-widget-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .reflex-arena {
+      background: var(--bg-alt);
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 0.75rem;
+      transition: background 0.2s;
+    }
+    .reflex-arena.waiting { background: #fef2f2; border-color: #fca5a5; }
+    .reflex-arena.ready { background: #ecfdf5; border-color: #34d399; }
 
     /* Direct Contact Form */
     .contact-box {
@@ -1235,12 +1362,27 @@
           <span class="pulse"></span>
           <span>Security Hardened & Active</span>
         </div>
-        <div class="clock-badge">
-          <span id="liveDate">Loading date...</span> | <span id="liveClock">00:00:00</span> IST
+        <div class="clock-badge" style="position: relative;">
+          <span id="liveDate" onclick="toggleCalendarPopup(event)">Loading date...</span> | <span id="liveClock">00:00:00</span> IST
           <span id="audioWave" class="audio-wave">(( ılı.lıllılı. ))</span>
+
+          <!-- Interactive Calendar Popup -->
+          <div id="calendarPopup" class="calendar-popup" onclick="event.stopPropagation()">
+            <div class="cal-header">
+              <span id="calMonthYear">November 2026</span>
+              <span style="cursor: pointer;" onclick="closeCalendarPopup()">&times;</span>
+            </div>
+            <div class="cal-grid" id="calGridContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+        <div class="ping-badge" id="pingBadge">
+          <span>📶 Ping: 22ms</span>
         </div>
       </div>
       <div class="top-right">
+        <button class="recruiter-toggle-btn" id="recruiterToggleBtn" onclick="toggleRecruiterMode()">⚡ Recruiter View</button>
         <button class="theme-btn" onclick="toggleTheme()" id="themeToggleBtn">🌓 Theme Mode</button>
         <button class="audio-btn" id="btnAudioRain" onclick="setAtmosphere('rain')">🌧 Sanctuary Rain</button>
         <button class="audio-btn" id="btnAudioCyber" onclick="setAtmosphere('cyber')">🌐 Cyber Hum</button>
@@ -1254,6 +1396,18 @@
         <div class="role-badge">CYBERSECURITY SPECIALIST & ISO/IEC 27001 AUDITOR</div>
         <h1>Ranju K W</h1>
         <p class="tagline">Penetration Tester | Cyber Forensics | Web Application VAPT</p>
+        
+        <!-- Recruiter Executive Snapshot (Toggleable) -->
+        <div class="recruiter-snapshot" id="recruiterSnapshotBox">
+          <h4>⚡ Recruiter Executive Snapshot (30-Sec Summary)</h4>
+          <ul>
+            <li><strong>Role:</strong> Cybersecurity Specialist & ISO 27001 Auditor at Ayu Devices.</li>
+            <li><strong>Core Expertise:</strong> Web VAPT, Nginx Server Hardening, Kali Linux, Python & Java.</li>
+            <li><strong>Education:</strong> B.Tech in Cybersecurity & Cyber Forensics (Srinivas University, 2025).</li>
+            <li><strong>Highlights:</strong> Built phishing detection ML tools, automated security audit scripts, and active in competitive esports & botanical bonsai.</li>
+          </ul>
+        </div>
+
         <p class="bio">
           Cybersecurity & Cyber Forensics graduate with practical expertise in web vulnerability assessments (VAPT), production server hardening, and ISO/IEC 27001 compliance auditing. Based in Chikkamagaluru, Karnataka.
         </p>
@@ -1436,39 +1590,6 @@
         </div>
       </div>
 
-      <!-- NEW ADDITION (Idea 2): Interactive ISO 27001 Risk Assessment Matrix -->
-      <div class="risk-matrix-box">
-        <h3 style="font-size: 1.1rem; color: var(--cyber-blue); margin-bottom: 0.35rem;">🛡️ ISO 27001 Risk Assessment Matrix</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">Click a threat scenario below to calculate its risk score and review treatment controls.</p>
-        <div class="risk-grid">
-          <div class="risk-card" onclick="evalRisk('SQLi', 'High (16)', 'Mandatory PreparedStatement & WAF Rule')">
-            <strong style="color: var(--alert-red); font-size: 0.9rem;">SQL Injection</strong>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Likelihood: High | Impact: Critical</p>
-          </div>
-          <div class="risk-card" onclick="evalRisk('Missing MFA', 'High (15)', 'Enforce TOTP / Hardware Tokens')">
-            <strong style="color: var(--alert-amber); font-size: 0.9rem;">Credential Stuffing</strong>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Likelihood: Med | Impact: High</p>
-          </div>
-          <div class="risk-card" onclick="evalRisk('Outdated Kernel', 'Critical (20)', 'Automated Patch Management Schedule')">
-            <strong style="color: var(--alert-red); font-size: 0.9rem;">Unpatched CVEs</strong>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Likelihood: High | Impact: Critical</p>
-          </div>
-        </div>
-        <div id="riskFeedback" style="margin-top: 0.85rem; font-size: 0.85rem; font-weight: 600; color: var(--nature-green); min-height: 20px;"></div>
-      </div>
-
-      <!-- NEW ADDITION (Idea 3): Pomodoro Focus & Productivity Timer -->
-      <div class="pomodoro-box">
-        <div>
-          <h3 style="font-size: 1.05rem; color: var(--cyber-blue); margin-bottom: 0.25rem;">⏱️ Security Focus Timer (Pomodoro)</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Stay focused while auditing code or reviewing infrastructure logs.</p>
-        </div>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <div class="timer-display" id="pomodoroTimer">25:00</div>
-          <button class="btn btn-primary" onclick="togglePomodoro()" id="pomodoroBtn">Start Timer</button>
-        </div>
-      </div>
-
       <!-- Hacker vs Defender Split Screen -->
       <div class="split-screen-box">
         <h3 style="font-size: 1.1rem; color: var(--cyber-blue); margin-bottom: 0.35rem;">⚔️ Hacker vs. Defender Matrix</h3>
@@ -1603,7 +1724,7 @@
       </div>
 
       <div class="dual-nature-grid">
-        <!-- Inside-the-Jar Bioactive Terrarium Simulator -->
+        <!-- Upgraded Realistic Terrarium Optical Explorer -->
         <div class="feature-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
             <h3 style="font-size: 1.15rem; color: var(--nature-dark);">Bioactive Terrarium Optical Explorer</h3>
@@ -1622,8 +1743,9 @@
               id="jarPhotoImg"
             />
 
-            <!-- Strictly Confined Inside-the-Glass Chamber Overlay Mask -->
+            <!-- Upgraded Glass Chamber Overlay with Realistic Light Transitions & Specular Highlight -->
             <div class="jar-chamber-overlay" id="jarChamber">
+              <div class="glass-specular" id="glassSpecular"></div>
               <div class="internal-mist" id="internalMist"></div>
             </div>
 
@@ -1635,7 +1757,7 @@
             <div class="inspect-pin" style="top: 86%; left: 50%;" onclick="openExplain('t_drainage')">5<div class="pin-pulse"></div></div>
           </div>
 
-          <!-- Inside-the-Jar Controls & Micro-Climate Telemetry -->
+          <!-- Realistic Photoperiod Controls & Micro-Climate Telemetry -->
           <div class="sim-controls-wrap">
             <div class="control-row">
               <span>Photoperiod Lighting:</span>
@@ -1644,11 +1766,11 @@
                 id="lightSlider" 
                 min="0" 
                 max="100" 
-                value="75" 
+                value="50" 
                 style="flex: 1; accent-color: var(--alert-amber);"
-                oninput="updateJarLighting(this.value)"
+                oninput="updateRealisticJarLighting(this.value)"
               />
-              <span id="lightLabel" style="min-width: 90px; text-align: right; color: var(--nature-green); font-weight:700;">Bright Daylight</span>
+              <span id="lightLabel" style="min-width: 110px; text-align: right; color: var(--alert-amber); font-weight:700;">Noon / Daylight</span>
             </div>
 
             <div class="control-row">
@@ -1665,7 +1787,7 @@
           </div>
         </div>
 
-        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression -->
+        <!-- Dual-Species Discrete 0 to 2 Year Bonsai Progression with Style Guide Hover Tips -->
         <div class="feature-card">
           <h3 style="font-size: 1.15rem; color: var(--nature-dark); margin-bottom: 0.35rem;">Dual-Species Bonsai Progression (0–2 Yrs)</h3>
           <p class="module-quote">"A bonsai does not conquer time; it yields to it. Through every wired branch and guided root, patience shapes what force could never master."</p>
@@ -1701,7 +1823,14 @@
             <strong>Stage 5 (Month 24 / 2 Years — Exhibition Maturity):</strong> Mature cultivated bonsai. Repotted into glazed ceramic stoneware dishes with exposed surface nebari and refined foliage silhouettes.
           </div>
 
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <!-- Style Guide & Wire Progression Hover Tooltips -->
+          <div class="style-guide-tips">
+            <span class="tip-pill" data-tooltip="Set at 45° angle to prevent branch bark scarring">⚡ Copper Wiring Guide</span>
+            <span class="tip-pill" data-tooltip="Prune back to 2 healthy leaf nodes to encourage ramification">✂ Canopy Pruning</span>
+            <span class="tip-pill" data-tooltip="Gradually brush topsoil annually to reveal radial root flare">💧 Nebari Exposure</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem;">
             <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">0 Mo</span>
             <input 
               type="range" 
@@ -1719,7 +1848,7 @@
             Timeline: 24 Months (2-Year Mature Specimen)
           </div>
 
-          <!-- Live Bonsai Styling Workshop Micro-Widget -->
+          <!-- Fixed Live Bonsai Styling Workshop Micro-Widget -->
           <div style="margin-top: 1rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
               <strong style="font-size: 0.85rem; color: var(--nature-dark);">🌿 Live Bonsai Styling Workshop</strong>
@@ -1765,7 +1894,7 @@
       </div>
     </section>
 
-    <!-- Athletics & Gaming Section -->
+    <!-- Athletics & Competitive Gaming Section (With Ideas 1, 2, and 3) -->
     <section>
       <h2 class="section-head nature">Athletics & Competitive Gaming</h2>
       <p class="section-hint">Court stamina, reflex agility, and tactical team communication</p>
@@ -1809,6 +1938,35 @@
             <span class="pill pill-green">Free Fire MAX</span>
             <span class="pill pill-green">BGMI</span>
             <span class="pill pill-green">Squad Rotation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Athletics Interactive Addition 1, 2, and 3 -->
+      <div class="athletics-widget-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <h3 style="font-size: 1.05rem; color: var(--nature-dark);">⚡ Court & Esports Agility Benchmarker (Idea 1)</h3>
+          <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--nature-green);" id="reflexScoreDisplay">Best: -- ms</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Test your hand-eye coordination speed (crucial for badminton returns & esports crosshair flicks).
+        </p>
+        <div class="reflex-arena" id="reflexArenaBox" onclick="triggerReflexTest()">
+          <span id="reflexArenaText" style="font-weight: 700; color: var(--text);">Click Here to Start Reflex Test</span>
+        </div>
+
+        <div style="margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <strong style="font-size: 0.88rem; color: var(--cyber-blue);">🗺️ Tactical Zone & Squad Rotation (Idea 2)</strong>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              Phase 1: Safe Drop Zone ➔ Phase 2: Loot Optimization & Comms ➔ Phase 3: Final Circle Positioning & Crossfire Control.
+            </p>
+          </div>
+          <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <strong style="font-size: 0.88rem; color: var(--nature-dark);">📊 Agility vs. Strategy Stat Grid (Idea 3)</strong>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem;">
+              Court Stamina: 95% | Badminton Smash Velocity: High | Map Awareness: 98% | Clutch Decision Speed: &lt;180ms.
+            </p>
           </div>
         </div>
       </div>
@@ -1889,40 +2047,69 @@
       setTimeout(() => { speech.style.display = 'none'; }, 4000);
     }
 
-    // --- Idea 2: Risk Assessment Matrix Evaluation ---
-    function evalRisk(threat, score, control) {
-      const fb = document.getElementById('riskFeedback');
-      fb.textContent = `Evaluated [${threat}] ➔ Risk Score: ${score}. Treatment Control: ${control}`;
+    // --- One-Click Recruiter Mode Toggle ---
+    function toggleRecruiterMode() {
+      const box = document.getElementById('recruiterSnapshotBox');
+      const btn = document.getElementById('recruiterToggleBtn');
+      if (box.style.display === 'block') {
+        box.style.display = 'none';
+        btn.classList.remove('active');
+        btn.textContent = "⚡ Recruiter View";
+      } else {
+        box.style.display = 'block';
+        btn.classList.add('active');
+        btn.textContent = "🛡️ Technical View";
+      }
     }
 
-    // --- Idea 3: Pomodoro Focus Timer ---
-    let timerInterval = null;
-    let timerSeconds = 25 * 60;
-    let isTimerRunning = false;
-    function togglePomodoro() {
-      const btn = document.getElementById('pomodoroBtn');
-      const display = document.getElementById('pomodoroTimer');
-      if (!isTimerRunning) {
-        isTimerRunning = true;
-        btn.textContent = "Pause";
-        timerInterval = setInterval(() => {
-          if (timerSeconds > 0) {
-            timerSeconds--;
-            let m = Math.floor(timerSeconds / 60);
-            let s = timerSeconds % 60;
-            display.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-          } else {
-            clearInterval(timerInterval);
-            isTimerRunning = false;
-            btn.textContent = "Start Timer";
-            alert("Pomodoro session completed! Take a short break.");
-            timerSeconds = 25 * 60;
-          }
-        }, 1000);
+    // --- Interactive Calendar Popup ---
+    function toggleCalendarPopup(e) {
+      e.stopPropagation();
+      const popup = document.getElementById('calendarPopup');
+      if (popup.style.display === 'block') {
+        popup.style.display = 'none';
       } else {
-        isTimerRunning = false;
-        clearInterval(timerInterval);
-        btn.textContent = "Resume";
+        renderCalendarGrid();
+        popup.style.display = 'block';
+      }
+    }
+    function closeCalendarPopup() {
+      document.getElementById('calendarPopup').style.display = 'none';
+    }
+    window.addEventListener('click', () => { closeCalendarPopup(); });
+
+    function renderCalendarGrid() {
+      const container = document.getElementById('calGridContainer');
+      container.innerHTML = '';
+      const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+      days.forEach(d => {
+        const div = document.createElement('div');
+        div.className = 'cal-day-header';
+        div.textContent = d;
+        container.appendChild(div);
+      });
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
+      const todayDate = now.getDate();
+
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      document.getElementById('calMonthYear').textContent = now.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+
+      for (let i = 0; i < firstDayIndex; i++) {
+        const emptyCell = document.createElement('div');
+        container.appendChild(emptyCell);
+      }
+
+      for (let d = 1; d <= totalDays; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell';
+        if (d === todayDate) cell.classList.add('today');
+        cell.textContent = d;
+        container.appendChild(cell);
       }
     }
 
@@ -1960,7 +2147,7 @@
       btn.style.display = 'none';
     }
 
-    // --- Live Bonsai Styling Workshop ---
+    // --- Fixed Live Bonsai Styling Workshop ---
     function performWorkshopAction(action) {
       const feedback = document.getElementById('workshopFeedback');
       const status = document.getElementById('workshopStatus');
@@ -1993,7 +2180,7 @@
       });
     }
 
-    // --- Live IST Clock ---
+    // --- Live IST Clock & Ping Monitor ---
     function updateLiveClock() {
       const now = new Date();
       document.getElementById('liveDate').textContent = now.toLocaleDateString('en-IN', { weekday: 'short', day: '2-digit', month: 'short' });
@@ -2001,6 +2188,14 @@
     }
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
+
+    // Simulated Ping Fluctuation
+    function updatePingMonitor() {
+      const pings = [18, 22, 24, 21, 25, 19, 23];
+      const p = pings[Math.floor(Math.random() * pings.length)];
+      document.getElementById('pingBadge').innerHTML = `<span>📶 Ping: ${p}ms</span>`;
+    }
+    setInterval(updatePingMonitor, 5000);
 
     // --- Native Mobile-Compatible Audio Engine ---
     function stopAllAudio() {
@@ -2135,37 +2330,91 @@
     }
     renderQuiz();
 
-    // --- STRICTLY CONFINED INSIDE-THE-JAR TERRARIUM SIMULATOR ---
-    let jarMoisture = 74;
+    // --- Athletics Interactive Reflex Benchmarker (Idea 1) ---
+    let reflexState = 'idle';
+    let reflexTimer = null;
+    let reflexStart = 0;
+    let bestReflex = 0;
 
-    function updateJarLighting(val) {
+    function triggerReflexTest() {
+      const box = document.getElementById('reflexArenaBox');
+      const text = document.getElementById('reflexArenaText');
+      const scoreDisp = document.getElementById('reflexScoreDisplay');
+
+      if (reflexState === 'idle') {
+        reflexState = 'waiting';
+        box.className = 'reflex-arena waiting';
+        text.textContent = "Wait for GREEN... (Keep ready!)";
+        
+        const delay = 1500 + Math.random() * 2500;
+        reflexTimer = setTimeout(() => {
+          reflexState = 'ready';
+          box.className = 'reflex-arena ready';
+          text.textContent = "CLICK NOW!";
+          reflexStart = performance.now();
+        }, delay);
+      } else if (reflexState === 'waiting') {
+        clearTimeout(reflexTimer);
+        reflexState = 'idle';
+        box.className = 'reflex-arena';
+        text.textContent = "Too early! Click to try again.";
+      } else if (reflexState === 'ready') {
+        const elapsed = Math.round(performance.now() - reflexStart);
+        reflexState = 'idle';
+        box.className = 'reflex-arena';
+        text.textContent = `Reaction Speed: ${elapsed} ms! Click to retry.`;
+        if (bestReflex === 0 || elapsed < bestReflex) {
+          bestReflex = elapsed;
+          scoreDisp.textContent = `Best: ${bestReflex} ms`;
+        }
+      }
+    }
+
+    // --- Upgraded Realistic Terrarium Photoperiod Lighting & Specular Gloss ---
+    function updateRealisticJarLighting(val) {
       const v = parseInt(val);
       const chamber = document.getElementById('jarChamber');
+      const gloss = document.getElementById('glassSpecular');
       const label = document.getElementById('lightLabel');
       const dew = document.getElementById('telemetryDew');
       const climate = document.getElementById('telemetryClimate');
 
       if (v < 25) {
-        chamber.style.background = 'radial-gradient(circle at center, rgba(30, 58, 138, 0.5) 20%, rgba(15, 23, 42, 0.75) 100%)';
-        label.textContent = 'Moonlit Night';
+        // Dawn
+        chamber.style.background = 'radial-gradient(circle at center, rgba(30, 58, 138, 0.45) 20%, rgba(11, 15, 25, 0.8) 100%)';
+        gloss.style.left = '10%';
+        label.textContent = 'Dawn / Morning';
         label.style.color = 'var(--cyber-blue)';
-        dew.textContent = '15.6°C';
-        climate.textContent = 'Active Dew Condensation';
-      } else if (v < 65) {
-        chamber.style.background = 'radial-gradient(circle at center, rgba(251, 191, 36, 0.15) 30%, rgba(217, 119, 6, 0.25) 100%)';
-        label.textContent = 'Morning Glow';
+        dew.textContent = '16.5°C';
+        climate.textContent = 'Dew Condensation Active';
+      } else if (v < 70) {
+        // Noon / Daylight
+        chamber.style.background = 'radial-gradient(circle at top, rgba(255, 255, 255, 0.35) 15%, rgba(5, 150, 105, 0.15) 85%)';
+        gloss.style.left = '45%';
+        label.textContent = 'Noon / Daylight';
         label.style.color = 'var(--alert-amber)';
-        dew.textContent = '18.2°C';
-        climate.textContent = 'Vapor Equilibrium';
+        dew.textContent = '21.0°C';
+        climate.textContent = 'Transpiration Peak';
+      } else if (v < 90) {
+        // Golden Hour
+        chamber.style.background = 'radial-gradient(circle at right, rgba(245, 158, 11, 0.35) 20%, rgba(120, 53, 15, 0.45) 100%)';
+        gloss.style.left = '75%';
+        label.textContent = 'Golden Hour';
+        label.style.color = 'var(--alert-amber)';
+        dew.textContent = '19.2°C';
+        climate.textContent = 'Warm Sidelight Cycle';
       } else {
-        chamber.style.background = 'radial-gradient(circle at top, rgba(255, 255, 255, 0.3) 10%, transparent 80%)';
-        label.textContent = 'Bright Daylight';
-        label.style.color = 'var(--nature-green)';
-        dew.textContent = '21.5°C';
-        climate.textContent = 'Transpiration Cycle Peak';
+        // Night
+        chamber.style.background = 'radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 30%, rgba(3, 7, 18, 0.95) 100%)';
+        gloss.style.left = '90%';
+        label.textContent = 'Night Moonlighting';
+        label.style.color = 'var(--cyber-blue)';
+        dew.textContent = '14.8°C';
+        climate.textContent = 'Dormant Respiration';
       }
     }
 
+    let jarMoisture = 74;
     function mistInsideJar() {
       const mist = document.getElementById('internalMist');
       const feedback = document.getElementById('mistFeedback');
@@ -2262,9 +2511,9 @@
     let runnerObstacles = [];
     let runnerSpeed = 5.2;
 
-    let reflexState = 'idle';
-    let reflexTimer = null;
-    let reflexStartTime = 0;
+    let arcadeReflexState = 'idle';
+    let arcadeReflexTimer = null;
+    let arcadeReflexStart = 0;
 
     let targets = [];
     let safeRadius = 90;
@@ -2276,7 +2525,7 @@
 
     function switchGame(index) {
       if (animId) cancelAnimationFrame(animId);
-      if (reflexTimer) clearTimeout(reflexTimer);
+      if (arcadeReflexTimer) clearTimeout(arcadeReflexTimer);
       if (ecoInterval) clearInterval(ecoInterval);
       isRunning = false;
       currentGame = index;
@@ -2401,7 +2650,7 @@
     }
 
     function initCourtReflex() {
-      reflexState = 'idle';
+      arcadeReflexState = 'idle';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = 'var(--card-bg)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 3;
@@ -2412,29 +2661,29 @@
     }
 
     function actionReflex() {
-      if (reflexState === 'idle' || reflexState === 'complete') {
-        reflexState = 'waiting';
+      if (arcadeReflexState === 'idle' || arcadeReflexState === 'complete') {
+        arcadeReflexState = 'waiting';
         ctx.fillStyle = '#fef2f2'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
         ctx.fillStyle = '#dc2626'; ctx.font = '700 18px sans-serif'; ctx.textAlign = 'center';
         ctx.fillText("WAIT FOR GREEN SWEET-SPOT...", canvas.width / 2, 125);
 
         const delay = 1200 + Math.random() * 2500;
-        reflexTimer = setTimeout(() => {
-          reflexState = 'strike';
-          reflexStartTime = performance.now();
+        arcadeReflexTimer = setTimeout(() => {
+          arcadeReflexState = 'strike';
+          arcadeReflexStart = performance.now();
           ctx.fillStyle = '#ecfdf5'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
           ctx.fillStyle = '#059669'; ctx.font = '800 24px sans-serif'; ctx.textAlign = 'center';
           ctx.fillText("SMASH NOW!", canvas.width / 2, 125);
         }, delay);
-      } else if (reflexState === 'waiting') {
-        clearTimeout(reflexTimer);
-        reflexState = 'complete';
+      } else if (arcadeReflexState === 'waiting') {
+        clearTimeout(arcadeReflexTimer);
+        arcadeReflexState = 'complete';
         ctx.fillStyle = '#fef2f2'; ctx.fillRect(40, 20, canvas.width - 80, canvas.height - 40);
         ctx.fillStyle = '#dc2626'; ctx.font = '700 18px sans-serif'; ctx.textAlign = 'center';
         ctx.fillText("FAULT! EARLY STRIKE. TAP TO RESET", canvas.width / 2, 125);
-      } else if (reflexState === 'strike') {
-        const ms = Math.round(performance.now() - reflexStartTime);
-        reflexState = 'complete';
+      } else if (arcadeReflexState === 'strike') {
+        const ms = Math.round(performance.now() - arcadeReflexStart);
+        arcadeReflexState = 'complete';
         scores[1] = ms;
         document.getElementById('gameScore').innerText = `${ms} ms`;
         if (highScores[1] === 0 || ms < highScores[1]) {
